@@ -1,9 +1,11 @@
 # Release checklist
 
-Status checkpoint: **2026-11-01, Constructa 1.0.0 local release candidate**.
+Status checkpoint: **2026-11-01, Constructa 1.0.0 deployed source**.
 Checked items have evidence in [QUALITY.md](QUALITY.md). Final local root/subpath
 aggregates and updated captures cover the dock/cursor/touch refinements. Linux
-checks and public deployment remain pending until their actual results are recorded.
+quality/browser jobs and public Pages deployment passed for
+[65658c4](https://github.com/MiraHikari/astro-constructivist/commit/65658c432bb710deed22d12da0e054ef88a9b894).
+Theme-directory submission has not been performed.
 
 ## Configuration and content
 
@@ -24,6 +26,7 @@ checks and public deployment remain pending until their actual results are recor
 - [x] Production and full dependency audits report zero advisories for the reviewed lockfile.
 - [x] Final repository-subpath aggregate complete: 93 passed, 11 expected platform skips, 0 failures.
 - [x] Separate root-path aggregate complete: 93 passed, 11 expected platform skips, 0 failures.
+- [x] Linux CI quality gates and both production-browser jobs succeed in the linked release run.
 - [x] The final aggregate covers the floating dock, cursor layering, and touch-globe changes.
 - [x] Root and repository-base local production previews load without missing assets.
 - [x] The exercised production-browser flows report no uncaught application errors or stale debug overlays.
@@ -48,8 +51,8 @@ checks and public deployment remain pending until their actual results are recor
 - [x] Public repository name, description, and topics are set.
 - [x] GitHub template mode is enabled.
 - [x] Private vulnerability reporting is enabled.
-- [ ] License and release source are present on the public default branch.
-- [ ] README and Chinese README links point to real, accessible destinations.
+- [x] License and release source are present on the public default branch.
+- [x] README and Chinese README local links resolve; their public repository and demo destinations are live.
 - [x] `docs/images/cover.svg`, `desktop.png`, `mobile.png`, and `social-card.png`
   exist for the reviewed theme.
 - [x] Desktop, mobile, and full Index screenshots are refreshed for the final navigation design.
@@ -60,13 +63,13 @@ checks and public deployment remain pending until their actual results are recor
 ## Deployment and publication
 
 - [x] GitHub Pages is configured to deploy from GitHub Actions.
-- [ ] Workflow permissions and the `github-pages` environment are ready.
-- [ ] The public demo deployment succeeds at the documented URL.
-- [ ] Canonical, robots, sitemap, social image, favicon, and base-path requests
+- [x] Workflow permissions and the `github-pages` environment complete a successful deployment.
+- [x] The public demo deployment succeeds at the documented URL.
+- [x] Canonical, robots, sitemap, social image, favicon, and base-path requests
   have been inspected on the deployed site, not just locally.
-- [x] Package version and dated changelog describe the 1.0.0 release candidate.
+- [x] Package version and dated changelog describe the published 1.0.0 release.
 - [x] Publication is explicitly authorized by the maintainer.
-- [ ] The release commit/tag and public release notes are published.
+- [x] The annotated `v1.0.0` tag and [release notes](https://github.com/MiraHikari/astro-constructivist/releases/tag/v1.0.0) are published at verified source commit `65658c4`.
 - [ ] Theme-directory submission is separately reviewed and authorized.
 
 Do not mark a gate complete because an earlier version or the original personal

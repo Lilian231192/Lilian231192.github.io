@@ -1,14 +1,15 @@
-# Release-candidate quality evidence
+# Release quality evidence
 
-This report records verification of Constructa 1.0.0's local release candidate
-on **2026-11-01**. It is not a claim that a public deployment, theme-directory
-submission, or GitHub-hosted workflow has completed.
+This report records local, Linux CI, and public-deployment verification of
+Constructa 1.0.0 on **2026-11-01**, at
+[commit 65658c4](https://github.com/MiraHikari/astro-constructivist/commit/65658c432bb710deed22d12da0e054ef88a9b894).
+Theme-directory submission has not been performed.
 
 **Current checkpoint:** both final local production builds cover the floating
 navigation dock, body-level cursor, and touch-globe refinements. Root and
 repository-subpath runs each passed with 93 cases, 11 expected platform skips,
-and no failures. Screenshots were refreshed. Linux-hosted execution and public
-deployment remain separate gates.
+and no failures. Screenshots were refreshed. The Linux root/subpath CI jobs and
+GitHub Pages deployment also succeeded, followed by a public-site smoke test.
 
 ## Environment
 
@@ -39,8 +40,8 @@ deployment remain separate gates.
 | Configuration fixtures | 3 production builds and 8 browser checks passed | Minimal/disabled/reordered content and wide-heading/print edge cases. |
 
 The clean-install check was isolated from the working checkout. It validates
-lockfile reproducibility with lifecycle scripts disabled; the normal CI install
-still needs to run with the declared `allowBuilds` policy on its own runner.
+lockfile reproducibility with lifecycle scripts disabled. The normal Linux CI
+install subsequently succeeded with the declared `allowBuilds` policy.
 
 Audit counts are a snapshot, not a guarantee of permanent security. Dependencies
 retain their own upstream licenses and advisories. Exact reviewed overrides and
@@ -86,9 +87,8 @@ viewport. Cover and social artwork are separate promotional graphics, not test
 screenshots.
 
 These completed runs validate real local production output at both root and
-repository-subpath URLs. Linux GitHub-hosted execution remains a separate
-workflow check after the public code push; it is not inferred from the Windows
-results.
+repository-subpath URLs. The separate Linux GitHub-hosted root and subpath jobs
+also succeeded; those results are linked below rather than inferred from Windows.
 
 ## Independent review and configuration fixtures
 
@@ -118,16 +118,32 @@ than forcing an unsupported latest major into the Astro checker.
 
 ## Public status
 
-The [public repository](https://github.com/MiraHikari/astro-constructivist) has
-been created with template mode, description, and topics. At this report's
-checkpoint, the release code has not been pushed and the
-[demo URL](https://mirahikari.github.io/astro-constructivist/) has not been
-verified as deployed. GitHub Pages execution and public metadata validation
-remain release gates.
+The [public template repository](https://github.com/MiraHikari/astro-constructivist)
+contains the verified source, license, documentation, and demo assets. Description,
+topics, GitHub template mode, and private vulnerability reporting are configured.
 
-GitHub Pages is configured to build from Actions, and private vulnerability
-reporting is enabled. Those settings confirm neither a successful workflow run
-nor a deployed release.
+The annotated `v1.0.0` tag and
+[GitHub release](https://github.com/MiraHikari/astro-constructivist/releases/tag/v1.0.0)
+are published at the same verified source commit `65658c4`. Subsequent
+documentation-only updates do not change the application build described here.
+
+[GitHub Pages run 41236637936](https://github.com/MiraHikari/astro-constructivist/actions/runs/41236637936)
+completed successfully for commit `65658c432bb710deed22d12da0e054ef88a9b894`.
+All five jobs passed: quality gates, root production-browser tests, subpath
+production-browser tests, configured-site build, and Pages deployment.
+
+The [public HTTPS demo](https://mirahikari.github.io/astro-constructivist/)
+returned 200. The following deployed resources also returned 200 with appropriate
+content types: `robots.txt`, `sitemap-index.xml`, `sitemap-0.xml`,
+`manifest.webmanifest`, `favicon.svg`, `apple-touch-icon.png`, `og.png`, and
+`demo/project-forma.svg`. Canonical and Open Graph URLs use the repository base,
+including the correct social-image URL; robots metadata allows indexing and
+points to the deployed sitemap.
+
+An in-app browser smoke test confirmed the title and eight real sections.
+Searching the Index for `Forma` returned two results; Enter on the first result
+navigated to `#project-1` with the correct focus, and the case dialog opened.
+The exercised public flow produced no application warning or error logs.
 
 ## Explicit limits
 

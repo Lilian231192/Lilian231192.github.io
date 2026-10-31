@@ -1,9 +1,11 @@
 # Changelog
 
-Notable changes to Constructa are recorded here. The entry below describes the
-1.0.0 release candidate; a dated entry alone does not confirm a Git tag, public
-code push, or successful demo deployment. See [quality evidence](docs/QUALITY.md)
-and the [release checklist](docs/RELEASE.md) for current status.
+Notable changes to Constructa are recorded here. The 1.0.0 source is published
+and deployed from [65658c4](https://github.com/MiraHikari/astro-constructivist/commit/65658c432bb710deed22d12da0e054ef88a9b894).
+The annotated tag and [v1.0.0 release](https://github.com/MiraHikari/astro-constructivist/releases/tag/v1.0.0)
+point to that verified application source.
+See [quality evidence](docs/QUALITY.md) and the [release checklist](docs/RELEASE.md)
+for verification scope and publication status.
 
 ## 1.0.0 - 2026-11-01
 
@@ -48,3 +50,12 @@ and the [release checklist](docs/RELEASE.md) for current status.
   scoped security resolutions, and no network install in the pre-commit hook.
 - Removed icon-download and post-build compression integrations in favor of
   local icon data and Astro's static build.
+
+### Publication
+
+- Published the public GitHub template and deployed the HTTPS demo to GitHub Pages.
+- Published the annotated `v1.0.0` tag and GitHub release at the verified source commit.
+- [Release pipeline 41236637936](https://github.com/MiraHikari/astro-constructivist/actions/runs/41236637936)
+  passed all five Linux quality, root/subpath browser, build, and deployment jobs.
+- Verified deployed assets, metadata, Index navigation, project focus, and case
+  dialog interaction. Astro theme-directory submission has not been performed.

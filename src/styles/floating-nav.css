@@ -1,0 +1,312 @@
+:root {
+  --dock-top: 1rem;
+  --dock-size: 4rem;
+  --header-height: calc(var(--dock-top) + var(--dock-size) + 1rem);
+}
+
+#main {
+  padding-top: var(--header-height);
+}
+
+.topbar {
+  position: fixed;
+  inset: var(--dock-top) 0 auto;
+  width: min(72rem, calc(100% - 3rem));
+  height: var(--dock-size);
+  margin-inline: auto;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 5px 0 -4px var(--fg), 0 14px 40px -24px color-mix(in srgb, var(--fg) 35%, transparent);
+  transition: background-color 0.35s, box-shadow 0.35s, border-color 0.35s;
+}
+
+.topbar[data-dock-state="scrolled"] {
+  background: color-mix(in srgb, var(--bg) 98%, transparent);
+  border-color: color-mix(in srgb, var(--fg) 40%, transparent);
+  box-shadow: 0 8px 0 -7px var(--accent), 0 18px 50px -25px color-mix(in srgb, var(--fg) 45%, transparent);
+}
+
+.topbar__inner {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.45rem 0.5rem 0.45rem 0.8rem;
+}
+
+.topbar__brand {
+  min-width: 0;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  font-size: 1rem;
+  padding-right: 0.35rem;
+}
+
+.topbar__brand-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13rem;
+}
+
+.topbar__brand-mark {
+  width: 1.8rem;
+  height: 2rem;
+  flex-shrink: 0;
+  transform: rotate(-7deg);
+  transition: transform 0.45s var(--ease-expo);
+}
+
+.topbar__brand:hover .topbar__brand-mark {
+  transform: rotate(7deg);
+}
+
+.topbar__nav {
+  position: relative;
+  isolation: isolate;
+  align-self: stretch;
+  align-items: stretch;
+  gap: 0.15rem;
+  margin-inline: auto;
+  font-size: 0.75rem;
+}
+
+.topbar__nav a {
+  z-index: 1;
+  border: 0;
+  border-radius: 3px;
+  padding-inline: 0.9rem;
+  gap: 0.5rem;
+  color: var(--fg);
+  background: transparent;
+  transition: color 0.2s;
+}
+
+.topbar__nav a::after {
+  display: none;
+}
+
+.topbar__indicator {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 3px;
+  background: var(--fg);
+  opacity: 0;
+  transition: width 0.5s var(--ease-expo), transform 0.5s var(--ease-expo), opacity 0.22s;
+  pointer-events: none;
+}
+
+.topbar__nav a[data-dock-highlight],
+.topbar__nav a[data-dock-highlight] .topbar__nav-index {
+  color: var(--bg);
+}
+
+.topbar__nav a:hover,
+.topbar__nav a[aria-current="location"] {
+  background: transparent;
+}
+
+html:not(.js) .topbar__nav a:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.topbar__nav-index {
+  font-size: 0.48rem;
+  align-self: auto;
+  margin-top: -0.5rem;
+  color: var(--fg-2);
+}
+
+.topbar__word {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 1.3em;
+  line-height: 1.3;
+}
+
+.topbar__word-front,
+.topbar__word-back {
+  display: block;
+  transition: transform 0.45s var(--ease-expo);
+}
+
+.topbar__word-back {
+  position: absolute;
+  inset: 0;
+  transform: translateY(110%) rotate(4deg);
+}
+
+.topbar__nav a:hover .topbar__word-front,
+.topbar__nav a:focus-visible .topbar__word-front {
+  transform: translateY(-110%) rotate(-4deg);
+}
+
+.topbar__nav a:hover .topbar__word-back,
+.topbar__nav a:focus-visible .topbar__word-back {
+  transform: translateY(0) rotate(0);
+}
+
+.topbar__tools {
+  flex-shrink: 0;
+  height: 100%;
+  gap: 0.25rem;
+  align-items: stretch;
+}
+
+.topbar__palette {
+  gap: 0.4rem;
+  padding-inline: 0.6rem;
+}
+
+.topbar__select select {
+  font-size: 0.56rem;
+  width: 4.4rem;
+}
+
+.topbar__swatch {
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.topbar__tool {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding-inline: 0.6rem;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  transition: background-color 0.25s, color 0.25s, box-shadow 0.3s;
+}
+
+.topbar__tool--index {
+  gap: 0.65rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding-inline: 0.95rem;
+  margin-left: 0.35rem;
+}
+
+.topbar__tool--index:hover {
+  background: var(--fg);
+  color: var(--bg);
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+.topbar__index-glyph {
+  transition: rotate 0.4s var(--ease-expo);
+}
+
+.topbar__tool--index:hover .topbar__index-glyph {
+  rotate: 90deg;
+}
+
+.topbar__tool-arrow {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: translate 0.3s var(--ease-expo);
+}
+
+.topbar__tool--index:hover .topbar__tool-arrow {
+  translate: 2px -2px;
+}
+
+.topbar .scroll-progress {
+  left: 7px;
+  right: 7px;
+  width: auto;
+  bottom: -1px;
+  border-radius: 1px;
+}
+
+#indexDialog.index-dialog {
+  width: min(72rem, calc(100vw - 3rem));
+  height: calc(100dvh - 6.75rem);
+  min-height: 0;
+  max-height: calc(100dvh - 6.75rem);
+  inset: 5.75rem 0 auto;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  box-shadow: 0 32px 90px rgb(0 0 0 / 0.2);
+}
+
+#indexDialog.index-dialog::backdrop {
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  backdrop-filter: blur(9px);
+}
+
+.index-dialog .index-dialog__frame {
+  min-height: 100%;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+#indexDialog.index-dialog[open] {
+  animation: dock-unfold 0.48s var(--ease-expo);
+}
+
+.index-dialog[open] .index-dialog__link {
+  animation: dock-link-in 0.65s var(--ease-expo) both;
+}
+
+.index-dialog[open] li:nth-child(2) .index-dialog__link { animation-delay: 0.04s; }
+.index-dialog[open] li:nth-child(3) .index-dialog__link { animation-delay: 0.08s; }
+.index-dialog[open] li:nth-child(4) .index-dialog__link { animation-delay: 0.12s; }
+.index-dialog[open] li:nth-child(5) .index-dialog__link { animation-delay: 0.16s; }
+.index-dialog[open] li:nth-child(6) .index-dialog__link { animation-delay: 0.2s; }
+.index-dialog[open] li:nth-child(7) .index-dialog__link { animation-delay: 0.24s; }
+
+@keyframes dock-unfold {
+  from { clip-path: inset(0 0 94% 0 round 7px); translate: 0 -12px; }
+  to { clip-path: inset(0 0 0 0 round 7px); translate: 0 0; }
+}
+
+@keyframes dock-link-in {
+  from { translate: 0 16px; }
+  to { translate: 0 0; }
+}
+
+@media (max-width: 63.99rem) {
+  .topbar { width: calc(100% - 2rem); }
+  .topbar__brand-text { max-width: 9rem; }
+  .topbar__nav { display: none; }
+  #indexDialog.index-dialog { width: calc(100vw - 2rem); }
+}
+
+@media (max-width: 47.99rem) {
+  :root { --dock-top: 0.75rem; --dock-size: 3.6rem; --header-height: calc(var(--dock-top) + var(--dock-size) + 0.8rem); }
+  .topbar { width: calc(100% - 1.5rem); }
+  .topbar__inner { padding: 0.35rem 0.35rem 0.35rem 0.6rem; gap: 0.3rem; }
+  .topbar__brand { gap: 0.4rem; font-size: 0.95rem; padding-right: 0; }
+  .topbar__brand-mark { width: 1.45rem; height: 1.7rem; }
+  .topbar__brand-text { max-width: 8rem; }
+  .topbar__palette { padding-inline: 0.35rem; }
+  .topbar__select select { width: 3.5rem; font-size: 0.5rem; }
+  .topbar__tool--index { margin-left: 0; padding-inline: 0.65rem; min-width: 2.75rem; }
+  .topbar__tool--index .topbar__tool-label, .topbar__tool-arrow { display: none; }
+  .topbar__tools { gap: 0; }
+  #indexDialog.index-dialog { width: calc(100vw - 1.5rem); inset: 5rem 0 auto; height: calc(100dvh - 5.75rem); max-height: calc(100dvh - 5.75rem); }
+}
+
+@media (max-width: 23.99rem) {
+  .topbar__brand-text { display: inline-flex; max-width: 6.5rem; }
+  .topbar__palette { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar *, .index-dialog, .index-dialog * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  #main { padding-top: 0 !important; }
+  .topbar, .index-dialog { display: none !important; }
+}

@@ -1,0 +1,624 @@
+---
+import { Image } from 'astro:assets'
+import ProjectCase from '@/components/ProjectCase.astro'
+import Section from '@/components/Section.astro'
+import Arrow from '@/components/ui/Arrow.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { cv } from '@/data/cv'
+import { asset, text } from '@/data/site'
+import { stripLeadingEmoji } from '@/utils/text'
+
+const projects = cv.projects
+const liveCount = projects.filter(project => project.isActive !== false).length
+const meta = `${String(projects.length).padStart(2, '0')} ${text('projects.cases')} · ${String(liveCount).padStart(2, '0')} ${text('common.live')}`
+---
+<Section id="projects" meta={meta} className="projects-section">
+  <div class="project-index" data-scroll>
+    <div class="project-index__head">
+      <span class="kicker">{text('projects.index')}</span>
+      <span class="mono">{text('projects.select')} ↓</span>
+    </div>
+    <ol class="project-index__list">
+      {
+        projects.map((project, index) => (
+          <li>
+            <a href={`#project-${index + 1}`}>
+              <span class="project-index__num mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span class="project-index__name">{project.name}</span>
+              <span class:list={['project-index__status mono', project.isActive === false && 'is-archived']}>
+                {project.isActive === false
+? text('common.archive')
+: text('common.live')}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <div class="project-exhibition" data-project-exhibition>
+    <div class="project-exhibition__pin" data-project-pin>
+      <div class="project-exhibition__bar" aria-hidden="true">
+        <span>{text('projects.selected')}</span>
+        <span class="project-exhibition__position"><span data-project-current>01</span><span class="project-exhibition__divider">/</span>{String(projects.length).padStart(2, '0')}</span>
+        <span class="project-exhibition__hint">{text('projects.explore')} <Arrow direction="down" size={14} /></span>
+      </div>
+      <div class="project-exhibition__viewport">
+        <div class="projects" data-project-track>
+    {
+      projects.map((project, index) => {
+        const isLive = project.isActive !== false
+        const number = String(index + 1).padStart(2, '0')
+        const { image } = project
+        const url = project.url
+        const repo = project.github
+        const flipped = index % 2 === 1
+
+        return (
+          <article
+            id={`project-${index + 1}`}
+            class:list={['project', flipped && 'project--flip']}
+            aria-labelledby={`project-title-${index + 1}`}
+            data-project
+            tabindex="-1"
+          >
+            <div class="project__media-wrap">
+              <div class="project__media-shadow" aria-hidden="true" />
+              {image
+                ? (
+                    <a
+                      class:list={[
+                        'project__media',
+                        image.position === 'container'
+? 'project__media--contain'
+: 'project__media--cover',
+                      ]}
+                      href={asset(image.url)}
+                      data-lightbox="projects"
+                      data-caption={project.name}
+                      data-cursor={text('cursor.view')}
+                      aria-label={text('common.imageLabel').replace('{name}', project.name)}
+                      data-scroll="media"
+                    >
+                      <Image
+                        src={asset(image.url)}
+                        alt=""
+                        width={1600}
+                        height={1000}
+                        format="webp"
+                        class:list={['project__image', image.dark && 'project__image--light']}
+                        loading="lazy"
+                      />
+                      {image.dark && (
+                        <Image
+                          src={asset(image.dark)}
+                          alt=""
+                          width={1600}
+                          height={1000}
+                          format="webp"
+                          class="project__image project__image--dark"
+                          loading="lazy"
+                        />
+                      )}
+                      <span class="project__open" aria-hidden="true">
+                        <span>{text('common.openImage')}</span>
+                        <span>↗</span>
+                      </span>
+                      <span class="project__corner project__corner--tl" aria-hidden="true" />
+                      <span class="project__corner project__corner--br" aria-hidden="true" />
+                    </a>
+                  )
+                : (
+                    <div class="project__media project__media--empty" aria-hidden="true">
+                      <span class="mono">{text('common.noPreview')}</span>
+                    </div>
+                  )}
+              <span class="project__index display" aria-hidden="true">{number}</span>
+            </div>
+
+            <div class="project__body">
+              <header class="project__head">
+                <span class:list={[
+'stamp',
+isLive ? 'stamp--solid' : 'project__stamp-archive',
+]}
+                >
+                  <span class="status-dot" aria-hidden="true" />
+                  {isLive
+? text('common.live')
+: text('common.archived')}
+                </span>
+                <span class="mono project__case">{text('common.case')} {number} / {String(projects.length).padStart(2, '0')}</span>
+              </header>
+
+              <h3 id={`project-title-${index + 1}`} class="project__title display" data-project-title>{project.name}</h3>
+
+              <p class="project__description">{project.description}</p>
+
+              {project.highlights && project.highlights.length > 0 && (
+                <ul class="project__highlights">
+                  {project.highlights.map(highlight => (
+                    <li>
+                      <span class="project__bullet" aria-hidden="true" />
+                      <span>{stripLeadingEmoji(highlight)}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <footer class="project__footer">
+                <button
+                  class="btn"
+                  type="button"
+                  data-case-open
+                  data-case-index={index}
+                  aria-haspopup="dialog"
+                  aria-controls="projectCase"
+                  aria-label={text('common.caseLabel').replace('{name}', project.name)}
+                >
+                  <Icon name="mdi:file-document-outline" width={15} height={15} aria-hidden="true" />
+                  {text('common.caseFile')}
+                </button>
+                {url && (
+                  <a class="btn btn--solid" href={url} target="_blank" rel="noopener noreferrer" data-cursor={text('cursor.visit')}>
+                    {text('common.visitProject')}
+                    <Icon name="mdi:open-in-new" width={15} height={15} aria-hidden="true" />
+                  </a>
+                )}
+                {repo && (
+                  <a
+                    class="project__repo arrow-link"
+                    href={repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={text('common.sourceLabel').replace('{name}', project.name)}
+                  >
+                    <Icon name="mdi:github" width={16} height={16} aria-hidden="true" />
+                    <span>{text('common.source')}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </footer>
+            </div>
+          </article>
+        )
+      })
+    }
+        </div>
+      </div>
+      <nav class="project-exhibition__navigation" aria-label={text('projects.navigation')} style={`grid-template-columns: repeat(${Math.max(1, projects.length)}, minmax(0, 1fr))`}>
+        {projects.map((project, index) => (
+          <a href={`#project-${index + 1}`} data-project-step aria-label={`${String(index + 1).padStart(2, '0')} ${project.name}`}>
+            <span class="project-exhibition__step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}{' '}</span>
+            <span>{project.name}</span>
+            <Arrow size={14} />
+          </a>
+        ))}
+      </nav>
+      <div class="project-exhibition__progress" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+
+  <ProjectCase />
+</Section>
+
+<style>
+  @reference "../../globals.css";
+
+  @layer components {
+    .project-index {
+        display: grid;
+        grid-template-columns: minmax(10rem, 0.5fr) minmax(0, 2.5fr);
+        gap: 1.5rem 3rem;
+        align-items: start;
+        padding-block: 1rem;
+        border-top: 4px solid var(--fg);
+        border-bottom: 2px solid var(--fg);
+        margin-bottom: clamp(3rem, 7vw, 7rem);
+      }
+
+      .project-index__head {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .project-index__head .mono {
+        color: var(--fg-3);
+      }
+
+      .project-index__list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 1.5rem;
+      }
+
+      .project-index__list a {
+        display: grid;
+        grid-template-columns: 2rem minmax(0, 1fr) auto;
+        align-items: baseline;
+        gap: 0.65rem;
+        padding-block: 0.5rem;
+        border-bottom: 1px solid var(--line);
+        transition:
+          background-color 0.2s var(--ease-out),
+          color 0.2s var(--ease-out);
+      }
+
+      .project-index__list a:hover {
+        background: var(--accent);
+        color: var(--on-accent);
+        padding-inline: 0.4rem;
+      }
+
+      .project-index__num {
+        color: var(--accent-text);
+      }
+
+      .project-index__list a:hover .project-index__num,
+      .project-index__list a:hover .project-index__status {
+        color: var(--on-accent);
+      }
+
+      .project-index__name {
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .project-index__status {
+        color: var(--fg-3);
+      }
+
+      .project-index__status.is-archived {
+        color: var(--fg-2);
+        text-decoration: line-through;
+        opacity: 1;
+      }
+
+      .projects {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(4rem, 8vw, 8rem);
+      }
+
+      .project {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        align-items: center;
+        gap: var(--grid-gap);
+        scroll-margin-top: 7rem;
+      }
+
+      .project__media-wrap {
+        position: relative;
+        grid-column: 1 / span 7;
+        z-index: 1;
+      }
+
+      .project--flip .project__media-wrap {
+        grid-column: 6 / span 7;
+        order: 2;
+      }
+
+      .project__media-shadow {
+        position: absolute;
+        inset: 6% -3% -5% 5%;
+        background: var(--accent);
+        transform: rotate(-1.5deg);
+      }
+
+      .project--flip .project__media-shadow {
+        transform: rotate(1.5deg);
+      }
+
+      .project__media {
+        position: relative;
+        display: block;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border: 4px solid var(--fg);
+        background: var(--ink-panel);
+        transform: rotate(-1deg);
+        transition:
+          transform 0.4s var(--ease-out),
+          box-shadow 0.4s var(--ease-out);
+      }
+
+      .project--flip .project__media {
+        transform: rotate(1deg);
+      }
+
+      .project__media:hover {
+        transform: rotate(0) translate(-3px, -3px);
+        box-shadow: 10px 10px 0 var(--fg);
+      }
+
+      .project__media--contain {
+        padding: clamp(1.5rem, 4vw, 4rem);
+        background:
+          linear-gradient(90deg, color-mix(in oklab, var(--fg) 10%, transparent) 1px, transparent 1px),
+          linear-gradient(0deg, color-mix(in oklab, var(--fg) 10%, transparent) 1px, transparent 1px),
+          var(--ink-panel);
+        background-size: 2rem 2rem;
+      }
+
+      .project__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition:
+          transform 0.7s var(--ease-expo),
+          filter 0.4s var(--ease-out);
+      }
+
+      .project__media--contain .project__image {
+        object-fit: contain;
+      }
+
+      .project__image--dark {
+        display: none;
+      }
+
+      :global(.dark) .project__image--light {
+        display: none;
+      }
+
+      :global(.dark) .project__image--dark {
+        display: block;
+      }
+
+      .project__media:hover .project__image {
+        transform: scale(1.035);
+      }
+
+      .project__open {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.6rem 0.9rem;
+        background: var(--accent);
+        color: var(--on-accent);
+        font-family: var(--font-mono);
+        font-size: var(--fs-label);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transform: translateY(100%);
+        transition: transform 0.3s var(--ease-out);
+      }
+
+      .project__media:hover .project__open,
+      .project__media:focus-visible .project__open {
+        transform: none;
+      }
+
+      .project__corner {
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-color: var(--accent);
+        border-style: solid;
+        pointer-events: none;
+        mix-blend-mode: difference;
+      }
+
+      .project__corner--tl {
+        top: 0.8rem;
+        left: 0.8rem;
+        border-width: 2px 0 0 2px;
+      }
+
+      .project__corner--br {
+        right: 0.8rem;
+        bottom: 0.8rem;
+        border-width: 0 2px 2px 0;
+      }
+
+      .project__index {
+        position: absolute;
+        top: -0.55em;
+        left: -0.18em;
+        z-index: 2;
+        font-size: clamp(5rem, 10vw, 10rem);
+        line-height: 0.7;
+        color: var(--bg);
+        -webkit-text-stroke: 2px var(--fg);
+        pointer-events: none;
+      }
+
+      .project--flip .project__index {
+        right: -0.15em;
+        left: auto;
+      }
+
+      .project__body {
+        grid-column: 8 / -1;
+        min-width: 0;
+      }
+
+      .project--flip .project__body {
+        grid-column: 1 / span 5;
+        order: 1;
+      }
+
+      .project__head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-bottom: 0.9rem;
+        border-bottom: 2px solid var(--fg);
+        margin-bottom: 1rem;
+      }
+
+      .project__stamp-archive {
+        color: var(--fg-3);
+      }
+
+      .project__stamp-archive .status-dot {
+        background: currentColor;
+        box-shadow: none;
+        animation: none;
+      }
+
+      .project__case {
+        color: var(--fg-3);
+      }
+
+      .project__title {
+        margin-bottom: 1rem;
+        font-size: clamp(2.2rem, 4.6vw, 4.6rem);
+        line-height: 0.88;
+      }
+
+      .project__description {
+        max-width: 52ch;
+        margin-bottom: 1.4rem;
+        color: var(--fg-2);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .project__highlights {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .project__highlights li {
+        display: grid;
+        grid-template-columns: 0.55rem minmax(0, 1fr);
+        gap: 0.7rem;
+        align-items: baseline;
+        color: var(--fg-2);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .project__bullet {
+        width: 0.45rem;
+        height: 0.45rem;
+        background: var(--accent-text);
+        transform: translateY(0.1em);
+      }
+
+      .project__footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.9rem 1.5rem;
+        margin-top: 1.6rem;
+      }
+
+      .project__repo {
+        color: var(--fg-2);
+      }
+
+      .project__repo:hover {
+        color: var(--accent-text);
+      }
+
+      @media (max-width: 74rem) {
+        .project__media-wrap,
+        .project--flip .project__media-wrap {
+          grid-column: 1 / span 7;
+          order: 1;
+        }
+
+        .project__body,
+        .project--flip .project__body {
+          grid-column: 8 / -1;
+          order: 2;
+        }
+
+        .project__title {
+          font-size: clamp(2rem, 3.5vw, 3.2rem);
+        }
+      }
+
+      @media (max-width: 63.99rem) {
+        .project-index {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .project__media-wrap,
+        .project--flip .project__media-wrap {
+          grid-column: 1 / -1;
+          width: 100%;
+        }
+
+        .project__body,
+        .project--flip .project__body {
+          grid-column: 1 / -1;
+        }
+
+        .project__title {
+          font-size: clamp(2rem, 6vw, 3.5rem);
+        }
+
+        .project__index {
+          font-size: 6rem;
+        }
+      }
+
+      @media (max-width: 47.99rem) {
+        .project-index__list {
+          grid-template-columns: 1fr;
+        }
+
+        .project__media {
+          aspect-ratio: 4 / 3;
+        }
+
+        .project__media--contain {
+          padding: 1.25rem;
+        }
+
+        .project__title {
+          font-size: clamp(2rem, 10vw, 3rem);
+        }
+
+        .project__index {
+          top: -0.6em;
+          left: -0.1em;
+          font-size: 4.5rem;
+          -webkit-text-stroke-width: 1.5px;
+        }
+
+        .project__footer {
+          align-items: stretch;
+        }
+
+        .project__footer .btn {
+          width: 100%;
+        }
+      }
+  }
+</style>
+
+<style>
+
+
+  @layer components {
+    @media (min-width: 64rem) {
+        .project {
+          align-items: start;
+        }
+
+        .project__media-wrap {
+          position: sticky;
+          top: 6.5rem;
+          align-self: start;
+          transition: top 0.3s var(--ease-out);
+        }
+      }
+  }
+</style>

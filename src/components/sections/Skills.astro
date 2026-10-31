@@ -1,0 +1,387 @@
+---
+import Section from '@/components/Section.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { cv } from '@/data/cv'
+import { text } from '@/data/site'
+import { groupSkillsByCategory } from '@/utils/skills'
+
+const groups = groupSkillsByCategory(cv.skills.map(skill => ({ ...skill, category: skill.category?.trim() || text('skills.other') })))
+const total = cv.skills.length
+const meta = `${String(total).padStart(2, '0')} ${text('skills.skills')} · ${String(groups.length).padStart(2, '0')} ${text('skills.groups')}`
+---
+<Section id="skills" meta={meta}>
+  <div class="skills__intro" data-scroll>
+    <p class="kicker">{text('skills.intro')}</p>
+    <p class="skills__statement display">
+      {text('skills.statement')}
+    </p>
+    <p class="skills__note">
+      {text('skills.note')}
+    </p>
+  </div>
+
+  <div class="skills__controls" data-scroll>
+    <div class="skills__filters" role="group" aria-label={text('skills.filterLabel')}>
+      <button class="skills__filter" type="button" data-skill-filter="all" aria-pressed="true">
+        <span>{text('skills.all')}</span>
+        <span class="skills__filter-count mono">{String(total).padStart(2, '0')}</span>
+      </button>
+      {
+        groups.map(group => (
+          <button class="skills__filter" type="button" data-skill-filter={group.category} aria-pressed="false">
+            <span>{group.category}</span>
+            <span class="skills__filter-count mono">{String(group.skills.length).padStart(2, '0')}</span>
+          </button>
+        ))
+      }
+    </div>
+    <p class="skills__status mono" data-skill-status aria-live="polite">
+      {text('skills.status').replace('{count}', String(total).padStart(2, '0')).replace('{category}', text('skills.allCategories'))}
+    </p>
+  </div>
+
+  <div class="skills__legend mono" aria-hidden="true">
+    <span><span class="skills__legend-mark skills__legend-mark--expert"></span> {text('skills.expert')}</span>
+    <span><span class="skills__legend-mark skills__legend-mark--intermediate"></span> {text('skills.intermediate')}</span>
+    <span><span class="skills__legend-mark skills__legend-mark--beginner"></span> {text('skills.beginner')}</span>
+  </div>
+
+  <div class="skills__groups">
+    {
+      groups.map((group, groupIndex) => (
+        <section class="skills__group" data-skill-group aria-labelledby={`skills-group-${groupIndex}`}>
+          <header class="skills__group-head" data-scroll>
+            <span class="skills__group-index mono" aria-hidden="true">
+              {String(groupIndex + 1).padStart(2, '0')}
+            </span>
+            <h3 id={`skills-group-${groupIndex}`} class="skills__group-name display">{group.category}</h3>
+            <span class="skills__group-count mono">{String(group.skills.length).padStart(2, '0')} {text('skills.entries')}</span>
+          </header>
+
+          <ul class="skills__wall">
+            {group.skills.map(skill => (
+              <li
+                class:list={[
+                  'skill',
+                  skill.level && `skill--${skill.level.toLowerCase()}`,
+                ]}
+                data-skill-item
+                data-category={group.category}
+              >
+                <span class="skill__icon" aria-hidden="true">
+                  <Icon name={skill.icon} width={16} height={16} />
+                </span>
+                <span class="skill__name display">{skill.name}</span>
+                {skill.level && <span class="skill__level mono">{skill.level}</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <div class="skills__foot" data-scroll>
+    <p class="mono">{text('skills.inventory')} · {String(total).padStart(2, '0')} {text('skills.entries')} · {String(groups.length).padStart(2, '0')} {text('skills.categories')}</p>
+    <p class="skills__foot-note">
+      {text('skills.footnote')}
+    </p>
+  </div>
+</Section>
+
+<script>
+  import { initSkillFilters } from '@/scripts/skills'
+
+  initSkillFilters()
+</script>
+
+<style>
+  @reference "../../globals.css";
+
+  @layer components {
+    .skills__intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr) minmax(12rem, 0.8fr);
+        gap: 1rem 2rem;
+        align-items: start;
+        margin-bottom: clamp(2rem, 4vw, 3.5rem);
+      }
+
+      .skills__statement {
+        font-size: clamp(2rem, 4.5vw, 4.5rem);
+        line-height: 0.9;
+        text-transform: none;
+        text-wrap: balance;
+      }
+
+      .skills__note {
+        max-width: 28ch;
+        color: var(--fg-2);
+        font-size: var(--fs-small);
+        line-height: 1.5;
+      }
+
+      .skills__controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem 1.5rem;
+        padding-block: 1rem;
+        border-block: 2px solid var(--fg);
+        margin-bottom: 1rem;
+      }
+
+      .skills__filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .skills__filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        min-height: 2.5rem;
+        padding: 0.35rem 0.65rem;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--fg-2);
+        font-family: var(--font-mono);
+        font-size: var(--fs-label);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition:
+          background-color 0.2s var(--ease-out),
+          border-color 0.2s var(--ease-out),
+          color 0.2s var(--ease-out);
+      }
+
+      .skills__filter:hover {
+        border-color: var(--fg);
+        color: var(--fg);
+      }
+
+      .skills__filter[aria-pressed="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+
+      .skills__filter[aria-pressed="true"] .skills__filter-count {
+        color: var(--on-accent);
+        opacity: 1;
+      }
+
+      .skills__filter-count {
+        color: inherit;
+        opacity: 0.9;
+      }
+
+      .skills__status {
+        color: var(--accent-text);
+      }
+
+      .skills__legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 1.5rem;
+        margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+        color: var(--fg-3);
+      }
+
+      .skills__legend > span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .skills__legend-mark {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: var(--accent-text);
+      }
+
+      .skills__legend-mark--intermediate {
+        background: var(--fg);
+      }
+
+      .skills__legend-mark--beginner {
+        background: transparent;
+        border: 1px solid var(--fg);
+      }
+
+      .skills__groups {
+        border-top: 1px solid var(--line);
+      }
+
+      .skills__group {
+        display: grid;
+        grid-template-columns: minmax(10rem, 2fr) minmax(0, 10fr);
+        gap: clamp(1.5rem, 3vw, 3rem);
+        padding-block: clamp(1.5rem, 3vw, 2.5rem);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .skills__group-head {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: baseline;
+        gap: 0.5rem 0.75rem;
+        align-content: start;
+      }
+
+      .skills__group-index {
+        color: var(--accent-text);
+      }
+
+      .skills__group-name {
+        font-size: clamp(1.8rem, 3.2vw, 3rem);
+        line-height: 0.85;
+      }
+
+      .skills__group-count {
+        grid-column: 2;
+        color: var(--fg-3);
+      }
+
+      .skills__wall {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.55rem 1.1rem;
+      }
+
+      .skill {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.35rem;
+        line-height: 1;
+      }
+
+      .skill__icon {
+        display: inline-flex;
+        align-self: center;
+        color: var(--accent-text);
+        opacity: 0.8;
+        transform: translateY(0.05em);
+      }
+
+      .skill__name {
+        font-size: clamp(1.3rem, 2.3vw, 2.2rem);
+        line-height: 1;
+        letter-spacing: -0.01em;
+      }
+
+      .skill--expert .skill__name {
+        color: var(--accent-text);
+      }
+
+      .skill--beginner .skill__name {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--fg);
+      }
+
+      .skill__level {
+        align-self: flex-start;
+        margin-left: 0.15rem;
+        padding: 0.12rem 0.25rem;
+        border: 1px solid var(--line);
+        color: var(--fg-3);
+        font-size: 0.5rem;
+        letter-spacing: 0.08em;
+        transform: translateY(-0.2em);
+      }
+
+      .skill:hover .skill__name {
+        color: var(--accent-text);
+        -webkit-text-stroke: 0;
+      }
+
+      .skill:hover .skill__icon {
+        opacity: 1;
+      }
+
+      .skills__group[hidden] {
+        display: none;
+      }
+
+      .skill[hidden] {
+        display: none;
+      }
+
+      .skills__foot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem 2rem;
+        margin-top: 1.2rem;
+        color: var(--fg-3);
+      }
+
+      .skills__foot-note {
+        max-width: 36ch;
+        color: var(--fg-2);
+        font-size: var(--fs-small);
+      }
+
+      @media (max-width: 63.99rem) {
+        .skills__intro {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .skills__group {
+          grid-template-columns: 1fr;
+          gap: 0.8rem;
+        }
+
+        .skills__group-head {
+          display: flex;
+          align-items: baseline;
+          gap: 0.75rem;
+        }
+
+        .skills__group-count {
+          margin-left: auto;
+        }
+      }
+
+      @media (max-width: 47.99rem) {
+        .skills__filters {
+          width: 100%;
+        }
+
+        .skills__filter {
+          flex: 1 1 auto;
+          justify-content: space-between;
+        }
+
+        .skills__status {
+          width: 100%;
+        }
+
+        .skills__legend {
+          font-size: 0.625rem;
+        }
+
+        .skills__wall {
+          gap: 0.45rem 0.8rem;
+        }
+
+        .skill__name {
+          font-size: clamp(1.2rem, 5.6vw, 1.6rem);
+        }
+
+        .skill__level {
+          display: none;
+        }
+
+        .skills__foot {
+          flex-direction: column;
+        }
+      }
+  }
+</style>

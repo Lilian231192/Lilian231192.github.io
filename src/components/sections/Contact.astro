@@ -1,0 +1,455 @@
+---
+import Section from '@/components/Section.astro'
+import Arrow from '@/components/ui/Arrow.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { cv } from '@/data/cv'
+import { section, site, text } from '@/data/site'
+
+const { email, phone, profiles, location, name } = cv.basics
+const locationText = [
+...new Set([
+location?.address,
+location?.city,
+location?.region,
+location?.postalCode,
+location?.countryCode,
+].filter(Boolean)),
+].join(', ')
+const meta = profiles.length > 0
+  ? `${String(profiles.length).padStart(2, '0')} ${text('contact.profiles')} · ${text('contact.direct')}`
+  : text('contact.direct')
+const year = new Date().getFullYear()
+---
+<Section id="contact" meta={meta}>
+  <div class="contact">
+    <div class="contact__main">
+      <div class="contact__statement-wrap" data-scroll>
+        <p class="kicker">{text('contact.intro')}</p>
+        <p class="contact__statement display">
+          <span data-contact-line>{text('contact.statementFirst')}</span>
+          <span class="contact__outline" data-contact-line>{text('contact.statementMiddle')}</span>
+          <span data-contact-line>{text('contact.statementLast')}</span>
+        </p>
+      </div>
+
+      {
+        email && (
+          <div class="contact__direct" data-scroll>
+            <span class="meta contact__label">{text('common.directLine')}</span>
+            <a class="contact__email" href={`mailto:${email}`} data-cursor={text('cursor.mail')}>
+              {email}
+            </a>
+            <button
+              class="contact__copy"
+              type="button"
+              data-copy-email={email}
+              aria-label={text('contact.copyLabel').replace('{email}', email)}
+            >
+              <span data-copy-label>{text('common.copy')}</span>
+              <Icon name="mdi:content-copy" width={14} height={14} aria-hidden="true" />
+            </button>
+          </div>
+        )
+      }
+
+      {phone && (
+<div class="contact__direct" data-scroll>
+        <span class="meta contact__label">{text('common.phone')}</span>
+        <a class="contact__email" href={`tel:${phone.replace(/[^+\d*#;,]/g, '')}`}>{phone}</a>
+      </div>
+)}
+
+      <p class="contact__note" data-scroll>
+        {text('contact.note')}
+      </p>
+    </div>
+
+    <aside class="contact__aside" aria-label={text('contact.details')}>
+      <div class="contact__seal" data-contact-seal aria-hidden="true">
+        <svg viewBox="0 0 200 200" fill="none">
+          <defs><path id="contact-seal-path" d="M100 100m-77 0a77 77 0 1 1 154 0a77 77 0 1 1-154 0" /></defs>
+          <circle cx="100" cy="100" r="96" stroke="currentColor" />
+          <text><textPath href="#contact-seal-path">{text('contact.seal').toUpperCase()} / {name.toUpperCase()} / </textPath></text>
+          <path d="M62 139 137 64M62 64h75v75" stroke="currentColor" stroke-width="4" />
+        </svg>
+      </div>
+      <div class="contact__panel" data-scroll="right">
+        <span class="meta">{text('common.location')}</span>
+        <p class="contact__place display">{locationText}</p>
+        <div class="contact__clock-line">
+          <span class="meta">{text('common.localTime')}</span>
+          <time class="contact__clock mono" data-clock data-time-zone={site.timeZone}>--:--</time>
+          <span class="meta" data-clock-zone>{site.timeZone}</span>
+        </div>
+      </div>
+
+      <div class="contact__panel" data-scroll="right">
+        <span class="meta">{text('contact.statusLabel')}</span>
+        <p class="contact__status">
+          <span class="status-dot" aria-hidden="true" />
+          {text('contact.status')}
+        </p>
+        <p class="contact__status-note">
+          {text('contact.statusNote')}
+        </p>
+      </div>
+
+      <span class="contact__year display" aria-hidden="true">{year}</span>
+    </aside>
+  </div>
+
+  {
+    profiles.length > 0 && (
+      <div class="contact__profiles" data-scroll>
+        <div class="contact__profiles-head">
+          <h3 class="mono">{text('contact.elsewhere')}</h3>
+          <span class="mono">{String(profiles.length).padStart(2, '0')} {text('contact.channels')}</span>
+        </div>
+        <ul class="contact__profile-list">
+          {profiles.map((profile, index) => (
+            <li>
+              <a href={profile.url} target="_blank" rel="noopener noreferrer" data-cursor={text('cursor.open')}>
+                <span class="contact__profile-index mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <span class="contact__profile-icon" aria-hidden="true">
+                  <Icon name={profile.icon} width={20} height={20} />
+                </span>
+                <span class="contact__profile-name display">{profile.network}</span>
+                <span class="contact__profile-handle mono">@{profile.username}</span>
+                <Arrow class="contact__profile-arrow" size={24} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  <footer class="contact__foot">
+    <span class="mono">{text('contact.end')} / {name} — {year}</span>
+    {site.features.posterStudio && (
+<button class="contact__poster" type="button" data-poster-open aria-haspopup="dialog" aria-controls="posterStudio">
+      {text('contact.poster')} <Arrow size={18} />
+    </button>
+)}
+    <a
+      class="arrow-link"
+      href={section('top').enabled
+? '#top'
+: '#main'}
+    >
+      <span>{text('common.backToTop')}</span>
+      <Arrow direction="up" size={16} />
+    </a>
+  </footer>
+</Section>
+
+<script>
+  import { initCopyEmail } from '@/scripts/copy-email'
+
+  initCopyEmail()
+</script>
+
+<style>
+  @reference "../../globals.css";
+
+  @layer components {
+    .contact {
+        display: grid;
+        grid-template-columns: minmax(0, 7fr) minmax(16rem, 4fr);
+        gap: clamp(2rem, 5vw, 5rem);
+        align-items: start;
+      }
+
+      .contact__statement-wrap .kicker::before {
+        background: var(--fg);
+      }
+
+      .contact__statement {
+        margin-top: 1rem;
+        font-size: clamp(3rem, 8vw, 8.5rem);
+        line-height: 0.82;
+        letter-spacing: -0.025em;
+      }
+
+      .contact__outline {
+        color: transparent;
+        -webkit-text-stroke: 2px var(--fg);
+      }
+
+      .contact__direct {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.4rem 1rem;
+        margin-top: clamp(2rem, 4vw, 3rem);
+        padding-top: 1rem;
+        border-top: 2px solid var(--line);
+      }
+
+      .contact__label {
+        width: 100%;
+        color: var(--fg);
+      }
+
+      .contact__email {
+        font-size: clamp(1.2rem, 2.4vw, 2rem);
+        font-weight: 600;
+        line-height: 1.2;
+        border-bottom: 2px solid currentColor;
+        overflow-wrap: anywhere;
+      }
+
+      .contact__email:hover {
+        background: var(--fg);
+        color: var(--bg);
+      }
+
+      .contact__copy {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        min-height: 2.5rem;
+        padding: 0.3rem 0.6rem;
+        border: 2px solid var(--fg);
+        background: transparent;
+        color: var(--fg);
+        font-family: var(--font-mono);
+        font-size: var(--fs-label);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition:
+          background-color 0.2s var(--ease-out),
+          color 0.2s var(--ease-out);
+      }
+
+      .contact__copy:hover {
+        background: var(--fg);
+        color: var(--bg);
+      }
+
+      .contact__note {
+        max-width: 44ch;
+        margin-top: 1.5rem;
+        font-size: var(--fs-small);
+        line-height: 1.55;
+        color: var(--fg-2);
+      }
+
+      .contact__aside {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact__panel {
+        padding: 1rem;
+        border: 2px solid var(--ink-fg);
+        background: var(--ink-panel);
+        color: var(--ink-fg);
+        box-shadow: 6px 6px 0 color-mix(in oklab, var(--on-accent) 28%, transparent);
+      }
+
+      .contact__panel .meta {
+        color: var(--ink-fg-3);
+        opacity: 1;
+      }
+
+      .contact__place {
+        margin-top: 0.35rem;
+        font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+        line-height: 0.95;
+      }
+
+      .contact__clock-line {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-top: 0.8rem;
+        padding-top: 0.6rem;
+        border-top: 1px solid color-mix(in oklab, var(--ink-fg) 25%, transparent);
+      }
+
+      .contact__clock {
+        font-size: 1.5rem;
+        color: var(--ink-fg);
+      }
+
+      .contact__status {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 0.4rem;
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      .contact__status .status-dot {
+        background: var(--accent-lit);
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-lit) 22%, transparent);
+      }
+
+      .contact__status-note {
+        margin-top: 0.5rem;
+        font-size: var(--fs-small);
+        line-height: 1.45;
+        color: var(--ink-fg-2);
+      }
+
+      .contact__year {
+        position: absolute;
+        right: -0.1em;
+        bottom: -0.35em;
+        z-index: -1;
+        font-size: clamp(6rem, 12vw, 11rem);
+        line-height: 0.7;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--line);
+        pointer-events: none;
+      }
+
+      .contact__profiles {
+        margin-top: clamp(3rem, 6vw, 5rem);
+        border-top: 4px solid var(--fg);
+      }
+
+      .contact__profiles-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 0.7rem;
+        border-bottom: 1px solid var(--line);
+        color: var(--fg-2);
+      }
+
+      .contact__profiles-head h3 {
+        font-weight: 600;
+      }
+
+      .contact__profile-list li {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .contact__profile-list a {
+        display: grid;
+        grid-template-columns: 2rem 2rem minmax(8rem, 1fr) minmax(0, 1.5fr) auto;
+        align-items: center;
+        gap: 0.75rem;
+        padding-block: 0.65rem;
+        transition:
+          background-color 0.2s var(--ease-out),
+          padding-left 0.2s var(--ease-out);
+      }
+
+      .contact__profile-list a:hover {
+        background: var(--fg);
+        color: var(--bg);
+        padding-left: 0.7rem;
+      }
+
+      .contact__profile-index,
+      .contact__profile-handle {
+        color: var(--fg-2);
+        opacity: 1;
+      }
+
+      .contact__profile-list a:hover .contact__profile-index,
+      .contact__profile-list a:hover .contact__profile-handle {
+        color: var(--bg);
+      }
+
+      .contact__profile-icon {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .contact__profile-name {
+        font-size: clamp(1.6rem, 3.2vw, 3rem);
+        line-height: 0.9;
+      }
+
+      .contact__profile-handle {
+        font-size: var(--fs-small);
+        text-transform: none;
+        letter-spacing: 0.02em;
+      }
+
+      .contact__profile-arrow {
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        transition: transform 0.2s var(--ease-out);
+      }
+
+      .contact__profile-list a:hover .contact__profile-arrow {
+        transform: translate(0.2rem, -0.2rem);
+      }
+
+      .contact__foot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.2rem;
+        padding-top: 1rem;
+        border-top: 2px solid var(--fg);
+        color: var(--fg-2);
+      }
+
+      @media (max-width: 63.99rem) {
+        .contact {
+          grid-template-columns: 1fr;
+        }
+
+        .contact__aside {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .contact__year {
+          display: none;
+        }
+      }
+
+      @media (max-width: 47.99rem) {
+        .contact__statement {
+          font-size: clamp(3rem, 16vw, 5rem);
+        }
+
+        .contact__email {
+          width: 100%;
+          font-size: 1.1rem;
+        }
+
+        .contact__copy {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .contact__aside {
+          grid-template-columns: 1fr;
+        }
+
+        .contact__profile-list a {
+          grid-template-columns: 1.5rem 1.5rem minmax(0, 1fr) auto;
+          gap: 0.5rem;
+        }
+
+        .contact__profile-handle {
+          display: none;
+        }
+
+        .contact__profile-name {
+          font-size: clamp(1.4rem, 8vw, 2rem);
+        }
+
+        .contact__foot {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+  }
+</style>

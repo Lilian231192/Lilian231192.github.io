@@ -1,0 +1,176 @@
+---
+import PixelGlobe from '@/components/PixelGlobe.astro'
+import Arrow from '@/components/ui/Arrow.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { cv } from '@/data/cv'
+import { allSections, asset, section, site, text } from '@/data/site'
+import { seededRandom } from '@/utils/seed'
+
+const { name, label, profiles } = cv.basics
+const hero = cv.hero
+const settings = section('top')
+const lines = hero.nameLines.length
+? hero.nameLines
+: name.trim().split(/\s+|(?<=[a-z])(?=[A-Z])/)
+const longest = Math.max(...lines.map(line => [...line].length), 1)
+function letterWidth(letter: string) {
+  return letter === ' '
+? 0.25
+: 'MW'.includes(letter.toUpperCase())
+? 0.76
+: 'IL'.includes(letter.toUpperCase())
+? 0.44
+: 0.61
+}
+const nameUnits = Math.max(...lines.map(line => [...line].reduce((total, letter) => total + letterWidth(letter), 0)), 1)
+const random = seededRandom(hero.typography.seed)
+const next = allSections[allSections.findIndex(item => item.id === 'top') + 1]
+const projectTarget = /^#project-(\d+)$/.exec(hero.cta.href)
+const canFollow = !hero.cta.href.startsWith('#') || hero.cta.href === '#main'
+  || allSections.some(item => `#${item.id}` === hero.cta.href)
+  || Boolean(projectTarget && section('projects').enabled && Number(projectTarget[1]) >= 1 && Number(projectTarget[1]) <= cv.projects.length)
+---
+<section id="top" class="hero" aria-labelledby="hero-title" data-scroll-section data-section-index={settings.index} data-section-label={settings.label}>
+  <div class="hero__pin">
+    <div class="hero__coordinates shell">
+      <span>{hero.location}</span>
+      <span class="hero__local"><span class="hero__availability" aria-hidden="true"></span>{hero.availability}</span>
+    </div>
+    <div class="hero__layout shell" style={`--name-length: ${longest}; --name-lines: ${lines.length}; --name-units: ${nameUnits}`} data-hero-has-globe={String(hero.globe.enabled)}>
+      <div class="hero__plane" data-hero-plane aria-hidden="true"></div>
+      <span class="hero__disc" data-hero-disc aria-hidden="true"></span>
+      <div class="hero__type">
+        <h1 id="hero-title" class="hero__name" aria-label={name} data-type-mix data-type-seed={hero.typography.seed} data-type-mixed={String(hero.typography.mixed)} data-type-shuffle={String(hero.typography.shuffle)}>
+          {lines.map((line, lineIndex) => (
+            <span
+              class:list={['hero__line', lineIndex > 0 && 'hero__name-tail']}
+              data-hero-word={lineIndex === 0
+? 'first'
+: 'last'}
+              aria-hidden="true"
+            >
+              {[...line].map((letter, index) => {
+                const variant = hero.typography.mixed
+? Math.floor(random() * 4)
+: 0
+                const width = letterWidth(letter)
+                return <span class="hero__letter" data-hero-letter style={`--letter-index: ${index}; --letter-width: ${width}em`}><span class="hero__glyph" data-type-glyph data-type-variant={variant}>{letter}</span></span>
+              })}
+            </span>
+          ))}
+        </h1>
+        {hero.typography.mixed && hero.typography.shuffle && <button class="hero__remix" type="button" data-type-remix><span class="hero__remix-mark" aria-hidden="true">↔</span>{text('hero.reroll')}</button>}
+      </div>
+      <div class="hero__side">
+        {hero.globe.enabled && <div class="hero__visual" data-hero-visual><PixelGlobe /></div>}
+        <div class="hero__annotation" data-hero-note>
+          <p class="hero__role">{hero.role || label}</p>
+          <p class="hero__description">{hero.description}</p>
+          {canFollow && <a class="hero__explore" href={asset(hero.cta.href)} data-magnetic><span>{hero.cta.label}</span><Arrow size={27} /></a>}
+        </div>
+      </div>
+    </div>
+    <div class="hero__bottom shell">
+      {hero.metrics.length > 0 && <dl class="hero__metrics">{hero.metrics.map(metric => <div class="hero__metric"><dd class="hero__metric-value display">{metric.value}</dd><dt class="hero__metric-label">{metric.label}</dt></div>)}</dl>}
+      <div class="hero__utility">
+        <ul class="hero__profiles" aria-label={text('site.profiles')}>{profiles.map(profile => <li><a href={profile.url} target="_blank" rel="noopener noreferrer" aria-label={`${profile.network}: ${profile.username}`}><Icon name={profile.icon} width={14} height={14} aria-hidden="true" /><span>{profile.network}</span></a></li>)}</ul>
+        {site.features.print && <button class="hero__print mono" type="button" data-print>{text('site.print')} <Arrow size={13} /></button>}
+      </div>
+    </div>
+    <div class="hero__foot shell">
+      {next && <a class="hero__scroll mono" href={`#${next.id}`}><span class="hero__scroll-line" aria-hidden="true"></span>{hero.scrollLabel}<Arrow direction="down" size={15} /></a>}
+      <span class="hero__issue">{hero.note}</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initTypeMix } from '@/scripts/type-mix'
+
+  initTypeMix()
+</script>
+
+<style>
+  .hero { position: relative; z-index: 1; background: var(--bg); border-bottom: 1px solid var(--fg); }
+  .hero__pin { display: flex; flex-direction: column; min-height: calc(100svh - var(--header-height)); padding-top: 1.2rem; overflow: clip; }
+  .hero__coordinates { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: 0.76rem; line-height: 1.4; color: var(--fg-2); }
+  .hero__local { display: inline-flex; align-items: center; gap: 0.65rem; }
+  .hero__availability { display: inline-block; width: 0.4rem; height: 0.4rem; background: var(--accent-text); }
+  .hero__layout { position: relative; flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(13rem, 25%); grid-template-rows: minmax(0, 1fr); align-items: center; gap: clamp(1.5rem, 3vw, 4rem); min-height: 0; padding-block: 1.8rem; isolation: isolate; }
+  .hero__type { position: relative; z-index: 3; min-width: 0; container-type: inline-size; }
+  .hero__name { font-family: var(--font-display); font-size: min(calc(42svh / var(--name-lines)), calc(93cqw / var(--name-units)), 19rem); line-height: 1.02; font-weight: 400; letter-spacing: -0.05em; text-transform: uppercase; pointer-events: none; }
+  .hero__line { display: flex; width: max-content; white-space: nowrap; }
+  .hero__name-tail { margin-left: 3%; }
+  .hero__letter { display: inline-flex; width: var(--letter-width); height: 1.03em; align-items: baseline; justify-content: center; }
+  .hero__glyph { display: block; text-align: center; transform-origin: center 70%; }
+  .hero__glyph[data-type-variant="1"] { font-family: var(--font-serif); font-style: italic; font-size: 1.17em; line-height: 0.88; font-weight: 400; scale: 0.8 1; }
+  .hero__glyph[data-type-variant="2"] { font-family: var(--font-sans); font-weight: 600; font-size: 0.91em; letter-spacing: -0.1em; scale: 0.9 1; }
+  .hero__glyph[data-type-variant="3"] { font-family: var(--font-display); color: transparent; -webkit-text-stroke: 1.4px var(--fg); }
+  .hero__remix { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 0.6rem; min-height: 2.75rem; padding: 0.35rem 0; margin-top: 1.2rem; border: 0; background: transparent; font-size: 0.68rem; color: var(--fg-2); }
+  .hero__remix-mark { font-size: 1.3rem; color: var(--accent-text); }
+  .hero__remix:hover { color: var(--accent-text); }
+  .hero__plane { position: absolute; z-index: -1; bottom: 0; right: calc(var(--gutter) * -1); width: 39%; height: 43%; background: var(--accent); clip-path: polygon(38% 0,100% 0,100% 100%,0 100%); }
+  .hero__disc { position: absolute; z-index: -1; top: 8%; right: 5%; width: 18%; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; }
+  .hero__side { display: flex; flex-direction: column; align-self: center; gap: clamp(0.6rem, 1.4svh, 1.3rem); padding-top: 0; min-height: 0; }
+  .hero__visual { width: min(100%, 24svh, 17rem); margin-inline: auto; }
+  .hero__annotation { position: relative; z-index: 4; color: var(--on-accent); background: var(--accent); padding: 0.8rem 0 0; }
+  .hero__role { max-width: 22ch; font-size: clamp(1rem, 1.4vw, 1.3rem); line-height: 1.22; font-weight: 500; letter-spacing: -0.04em; }
+  .hero__description { margin-top: 0.65rem; font-size: 0.8rem; line-height: 1.6; max-width: 32ch; }
+  .hero__explore { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.7rem; padding-block: 0.65rem; border-top: 1px solid currentColor; font-size: 0.8rem; font-weight: 500; }
+  .hero__bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; border-block: 1px solid var(--fg); }
+  .hero__metrics { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 4vw, 4rem); }
+  .hero__metric-value { margin: 0 0 0.35rem; font-size: clamp(1.8rem, 2.8vw, 2.6rem); line-height: 1; }
+  .hero__metric-label { color: var(--fg-2); font-size: 0.65rem; line-height: 1.4; }
+  .hero__metric:last-child .hero__metric-value { color: var(--accent-text); }
+  .hero__utility { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; }
+  .hero__profiles { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+  .hero__profiles a { display: inline-flex; align-items: center; gap: 0.35rem; min-height: 2rem; font-size: 0.68rem; }
+  .hero__profiles a:hover, .hero__print:hover { color: var(--accent-text); }
+  .hero__print { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2rem; border: 0; padding: 0; background: transparent; font-size: 0.6rem; color: var(--fg-2); }
+  .hero__foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.65rem; color: var(--fg-2); }
+  .hero__scroll { display: inline-flex; align-items: center; gap: 0.7rem; min-height: 2rem; font-size: 0.65rem; letter-spacing: 0.03em; text-transform: none; }
+  .hero__scroll-line { width: 2rem; height: 1px; background: var(--accent); }
+  .hero__issue { font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; padding-right: 5rem; }
+  :global(html:not(.js)) .hero__remix, :global(html:not(.js)) .hero__print { display: none; }
+  @media (min-width: 64rem) and (min-height: 45rem) and (prefers-reduced-motion: no-preference) {
+    :global(html[data-motion="full"]) .hero { height: 148svh; }
+    :global(html[data-motion="full"]) .hero__pin { position: sticky; top: var(--header-height); height: calc(100svh - var(--header-height)); }
+  }
+  @media (max-width: 63.99rem) {
+    .hero__layout { min-height: 31rem; grid-template-columns: minmax(0,1fr) 28%; gap: 1rem; }
+    .hero__name { font-size: min(calc(42svh / var(--name-lines)), calc(93cqw / var(--name-units))); }
+    .hero__side { gap: 1rem; }
+    .hero__metrics { gap: 1.3rem; }
+  }
+  @media (max-width: 47.99rem) {
+    .hero__pin { min-height: calc(100svh - var(--header-height)); padding-top: 1rem; }
+    .hero__coordinates { font-size: 0.65rem; }
+    .hero__local { display: none; }
+    .hero__layout { min-height: 0; display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 1.5rem; padding-block: 2.4rem 1.8rem; }
+    .hero__name { font-size: min(calc(42svh / var(--name-lines)), calc(96cqw / var(--name-units))); line-height: 1.07; }
+    .hero__name-tail { margin-left: 1%; }
+    .hero__remix { margin-top: 0.6rem; }
+    .hero__side { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0,1fr); gap: 1.5rem; align-items: end; align-self: auto; }
+    .hero__visual { width: 100%; }
+    .hero__layout[data-hero-has-globe="false"] .hero__side { grid-template-columns: 1fr; }
+    .hero__annotation { padding: 1rem 0 0; }
+    .hero__role { font-size: 1.05rem; }
+    .hero__description { font-size: 0.73rem; margin-top: 0.7rem; }
+    .hero__explore { font-size: 0.7rem; margin-top: 0.75rem; padding-block: 0.6rem; }
+    .hero__plane { width: 57%; height: 51%; bottom: -1%; }
+    .hero__disc { display: none; }
+    .hero__bottom { flex-direction: column; align-items: stretch; gap: 0.65rem; padding-block: 1rem 0.5rem; }
+    .hero__metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0.6rem; }
+    .hero__metric-value { font-size: 1.8rem; }
+    .hero__metric-label { font-size: 0.59rem; }
+    .hero__utility { flex-direction: row; align-items: center; justify-content: space-between; }
+    .hero__profiles { gap: 0.65rem; }
+    .hero__profiles a { font-size: 0.6rem; }
+    .hero__print { font-size: 0.52rem; }
+    .hero__foot { padding-block: 0.4rem; }
+    .hero__issue { display: none; }
+  }
+  @media (min-width: 64rem) and (min-height: 52rem) { .hero__visual { width: min(100%, 28svh, 20rem); } }
+  @media (max-height: 44.99rem) and (min-width: 48rem) { .hero__name { font-size: min(15rem, calc(93cqw / var(--name-units))); } .hero__visual { max-width: 14rem; } }
+  @media print { .hero { display: none !important; } }
+</style>

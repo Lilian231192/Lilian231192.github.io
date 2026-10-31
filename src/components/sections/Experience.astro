@@ -1,0 +1,499 @@
+---
+import Section from '@/components/Section.astro'
+import Icon from '@/components/ui/Icon.astro'
+import { cv } from '@/data/cv'
+import { text } from '@/data/site'
+import { formatPeriod, getYear } from '@/utils/date'
+import { stripLeadingEmoji } from '@/utils/text'
+
+const work: typeof cv.work = [
+  ...cv.work,
+  ...cv.volunteer.map(item => ({
+    name: item.organization,
+    position: item.position,
+    url: item.url,
+    startDate: item.startDate,
+    endDate: item.endDate,
+    summary: item.summary,
+    highlights: item.highlights,
+  })),
+]
+const currentCount = work.filter(item => !item.endDate).length
+const meta = [
+  `${String(work.length).padStart(2, '0')} ${text('experience.roles')}`,
+  `${String(currentCount).padStart(2, '0')} ${text('common.current')}`,
+].join(' · ')
+const years = work.flatMap(item => [
+getYear(item.startDate),
+getYear(item.endDate),
+]).filter((year): year is string => Boolean(year)).sort()
+const lastYear = currentCount > 0
+? text('common.present')
+: years.at(-1)
+---
+<Section id="experience" meta={meta}>
+  <div class="work-intro" data-scroll>
+    <p class="kicker">{text('experience.intro')}</p>
+    <p class="work-intro__statement">
+      {text('experience.statement')}
+    </p>
+    {years.length > 0 && <span class="mono work-intro__range">{years[0]} → {lastYear}</span>}
+  </div>
+
+  <ol class="work-list">
+    {
+      work.map((item, index) => {
+        const isCurrent = !item.endDate
+        const detailsId = `work-details-${index}`
+        const summaryLines = Array.isArray(item.summary)
+          ? item.summary
+          : item.summary
+            ? [item.summary]
+            : []
+        const hasDetails = Boolean(
+          item.responsibilities?.length
+          || item.achievements?.length
+          || item.highlights?.length,
+        )
+
+        return (
+          <li class:list={['work', isCurrent && 'work--current']}>
+            <header class="work__period">
+              <span class="work__index mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span class="work__year display" aria-hidden="true">{getYear(item.startDate) ?? '—'}</span>
+              <span class="work__range mono">{formatPeriod(item.startDate, item.endDate, text('common.now'))}</span>
+              {isCurrent && (
+                <span class="work__current stamp">
+                  <span class="status-dot" aria-hidden="true" />
+                  {text('common.current')}
+                </span>
+              )}
+            </header>
+
+            <div class="work__body" data-scroll>
+              <div class="work__heading">
+                <div>
+                  <h3 class="work__position display">{item.position}</h3>
+                  <p class="work__company-line">
+                    <span class="work__at" aria-hidden="true">@</span>
+                    {item.url
+                      ? (
+                          <a class="link-line work__company" href={item.url} target="_blank" rel="noopener noreferrer">
+                            {item.name}
+                          </a>
+                        )
+                      : <span class="work__company">{item.name}</span>}
+                  </p>
+                </div>
+                {(item.location || item.location_type) && (
+                  <p class="mono work__location">
+                    {[item.location, item.location_type].filter(Boolean).join(' / ')}
+                  </p>
+                )}
+              </div>
+
+              {summaryLines.map(line => <p class="work__summary">{line}</p>)}
+
+              {hasDetails && (
+                <div class="expander" data-expander>
+                  <button class="expander__toggle" type="button" aria-expanded="true" aria-controls={detailsId}>
+                    <span class="expander__toggle-mark" aria-hidden="true">+</span>
+                    <span class="expander__label expander__label-open">{text('experience.closeRecord')}</span>
+                    <span class="expander__label expander__label-closed">{text('experience.openRecord')}</span>
+                  </button>
+
+                  <div class="expander__body" id={detailsId}>
+                    <div class="expander__inner">
+                      <div class="work__details">
+                        {item.responsibilities?.length
+                          ? (
+                              <section class="work__detail">
+                                <h4 class="mono">{text('experience.responsibilities')}</h4>
+                                <ul class="work__bullets">
+                                  {item.responsibilities.map(line => <li>{line}</li>)}
+                                </ul>
+                              </section>
+                            )
+                          : null}
+
+                        {item.achievements?.length
+                          ? (
+                              <section class="work__detail">
+                                <h4 class="mono">{text('experience.achievements')}</h4>
+                                <ul class="work__bullets">
+                                  {item.achievements.map(line => <li>{line}</li>)}
+                                </ul>
+                              </section>
+                            )
+                          : null}
+
+                        {item.highlights?.length
+                          ? (
+                              <section class="work__detail">
+                                <h4 class="mono">{text('common.highlights')}</h4>
+                                <ul class="work__bullets">
+                                  {item.highlights.map(line => <li>{stripLeadingEmoji(line)}</li>)}
+                                </ul>
+                              </section>
+                            )
+                          : null}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {item.skills && Object.keys(item.skills).length > 0 && (
+                <ul class="work__stack" aria-label={text('experience.stackLabel').replace('{name}', item.name)}>
+                  {Object.entries(item.skills).map(([skill, icon]) => (
+                    <li class="work__chip">
+                      <Icon name={icon} width={13} height={13} aria-hidden="true" />
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        )
+      })
+    }
+  </ol>
+</Section>
+
+<style>
+  @reference "../../globals.css";
+
+  @layer components {
+    .work-intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+        gap: 1rem 2rem;
+        align-items: end;
+        margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+      }
+
+      .work-intro .kicker {
+        grid-column: 1 / -1;
+      }
+
+      .work-intro__statement {
+        max-width: 34ch;
+        font-size: var(--fs-lead);
+        line-height: 1.35;
+        color: var(--fg-2);
+      }
+
+      .work-intro__range {
+        color: var(--accent-text);
+      }
+
+      .work-list {
+        border-top: 1px solid var(--line);
+      }
+
+      .work {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+        gap: clamp(1.5rem, 3vw, 3rem);
+        padding-block: clamp(2.5rem, 5vw, 4.5rem);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .work--current {
+        background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 9%, transparent), transparent 60%);
+      }
+
+      .work__period {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.65rem;
+      }
+
+      .work__index {
+        color: var(--accent-text);
+      }
+
+      .work__year {
+        font-size: clamp(4rem, 8vw, 8rem);
+        line-height: 0.72;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--fg);
+      }
+
+      .work--current .work__year {
+        color: var(--accent-text);
+        -webkit-text-stroke: 0;
+      }
+
+      .work__range {
+        color: var(--fg-3);
+      }
+
+      .work__current {
+        margin-top: 0.4rem;
+        transform: rotate(-2deg);
+      }
+
+      .work__body {
+        position: relative;
+        min-width: 0;
+        padding-left: clamp(1rem, 2.5vw, 2rem);
+        border-left: 2px solid var(--accent);
+      }
+
+      .work__heading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.75rem 2rem;
+        margin-bottom: 1.1rem;
+      }
+
+      .work__position {
+        max-width: 22ch;
+        margin-bottom: 0.5rem;
+        font-size: clamp(1.9rem, 3.6vw, 3.4rem);
+        line-height: 0.92;
+      }
+
+      .work__company-line {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+        color: var(--fg-2);
+        font-size: var(--fs-small);
+      }
+
+      .work__at {
+        color: var(--accent-text);
+        font-family: var(--font-mono);
+      }
+
+      .work__company {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .work__location {
+        margin-top: 0.25rem;
+        color: var(--fg-3);
+      }
+
+      .work__summary {
+        max-width: 74ch;
+        color: var(--fg-2);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .work__summary + .work__summary {
+        margin-top: 0.6rem;
+      }
+
+      .expander {
+        margin-top: 1.4rem;
+      }
+
+      .expander__toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        min-height: 2.75rem;
+        padding: 0.4rem 0.8rem;
+        border: 2px solid var(--fg);
+        background: transparent;
+        color: var(--fg);
+        font-family: var(--font-mono);
+        font-size: var(--fs-label);
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition:
+          background-color 0.2s var(--ease-out),
+          color 0.2s var(--ease-out);
+      }
+
+      .expander__toggle:hover {
+        background: var(--fg);
+        color: var(--bg);
+      }
+
+      .expander__toggle-mark {
+        color: var(--accent-text);
+        font-size: 1rem;
+        line-height: 1;
+      }
+
+      .expander__toggle:hover .expander__toggle-mark {
+        color: var(--bg);
+      }
+
+      .expander__label-closed {
+        display: none;
+      }
+
+      .expander[data-collapsed] .expander__label-open {
+        display: none;
+      }
+
+      .expander[data-collapsed] .expander__label-closed {
+        display: inline;
+      }
+
+      .expander[data-collapsed] .expander__toggle-mark {
+        transform: rotate(0);
+      }
+
+      .expander:not([data-collapsed]) .expander__toggle-mark {
+        transform: rotate(45deg);
+      }
+
+      .expander__body {
+        display: grid;
+        grid-template-rows: 1fr;
+        margin-top: 1rem;
+        transition:
+          grid-template-rows 0.45s var(--ease-out),
+          opacity 0.35s var(--ease-out);
+      }
+
+      .expander[data-collapsed] .expander__body {
+        grid-template-rows: 0fr;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .expander__inner {
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .work__details {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+        padding: 1.2rem 0 0.4rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .work__detail h4 {
+        margin-bottom: 0.6rem;
+        color: var(--accent-text);
+      }
+
+      .work__bullets {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .work__bullets li {
+        position: relative;
+        padding-left: 1rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: var(--fg-2);
+      }
+
+      .work__bullets li::before {
+        content: "";
+        position: absolute;
+        top: 0.55em;
+        left: 0;
+        width: 0.4rem;
+        height: 0.4rem;
+        background: var(--accent-text);
+      }
+
+      .work__stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1.3rem;
+      }
+
+      .work__chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.45rem;
+        border: 1px solid var(--line);
+        color: var(--fg-3);
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.06em;
+        line-height: 1.3;
+        text-transform: uppercase;
+      }
+
+      .work__chip svg {
+        color: var(--accent-text);
+      }
+
+      @media (max-width: 63.99rem) {
+        .work-intro {
+          grid-template-columns: 1fr auto;
+        }
+
+        .work {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+
+        .work__period {
+          flex-direction: row;
+          align-items: baseline;
+          flex-wrap: wrap;
+          gap: 0.5rem 1rem;
+        }
+
+        .work__year {
+          font-size: clamp(3.5rem, 14vw, 6rem);
+        }
+
+        .work__details {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 47.99rem) {
+        .work-intro {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .work-intro__range {
+          display: none;
+        }
+
+        .work__position {
+          font-size: clamp(1.7rem, 8vw, 2.4rem);
+        }
+
+        .work__heading {
+          flex-direction: column;
+        }
+
+        .work__location {
+          margin-top: 0;
+        }
+      }
+  }
+</style>
+
+<style>
+
+
+  @layer components {
+    @media (min-width: 64rem) {
+        .work__period {
+          position: sticky;
+          top: 6.5rem;
+          align-self: start;
+        }
+      }
+  }
+</style>

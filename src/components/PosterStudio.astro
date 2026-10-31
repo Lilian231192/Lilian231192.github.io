@@ -1,0 +1,299 @@
+---
+import Icon from '@/components/ui/Icon.astro'
+import { cv } from '@/data/cv'
+import { section, text } from '@/data/site'
+
+const { name, label, summary, email, url, location } = cv.basics
+
+const posterJson = JSON.stringify({
+  name,
+  nameLines: cv.hero.nameLines,
+  label,
+  summary: summary ?? '',
+  email: email ?? '',
+  url: url?.replace(/^https?:\/\//, '').replace(/\/$/, '') ?? '',
+  location: [location?.city, location?.countryCode].filter(Boolean).join(' · '),
+  facts: cv.hero.metrics,
+  projects: section('projects').enabled
+? cv.projects.map(project => project.name)
+: [],
+  year: new Date().getFullYear(),
+}).replace(/</g, '\\u003c')
+---
+
+<dialog
+  id="posterStudio"
+  class="poster-studio print-hide"
+  aria-labelledby="posterStudioTitle"
+  aria-describedby="posterStudioHelp"
+  data-poster-data={posterJson}
+>
+  <div class="poster-studio__frame">
+    <header class="poster-studio__bar">
+      <div class="poster-studio__heading">
+        <p class="mono poster-studio__eyebrow">{text('poster.eyebrow')}</p>
+        <h2 id="posterStudioTitle" class="poster-studio__title">{text('poster.title')}</h2>
+      </div>
+      <p class="mono poster-studio__meta">{text('poster.meta')}</p>
+      <button class="poster-studio__close" type="button" data-poster-close aria-label={text('poster.closeLabel')}>
+        <Icon name="mdi:close" width={15} height={15} aria-hidden="true" />
+        <span>{text('common.close')}</span>
+      </button>
+    </header>
+
+    <div class="poster-studio__body">
+      <figure class="poster-studio__figure">
+        <div class="poster-studio__canvas" data-poster-canvas>
+          <p class="mono poster-studio__pending">{text('poster.pending')}</p>
+        </div>
+        <figcaption id="posterStudioHelp" class="mono poster-studio__hint">
+          <span>{text('poster.seedHint')}</span>
+          <span>{text('poster.formatHint')}</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="poster-studio__controls">
+      <button class="btn btn--solid poster-studio__action" type="button" data-poster-reprint>
+        <Icon name="mdi:refresh" width={16} height={16} aria-hidden="true" />
+        <span>{text('poster.reprint')}</span>
+      </button>
+      <button class="btn poster-studio__action" type="button" data-poster-svg>
+        <Icon name="mdi:vector-square" width={15} height={15} aria-hidden="true" />
+        <span>{text('poster.downloadSvg')}</span>
+      </button>
+      <button class="btn poster-studio__action" type="button" data-poster-png>
+        <Icon name="mdi:image-outline" width={16} height={16} aria-hidden="true" />
+        <span>{text('poster.downloadPng')}</span>
+      </button>
+    </div>
+
+    <p class="sr-only" role="status" data-poster-status></p>
+  </div>
+</dialog>
+
+<script>
+  import { initPosterStudio } from '@/scripts/poster-studio'
+
+  initPosterStudio()
+</script>
+
+<style>
+  .poster-studio {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--bg);
+    color: var(--fg);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .poster-studio::backdrop {
+    background: rgb(5 5 4 / 0.9);
+  }
+
+  .poster-studio[open] {
+    display: block;
+    animation: poster-studio-in 0.4s var(--ease-expo);
+  }
+
+  .poster-studio__frame {
+    --poster-chrome: 17rem;
+
+    position: relative;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: clamp(0.7rem, 1.8vh, 1.4rem);
+    min-height: 100dvh;
+    padding: clamp(0.9rem, 2.2vw, 1.9rem);
+    padding-left: clamp(1.4rem, 2.8vw, 2.6rem);
+    background: var(--bg);
+  }
+
+  .poster-studio__frame::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: clamp(0.35rem, 0.6vw, 0.7rem);
+    background: var(--accent);
+  }
+
+  .poster-studio__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.7rem clamp(0.9rem, 2.2vw, 2rem);
+    padding-bottom: clamp(0.6rem, 1.2vh, 0.9rem);
+    border-bottom: 2px solid var(--fg);
+  }
+
+  .poster-studio__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .poster-studio__eyebrow {
+    color: var(--accent-text);
+  }
+
+  .poster-studio__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.4vw, 3rem);
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .poster-studio__meta {
+    margin: 0 0 0.2rem auto;
+    color: var(--fg-3);
+  }
+
+  .poster-studio__close {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.6rem;
+    margin-left: auto;
+    padding: 0.35rem 0.7rem;
+    border: 2px solid var(--fg);
+    background: transparent;
+    color: var(--fg);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.2s var(--ease-out),
+      color 0.2s var(--ease-out);
+  }
+
+  .poster-studio__close:hover,
+  .poster-studio__close:focus-visible {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--on-accent);
+  }
+
+  .poster-studio__body {
+    display: grid;
+    place-items: center;
+    min-height: 0;
+    padding-block: 0.4rem;
+  }
+
+  .poster-studio__figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    width: min(100%, max(12rem, calc((100vh - var(--poster-chrome)) * 0.75)));
+    width: min(100%, max(12rem, calc((100dvh - var(--poster-chrome)) * 0.75)));
+    min-height: 0;
+    margin: 0;
+  }
+
+  .poster-studio__canvas {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--panel);
+    border: 2px solid var(--fg);
+    box-shadow: clamp(6px, 1vw, 12px) clamp(6px, 1vw, 12px) 0 var(--accent);
+  }
+
+  .poster-studio__canvas :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .poster-studio__pending {
+    color: var(--fg-3);
+  }
+
+  .poster-studio__hint {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.35rem 0.9rem;
+    margin: 0;
+    color: var(--fg-3);
+  }
+
+  .poster-studio__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    padding-top: clamp(0.6rem, 1.2vh, 0.9rem);
+    border-top: 2px solid var(--fg);
+  }
+
+  .poster-studio__action {
+    flex: 1 1 9rem;
+  }
+
+  @keyframes poster-studio-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .poster-studio__frame {
+      --poster-chrome: 13.5rem;
+    }
+
+    .poster-studio__meta {
+      display: none;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .poster-studio__title {
+      font-size: 1.55rem;
+    }
+
+    .poster-studio__action {
+      flex: 1 1 calc(50% - 0.55rem);
+    }
+
+    .poster-studio__hint {
+      font-size: 0.625rem;
+    }
+  }
+
+  @media (max-height: 44rem) {
+    .poster-studio__frame {
+      --poster-chrome: 12rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .poster-studio[open] {
+      animation: none;
+    }
+
+    .poster-studio__close {
+      transition: none;
+    }
+  }
+</style>

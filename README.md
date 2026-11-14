@@ -6,9 +6,9 @@
 
 [Demo](https://mirahikari.github.io/astro-constructivist/) · [Get started](#get-started) · [Configuration](docs/CONFIGURATION.md) · [中文](README.zh-CN.md)
 
-![Constructa: Constructivist Astro Theme](docs/images/cover.svg)
+![Constructa: original geometric identity and layered color planes](docs/images/project-cover.webp)
 
-Constructa is a static portfolio theme for developers, designers, and independent makers. Oversized type, diagonal planes, open editorial layouts, and a pixel globe give your work a distinct identity. The content remains a real document: readable, linkable, printable, and useful without the animation.
+Constructa is a static portfolio theme for developers, designers, and independent makers. Oversized interleaved type, diagonal color planes, and an original geometric mark give your work a distinct identity. A layered entrance, separate navigation tiles, and chapter-specific motion carry that identity through the whole experience. The content remains a real document: readable, linkable, printable, and useful without the animation.
 
 **Make it yours in `cv.json`.** Profile, projects, copy, navigation, SEO, palettes, and optional features live together in one schema-backed file. No component editing is needed for content changes, whether you edit by hand or ask an agent.
 
@@ -18,6 +18,7 @@ Constructa is a static portfolio theme for developers, designers, and independen
 | --- | --- |
 | Constructivist composition, not another rounded-card grid | Semantic Astro pages and real section anchors |
 | Seeded, interleaved hero typography and an original pixel globe | Stable content with no React islands or hydration layer |
+| Layered color-plate loading and a shared geometric identity | Bounded entrance, skip control, reduced-motion and no-JS fallbacks |
 | Section-local GSAP timelines and a horizontal work exhibition | Native touch scrolling; stacked work on smaller screens |
 | Six expressive palettes, each with a dark variant | Saved preferences and storage-safe controls |
 | A contact-sheet gallery and full project case files | Native dialogs, keyboard navigation, and focus return |
@@ -25,14 +26,14 @@ Constructa is a static portfolio theme for developers, designers, and independen
 
 ### Motion with an exit
 
-The hero, biography, experience, work, education, skills, gallery, and contact chapters have their own visual rhythm. On large screens, vertical progress carries you through the work exhibition; it never replaces the entire site with a locked screen stage.
+The hero, biography, experience, work, education, skills, gallery, and contact chapters have their own visual rhythm. Seven short chapter bridges reinterpret the same mark as unfolding planes, a track, a frame, an orbit, a matrix, scattered prints, and a gathered finale. On large screens, vertical progress carries you through the work exhibition; it never replaces the entire site with a locked screen stage.
 
 Reduced-motion preferences are respected, including changes while the page is open. Mobile and short viewports use a natural document layout. JavaScript enhances the presentation; the biography and work do not depend on it to exist.
 
 ### Controls that do real work
 
 - `Cmd/Ctrl + K` or `/` opens the searchable section, project, and skill index.
-- A responsive floating navigation dock follows the active section, with a moving indicator and layered text transitions.
+- Separate floating navigation tiles follow the active section; a full-color editorial menu combines oversized chapter links with searchable content.
 - Project case files, gallery board/strip modes, image browsing, and skill filters operate on actual content.
 - `G` opens the desktop design inspector; `Esc` closes dialogs.
 - Copy-email has a manual-selection fallback when clipboard access is denied.
@@ -40,18 +41,26 @@ Reduced-motion preferences are respected, including changes while the page is op
 
 ### One file, including the small words
 
-`cv.json` is not just a list of projects. It also controls the hero, section copy, navigation labels, SEO, default palette, feature choices, and interface wording through `cv.ui`. The included [`cv.schema.json`](cv.schema.json) supports editor completion, while Zod validates content during the build.
+`cv.json` is not just a list of projects. It also controls the hero, section copy, navigation labels, SEO, default palette, feature choices, and interface wording through `cv.ui`. Configure the entrance in `site.loader`, switch chapter bridges with `site.features.sectionTransitions`, and edit their short thoughts through `ui` keys named `story.about`, `story.projects`, and their chapter equivalents. The included [`cv.schema.json`](cv.schema.json) supports editor completion, while Zod validates content during the build.
 
 The demo uses neutral example content and original, code-generated SVG graphics. Replace images with your own public assets or remote URLs; no third-party demo photo collection is required.
 
 ## Preview
 
-![Constructa desktop preview](docs/images/desktop.png)
+Signal / light and Cobalt / dark, shown together. This 3840 × 2432 overview uses real browser captures, not invented UI mockups.
+
+![Signal light and Cobalt dark: two color expressions of Constructa](docs/images/preview-dual.webp)
+
+The complete experience: color-plate loading, a full-width project spread, the contact sheet, the editorial menu, print studio, and chapter continuity. The feature board is 3840 × 2880.
+
+![Constructa feature board: loading, work, gallery, menu, printing and chapter transitions](docs/images/preview-features.webp)
+
+[High-resolution PNG overview](docs/images/preview-dual.png) · [Feature board PNG](docs/images/preview-features.png) · [Editable SVG cover](docs/images/project-cover.svg)
 
 <details>
 <summary>Mobile preview</summary>
 
-![Constructa mobile preview](docs/images/mobile.png)
+![Constructa mobile preview with modular navigation and the shared geometric mark](docs/images/preview-mobile.webp)
 
 </details>
 
@@ -135,7 +144,7 @@ tests/                     Unit and browser regression tests
 docs/                      Configuration, deployment, and design notes
 ```
 
-See [architecture](docs/architecture.md) for implementation details, [design direction](docs/SCROLL-DIRECTION.md) for the motion contract, and [contributing](CONTRIBUTING.md) for proposed changes. Accessibility support is a design constraint, not a claim of universal certification; test your own content and target browsers.
+See [architecture](docs/architecture.md) for implementation details, [design direction](docs/SCROLL-DIRECTION.md) for the motion contract, [the layered design refresh](docs/design-refresh.md) for the visual rationale and editable promotional assets, and [contributing](CONTRIBUTING.md) for proposed changes. Accessibility support is a design constraint, not a claim of universal certification; test your own content and target browsers.
 
 Toolchain versions and the TypeScript compatibility pin are documented in
 [TOOLCHAIN.md](docs/TOOLCHAIN.md). Git hooks are opt-in with `pnpm hooks:install`;

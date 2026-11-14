@@ -5,6 +5,7 @@ import { cv } from '../helpers/cv'
 export const SECTION_IDS = cv.sections.filter(section => section.enabled).map(section => section.id)
 
 export async function waitForScrollReady(page: Page): Promise<void> {
+  await expect(page.locator('html')).toHaveAttribute('data-loader-ready', 'true', { timeout: 15_000 })
   await expect(page.locator('html')).toHaveClass(/\bscroll-ready\b/, { timeout: 15_000 })
   await expect(page.locator('html')).toHaveAttribute('data-scroll-ready', 'true', { timeout: 15_000 })
   await expect(page.locator('#main > [data-scroll-section]')).toHaveCount(SECTION_IDS.length)

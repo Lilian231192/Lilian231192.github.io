@@ -7,6 +7,7 @@ import PosterStudio from '@/components/PosterStudio.astro'
 import PrintPoster from '@/components/PrintPoster.astro'
 import SceneHud from '@/components/SceneHud.astro'
 import SectionRail from '@/components/SectionRail.astro'
+import SiteLoader from '@/components/SiteLoader.astro'
 import Stage from '@/components/Stage.astro'
 import TopBar from '@/components/TopBar.astro'
 import { DARK_STORAGE_KEY, PALETTE_STORAGE_KEY, THEMES } from '@/constants'
@@ -20,6 +21,8 @@ import '@fontsource/instrument-serif/latin-400-italic.css'
 import '../globals.css'
 import '../styles/scroll-experience.css'
 import '../styles/floating-nav.css'
+import '../styles/index-overlay.css'
+import '../styles/story-motion.css'
 
 interface Props {
   title: string
@@ -45,37 +48,37 @@ const ogImage = new URL(asset(site.seo.image), Astro.site ?? site.url).href
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
-{
-  '@type': 'Person',
-  '@id': `${canonical}#person`,
-  name,
-  'jobTitle': label,
-  'description': summary,
-  'url': canonical,
-  'email': email
+    {
+      '@type': 'Person',
+      '@id': `${canonical}#person`,
+      name,
+      'jobTitle': label,
+      'description': summary,
+      'url': canonical,
+      'email': email
 ? `mailto:${email}`
 : undefined,
-  'image': cv.basics.image
+      'image': cv.basics.image
 ? absoluteUrl(cv.basics.image)
 : undefined,
-  'address': {
-    '@type': 'PostalAddress',
-    'addressLocality': location?.address,
-    'addressRegion': location?.region,
-    'addressCountry': location?.countryCode,
-  },
-  'sameAs': profiles.map(profile => profile.url),
-  },
-{
-    '@type': 'WebSite',
-    '@id': `${canonical}#website`,
-    'name': pageTitle,
-    'url': canonical,
-    'description': description,
-    'inLanguage': site.lang,
-    'author': { '@id': `${canonical}#person` },
-  },
-],
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': location?.address,
+        'addressRegion': location?.region,
+        'addressCountry': location?.countryCode,
+      },
+      'sameAs': profiles.map(profile => profile.url),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${canonical}#website`,
+      'name': pageTitle,
+      'url': canonical,
+      'description': description,
+      'inLanguage': site.lang,
+      'author': { '@id': `${canonical}#person` },
+    },
+  ],
 }).replace(/</g, '\\u003c')
 ---
 <!doctype html>
@@ -123,6 +126,8 @@ const jsonLd = JSON.stringify({
         themes: THEMES,
         darkKey: DARK_STORAGE_KEY,
         paletteKey: PALETTE_STORAGE_KEY,
+        loaderEnabled: site.loader.enabled,
+        loaderMaxWait: site.loader.maxWait,
       }}
     >
       // Restore the palette and mode before first paint to avoid a flash.
@@ -146,11 +151,43 @@ const jsonLd = JSON.stringify({
         root.dataset.theme = themes.includes(storedPalette)
           ? storedPalette
           : (root.dataset.theme || defaultTheme)
+
+        if (loaderEnabled && window.matchMedia('screen and (prefers-reduced-motion: no-preference)').matches) {
+          root.classList.add('loader-active')
+          root.dataset.loaderState = 'pending'
+          root.dataset.loaderReady = 'false'
+          // Independent of bundled scripts, so a failed import cannot trap the page.
+          window.setTimeout(() => {
+            if (!root.classList.contains('loader-active'))
+              return
+            root.classList.remove('loader-active')
+            root.dataset.loaderState = 'complete'
+            root.dataset.loaderReady = 'true'
+            root.dataset.loaderResult = 'failed-open'
+            for (const element of document.querySelectorAll('[data-loader-inert]')) {
+              element.removeAttribute('inert')
+              element.removeAttribute('data-loader-inert')
+            }
+            const overlay = document.querySelector('[data-site-loader]')
+            const focusWasInLoader = overlay?.contains(document.activeElement)
+            if (overlay) {
+              overlay.setAttribute('hidden', '')
+              overlay.setAttribute('aria-hidden', 'true')
+            }
+            if (focusWasInLoader)
+              document.getElementById('main')?.focus({ preventScroll: true })
+          }, loaderMaxWait + 1500)
+        }
+        else {
+          root.dataset.loaderState = 'complete'
+          root.dataset.loaderReady = 'true'
+        }
       })()
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main">{text('site.skip')}</a>
+    {site.loader.enabled && <SiteLoader />}
 
     <Stage />
     <TopBar />
@@ -181,9 +218,10 @@ const jsonLd = JSON.stringify({
     <script>
       import { initMotion } from '@/scripts/motion'
       import { initScrollExperience } from '@/scripts/scroll-experience'
+      import { initSiteLoader } from '@/scripts/site-loader'
 
       initMotion()
-      initScrollExperience()
+      void initSiteLoader().then(initScrollExperience, initScrollExperience)
     </script>
 
     <style>

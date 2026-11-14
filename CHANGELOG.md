@@ -7,6 +7,37 @@ point to that verified application source.
 See [quality evidence](docs/QUALITY.md) and the [release checklist](docs/RELEASE.md)
 for verification scope and publication status.
 
+## Unreleased
+
+### Added
+
+- Configurable overlapping color-plate entrance, an original shared mark,
+  independent navigation tiles, and an editorial chapter/search menu.
+- Seven chapter bridges with local motion, stronger hero composition, and
+  full-width project spreads.
+- High-resolution dual-palette and feature previews, an editable 4K project
+  cover, compliant 16:9 portal images, and a capture script that rejects stale or failed pages.
+
+### Improved
+
+- Split shared foundations, component styles, chapter composition, and
+  document-experience overrides; reuse gallery, project, and index markup.
+- Preserve keyboard focus when skipping the entrance; bound initial font/load
+  readiness and refresh late resources without replaying the initial fragment.
+- Remove decorative menu overflow, allow quick shortcut reopening, and restore
+  the no-JavaScript mobile section index.
+- Keep navigation usable during palette transitions; end theme transitions
+  when reduced motion is enabled or printing begins.
+- Improve mobile biography readability and omit stray zeroes from empty
+  project highlights and education courses.
+- Preserve local and remote SVG image formats while optimizing raster images,
+  and allocate full-width slots to Chinese and other East Asian hero glyphs.
+- Update to the stable Astro 7.4.12 patch for directory preparation and remove
+  obsolete local 1.0.0 screenshots while retaining links to release evidence.
+
+This refresh is prepared locally for review. The public 1.0.0 release and
+theme-directory status are unchanged until the maintainer approves publication.
+
 ## 1.0.0 - 2026-11-01
 
 ### Added

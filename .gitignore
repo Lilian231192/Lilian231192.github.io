@@ -33,3 +33,6 @@ pnpm-debug.log*
 .eslintcache
 test-results/
 playwright-report/
+
+# Local development handoff
+HANDOFF.md

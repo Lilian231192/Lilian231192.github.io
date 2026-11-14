@@ -45,6 +45,44 @@ async function assertIndicatorAligned(page: Page, link: Locator): Promise<void> 
 }
 
 test.describe('floating navigation and cursor', () => {
+  test('the command shortcut reopens a closing menu and keeps navigation usable', async ({ page }) => {
+    await page.goto('./')
+    await waitForScrollReady(page)
+    const trigger = page.locator('[data-index-open]')
+    const dialog = page.locator('#indexDialog')
+    await trigger.click()
+    await expect(dialog).toHaveAttribute('data-menu-state', 'open')
+
+    await page.keyboard.press('Escape')
+    await page.keyboard.press('ControlOrMeta+k')
+    await expect(dialog).toHaveAttribute('data-menu-state', 'open')
+    await expect(dialog.getByRole('searchbox')).toBeFocused()
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.locator('html')).toHaveClass(/\bindex-open\b/)
+
+    await dialog.locator('[data-index-link][href="#projects"]').click()
+    await expect(dialog).toBeHidden()
+    await expect(page).toHaveURL(/#projects$/)
+    await expect(page.locator('#projects')).toBeFocused()
+    await expect(page.locator('#projects-title')).toBeInViewport()
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false')
+    await expect(page.locator('html')).not.toHaveClass(/\bindex-open\b/)
+  })
+
+  test('the small-screen section index remains clickable without JavaScript', async ({ browser, baseURL, isMobile }) => {
+    test.skip(isMobile, 'One native fallback check covers the shared markup')
+    const context = await browser.newContext({
+      javaScriptEnabled: false,
+      viewport: { width: 390, height: 844 },
+    })
+    const page = await context.newPage()
+    await page.goto(baseURL!)
+    await page.locator('.topbar__fallback a[href="#projects"]').click()
+    await expect(page).toHaveURL(/#projects$/)
+    await expect(page.locator('#projects-title')).toBeInViewport()
+    await context.close()
+  })
+
   test('cursor stays above the floating chrome without intercepting pointer actions', async ({ page, isMobile }) => {
     test.skip(isMobile || !cv.site.features.cursor, 'Custom cursor needs a fine pointer and the enabled feature')
     await page.goto('./')
@@ -83,6 +121,11 @@ test.describe('floating navigation and cursor', () => {
     await page.goto('./')
     await waitForScrollReady(page)
     const topbar = page.locator('.topbar')
+    await expect(topbar).toHaveAttribute('data-nav-layout', 'split')
+    await expect(topbar).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
+    await expect(topbar).toHaveCSS('pointer-events', 'none')
+    for (const tile of await page.locator('.topbar__brand, .topbar__appearance, .topbar__index-tile').all())
+      await expect(tile).toHaveCSS('pointer-events', 'auto')
     await expect(topbar).toHaveCSS('position', 'fixed')
     await expect(topbar).toHaveAttribute('data-dock-state', 'top')
     await goToSection(page, 'about')

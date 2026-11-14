@@ -34,11 +34,25 @@
       "posterStudio": true,
       "print": true,
       "themeSwitch": true,
-      "marquee": true
+      "marquee": true,
+      "sectionTransitions": true
     },
     "footer": {
       "copyrightStart": 2026,
       "showAttribution": true
+    },
+    "loader": {
+      "enabled": true,
+      "minimumDuration": 1800,
+      "maxWait": 6000,
+      "label": "Constructa",
+      "colors": [
+        "#f03a17",
+        "#1d4ed8",
+        "#d6e600",
+        "#f2eadb",
+        "#121110"
+      ]
     }
   },
   "basics": {
@@ -1086,6 +1100,18 @@
     "blueprint.breakpointTablet": "48-64 rem / tablet",
     "blueprint.breakpointMobile": "< 48 rem / mobile",
     "blueprint.offPage": "Off page",
-    "blueprint.gridReadout": "{columns} col / {gutter} px gutter"
+    "blueprint.gridReadout": "{columns} col / {gutter} px gutter",
+    "loader.loading": "Assembling the page",
+    "loader.fonts": "Setting the type",
+    "loader.ready": "Composition ready",
+    "loader.enter": "Enter site",
+    "story.top": "Everything starts with a point of view.",
+    "story.about": "A point of view becomes a way of working.",
+    "story.experience": "Ideas become practice.",
+    "story.projects": "Practice takes its final form.",
+    "story.education": "Every finished form starts another question.",
+    "story.skills": "The materials behind the work.",
+    "story.gallery": "A different way of looking.",
+    "story.contact": "A good conversation changes the shape of things."
   }
 }

@@ -174,6 +174,19 @@ export const siteSchema = z.object({
   timeZone: z.string().min(1).refine(isTimeZone, 'Use an IANA time zone such as UTC or Europe/London').default('UTC'),
   favicon: assetSchema.default('/favicon.svg'),
   appleTouchIcon: assetSchema.default('/apple-touch-icon.png'),
+  loader: z.object({
+    enabled: z.boolean().default(true),
+    minimumDuration: z.number().int().min(0).max(3000).default(1800),
+    maxWait: z.number().int().min(1000).max(10000).default(6000),
+    label: z.string().min(1).max(40).default('Constructa'),
+    colors: z.array(z.string().regex(/^#(?:[\da-f]{3}|[\da-f]{6})$/i, 'Use a hexadecimal color')).min(3).max(6).default([
+      '#f03a17',
+      '#1d4ed8',
+      '#d6e600',
+      '#f2eadb',
+      '#121110',
+    ]),
+  }).strict().prefault({}),
   seo: z.object({
     title: z.string().default(''),
     description: z.string().default(''),
@@ -186,6 +199,7 @@ export const siteSchema = z.object({
   features: z.object({
     smoothScroll: z.boolean().default(true),
     scrollMotion: z.boolean().default(true),
+    sectionTransitions: z.boolean().default(true),
     projectExhibition: z.boolean().default(true),
     cursor: z.boolean().default(true),
     blueprint: z.boolean().default(true),

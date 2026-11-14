@@ -5,6 +5,7 @@ import { uiText } from './ui'
 
 const DARK_QUERY = '(prefers-color-scheme: dark)'
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+let activeTransition: ViewTransition | undefined
 
 function readPreference(key: string): string | null {
   try {
@@ -32,6 +33,32 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia(REDUCED_MOTION_QUERY).matches
 }
 
+function startThemeTransition(apply: () => void): ViewTransition {
+  const root = document.documentElement
+  activeTransition?.skipTransition()
+  root.dataset.themeTransition = ''
+  const transition = document.startViewTransition(apply)
+  activeTransition = transition
+  const cleanup = () => {
+    if (activeTransition !== transition)
+      return
+    delete root.dataset.themeTransition
+    activeTransition = undefined
+  }
+  void transition.finished.then(cleanup, cleanup)
+  return transition
+}
+
+function revealClip(origin?: { x: number, y: number }): string[] {
+  const viewportX = origin?.x ?? window.innerWidth / 2
+  const viewportY = origin?.y ?? 0
+  const bounds = document.getElementById('main')?.getBoundingClientRect()
+  const x = viewportX - (bounds?.left ?? 0)
+  const y = viewportY - (bounds?.top ?? 0)
+  const radius = Math.hypot(Math.max(viewportX, window.innerWidth - viewportX), Math.max(viewportY, window.innerHeight - viewportY))
+  return [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]
+}
+
 function setDark(dark: boolean, animate: boolean, origin?: { x: number, y: number }): void {
   const root = document.documentElement
   const apply = () => {
@@ -39,16 +66,13 @@ function setDark(dark: boolean, animate: boolean, origin?: { x: number, y: numbe
   }
 
   if (!animate || !document.startViewTransition || prefersReducedMotion()) {
+    activeTransition?.skipTransition()
     apply()
     return
   }
 
-  const x = origin?.x ?? window.innerWidth / 2
-  const y = origin?.y ?? 0
-  const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
-  const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]
-
-  const transition = document.startViewTransition(apply)
+  const clipPath = revealClip(origin)
+  const transition = startThemeTransition(apply)
   void transition.ready.then(() => {
     root.animate(
       {
@@ -60,8 +84,8 @@ function setDark(dark: boolean, animate: boolean, origin?: { x: number, y: numbe
         duration: 420,
         easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
         pseudoElement: dark
-          ? '::view-transition-old(root)'
-          : '::view-transition-new(root)',
+          ? '::view-transition-old(theme-page)'
+          : '::view-transition-new(theme-page)',
       },
     )
   }).catch(() => {
@@ -76,27 +100,22 @@ function setPalette(theme: ThemeName, animate: boolean, origin?: { x: number, y:
   }
 
   if (!animate || !document.startViewTransition || prefersReducedMotion()) {
+    activeTransition?.skipTransition()
     apply()
     return
   }
 
-  const x = origin?.x ?? window.innerWidth / 2
-  const y = origin?.y ?? 0
-  const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
-
-  const transition = document.startViewTransition(apply)
+  const clipPath = revealClip(origin)
+  const transition = startThemeTransition(apply)
   void transition.ready.then(() => {
     root.animate(
       {
-        clipPath: [
-          `circle(0px at ${x}px ${y}px)`,
-          `circle(${radius}px at ${x}px ${y}px)`,
-        ],
+        clipPath,
       },
       {
         duration: 420,
         easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-        pseudoElement: '::view-transition-new(root)',
+        pseudoElement: '::view-transition-new(theme-page)',
       },
     )
   }).catch(() => {
@@ -162,7 +181,13 @@ export function initTheme(): void {
       setDark(event.matches, false)
   })
 
+  window.matchMedia(REDUCED_MOTION_QUERY).addEventListener('change', (event) => {
+    if (event.matches)
+      activeTransition?.skipTransition()
+  })
+
   window.addEventListener('beforeprint', () => {
+    activeTransition?.skipTransition()
     wasDark = root.classList.contains('dark')
     root.classList.remove('dark')
   })

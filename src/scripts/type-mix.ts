@@ -34,8 +34,14 @@ export function initTypeMix(): void {
       animation.cancel()
   })
   // One random arrangement per visit; fixed character cells prevent layout shifts.
-  if (!reduced.matches) {
+  const enter = () => {
+    if (reduced.matches)
+      return
     seed += crypto.getRandomValues(new Uint16Array(1))[0]!
     remix()
   }
+  if (document.documentElement.classList.contains('loader-active'))
+    document.addEventListener('portfolio:enter', enter, { once: true })
+  else
+    enter()
 }

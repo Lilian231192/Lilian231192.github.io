@@ -14,7 +14,7 @@ there is no browser-side content API or React island.
 
 The public configuration boundary includes `site`, `hero`, `sections`, `ui`,
 and the CV content lists. `site` owns public URL/base, language, timezone, SEO,
-feature switches, and footer settings. `hero` owns presentation and explicit
+the entrance loader, feature switches, and footer settings. `hero` owns presentation and explicit
 metric values. `sections` controls the enabled document order and navigation.
 `ui` contains flat string overrides. See [CONFIGURATION.md](CONFIGURATION.md).
 
@@ -23,7 +23,7 @@ components. New capabilities may extend the schema, rendering, and tests togethe
 
 ## Theming
 
-`src/globals.css` defines each palette as CSS variables under `:root[data-theme="..."]` and `:root.dark[data-theme="..."]`. `src/layouts/Layout.astro` writes `basics.theme` as `data-theme` on `<html>`, and an inline script restores saved preferences before first paint. Blocked storage falls back to the configured palette and operating-system color scheme. `ThemeSwitch.astro` and `src/scripts/theme.ts` update `<html>` and use circular View Transitions when supported. The controls stay usable if persistence fails, and system color changes remain automatic until the user chooses a mode. A root-attribute observer synchronizes the accessible state and browser theme color after asynchronous transitions.
+`src/globals.css` imports the shared foundations. `src/styles/foundations/foundation.css` defines each palette as CSS variables under `:root[data-theme="..."]` and `:root.dark[data-theme="..."]`. `src/layouts/Layout.astro` writes `basics.theme` as `data-theme` on `<html>`, and an inline script restores saved preferences before first paint. Blocked storage falls back to the configured palette and operating-system color scheme. `ThemeSwitch.astro` and `src/scripts/theme.ts` update `<html>` and use circular View Transitions of `main` when supported. Navigation stays outside the snapshot so its controls remain clickable during the transition. New input supersedes an unfinished theme transition, and reduced-motion changes or printing end it immediately. The controls stay usable if persistence fails, and system color changes remain automatic until the user chooses a mode. A root-attribute observer synchronizes the accessible state and browser theme color after asynchronous transitions.
 
 The `@theme inline` block exposes variables as Tailwind utilities. Typography is Anton for display, Space Grotesk for body copy, Instrument Serif for editorial accents, and JetBrains Mono for annotations.
 
@@ -34,12 +34,14 @@ the eight supported IDs: `top`, `about`, `experience`, `projects`, `education`,
 `skills`, `gallery`, and `contact`. Each rendered chapter has
 `data-scroll-section`, an index, and a label. `Section.astro` supplies the common
 heading and local progress rule. `Layout.astro` mounts the real document alongside
-enabled navigation, inspection controls, and native dialogs. There is no
-single-screen stage, boot overlay, full-page exit, or relocated-content drawer.
+enabled navigation, inspection controls, and native dialogs. The optional
+`SiteLoader.astro` covers only the entrance; it does not replace the document
+with a screen stage or move any section into a drawer.
 
 `src/scripts/scroll-experience.ts` measures these sections and owns shared active-section state. It writes `data-active-section`, `--page-progress`, and each section's `--section-progress`, sets navigation `aria-current`, and broadcasts `portfolio:section`. The top bar, section rail, compact HUD, and blueprint inspector read this same document state.
 
-The top bar is a responsive floating dock. `floating-nav.ts` reads the same
+The top bar consists of independent brand, chapter, appearance, and Index tiles.
+`floating-nav.ts` reads the same
 active-section state and coordinates its indicator with hover and keyboard
 focus; it does not own a separate scroll position. `floating-nav.css` supplies
 the dock, layered labels, and motion-aware transitions. The custom cursor is
@@ -49,16 +51,48 @@ editable controls, reduced motion, and native dialogs.
 
 Section links, command search, project deep links, browser history, and keyboard focus target the original DOM elements. `#project-N` identifies a real article in both the horizontal and stacked layouts; navigation resolves it to the corresponding vertical document offset when the exhibition is enabled.
 
+## Entrance and code organization
+
+`site-loader.ts` assembles the configured color plates, merges them into a
+single field, and reveals the page. Readiness uses the real font-loading
+promise, a configured deadline, and an independent inline watchdog in the
+document head. Exiting releases inert controls and hands keyboard focus from
+the overlay to `main`. Skip, reduced-motion changes, printing, and page hiding
+all release the entrance. The `portfolio:enter` event starts the navigation
+and hero entrance while the final field reveals them.
+
+The scroll controller bounds its own initial load/font wait to 1500 ms, so
+navigation and project fragments stay available after an entrance timeout.
+Late resources refresh measurements without replaying the initial fragment.
+
+| Layer | Responsibility |
+| --- | --- |
+| `styles/foundations/` | Tokens, type, shared primitives, document chrome, and base print rules. |
+| `styles/components/` | Dialogs, inspection controls, poster studio, and A4 composition. |
+| `styles/sections/` | Each chapter's base composition, imported by its Astro component. |
+| `styles/experience/` | Shared document-flow, exhibition, responsive, motion, and print overrides. |
+| `scripts/scroll-experience.ts` | Shared section state, geometry, navigation, history, and motion lifecycle. |
+| `scripts/section-motion.ts` | Hero and chapter-specific visual timelines. |
+| `components/projects/`, `components/gallery/`, `components/index/` | Reusable media, links, records, and search-result markup. |
+
+`globals.css` and `scroll-experience.css` are import entry points. The override
+order is deliberate: foundation, chapter composition, then document-experience
+rules. Component extraction still reads the same validated CV data.
+
 ## Motion
 
 GSAP ScrollTrigger owns the active visual timelines. Lenis provides desktop fine-pointer wheel smoothing using real document scrolling; touch is native. `src/styles/scroll-experience.css` contains the section layout and disables competing legacy reveal rules once `scroll-ready` is set. `src/scripts/motion.ts` handles expanders, print-mode selection, and magnetic actions, not a second scroll controller.
 
 The hero combines oversized seeded, interleaved typography, a diagonal accent
-plane, and original pixel-globe artwork. The config controls name lines, copy,
+plane, a shared original `ConstructionMark`, and secondary pixel-globe artwork. The config controls name lines, copy,
 typography, and globe options. There is no React runtime or vendored React Bits
 component. Decorative motion must not alter the semantic heading or require
 animation before content can be read. The short local pin applies only to
 sufficiently large, motion-enabled viewports.
+
+`SectionTransition.astro` adds a configured thought line and a chapter-specific
+arrangement of that same mark before subsequent sections. `section-motion.ts`
+drives its local progress; reduced motion leaves it static and print omits it.
 
 The project exhibition uses `[data-project-exhibition]`, a sticky `[data-project-pin]`, and a `[data-project-track]` holding the original articles. The controller enables `data-project-scroll="true"` for sufficiently large motion-enabled viewports and derives `--project-travel` from the row's overflow. Vertical scroll translates the row; active-project state and the readout follow its progress. Mobile, short viewports, reduced-motion, no-JS, and print keep stacked content rather than clipped slides.
 

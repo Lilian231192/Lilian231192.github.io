@@ -1,5 +1,9 @@
 # Constructa: design and motion
 
+The layered entrance, shared mark, independent navigation, and chapter bridges
+are documented in the current [design refresh](design-refresh.md). This document
+retains the original section-driven foundation and reference provenance.
+
 The real document is the experience, not a hidden fallback. Each enabled chapter
 has its own scroll timeline; there is no global scene track, forced slide
 snapping, or relocated content. Lenis can smooth desktop wheel input without

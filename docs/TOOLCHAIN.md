@@ -9,7 +9,7 @@ an icon-download integration, or a post-build compression plugin.
 - Node.js 24 LTS, at least 24.16.0. Node 24.22.2 is the recommended LTS patch
   at this dependency review; CI selects the current Node 24 line.
 - pnpm 12.16.1, pinned with package integrity in `packageManager`.
-- Astro 7.4.4 and the current stable direct-dependency versions recorded in
+- Astro 7.4.12 and the current stable direct-dependency versions recorded in
   `pnpm-workspace.yaml` and `pnpm-lock.yaml`.
 
 Do not select prereleases merely because a package's `latest` metadata happens
@@ -41,6 +41,13 @@ checker officially supports the newer line, then run all diagnostics and tests.
 
 ## Scoped security resolutions
 
+The checker converter `@astrojs/astro2tsx@0.1.3` publishes its required
+`@emnapi/runtime` only as a development dependency. A scoped `packageExtensions`
+entry supplies runtime 1.11.3 to match its emnapi core, preventing a transitive
+beta peer from failing Astro diagnostics with `setLastError is not a function`.
+This extension is limited to that converter version and is verified by the
+real Astro checker.
+
 Two lint-only transitive packages currently require scoped replacements because
 their consumers still declare affected version lines:
 
@@ -54,11 +61,18 @@ narrow, rerun lint/tests, and remove them when upstream dependency ranges adopt
 the patched versions. Do not suppress advisories without documenting relevance
 and a reviewable reason.
 
-The 24-hour dependency-release delay has three exact, reviewed exceptions for
-the requested latest update: `knip@6.44.1`, `electron-to-chromium@1.5.472`, and
-`node-releases@2.0.63`. The remaining packages stay subject to the release-age
-and trust policies. Exact exclusions are pruned when no longer needed; do not
-turn this into a wildcard allowance for unreviewed new releases.
+The 24-hour dependency-release delay uses exact reviewed exceptions. For the
+2026-11-14 directory-preparation update, these are `astro@7.4.12`,
+`@astrojs/markdown-satteri@0.4.10`, and `@astrojs/vite-plugin-astro@0.1.3`.
+The official [7.4.12 patch notes](https://github.com/withastro/astro/releases/tag/astro%407.4.12)
+describe build-memory improvements, a font-diagnostic typo fix, and the required
+first-party dependency updates. The portal requests the latest stable Astro;
+these exact exceptions allow that reviewed patch within the normal delay.
+Earlier exact exceptions were `knip@6.44.1`,
+`electron-to-chromium@1.5.472`, and `node-releases@2.0.63`.
+The remaining packages stay subject to the release-age and trust policies.
+Exclusions are pruned when no longer needed; do not replace this with a
+wildcard allowance for unreviewed releases.
 
 ## Audit and update procedure
 

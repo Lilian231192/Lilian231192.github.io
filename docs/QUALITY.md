@@ -1,11 +1,53 @@
-# Release quality evidence
+# Quality and release evidence
+
+## Current local review - 2026-11-14
+
+The layered-loader, independent-navigation, and chapter-motion refresh is a
+accepted review build. The maintainer authorized commit, push, deployment,
+and Astro directory submission on 2026-11-14. Publication results will be
+recorded after the actions complete. The published 1.0.0 evidence below
+describes its own source commit, not this refresh.
+
+| Gate | Current result |
+| --- | --- |
+| Schema, configuration, lint, types, Knip, unit tests | `pnpm run ci` passed; 83 unit tests; 117 checked files with zero errors, warnings, or hints. |
+| Static build | Root and `/astro-constructivist/` production builds passed. |
+| Final production browser matrices | Astro 7.4.12 root and repository subpath each passed 122 tests, with 14 expected platform skips, zero failures, and zero flaky cases. Total: 244 executed passes across 272 cases. |
+| Configuration variants | Three independently built variants passed nine viewport checks: minimal/disabled/reordered sections, wide three-line type with six metrics, and Chinese copy. |
+| Remote image output | Remote project and gallery SVGs retained vector output; a remote PNG produced WebP. Browser checks confirmed all three load. |
+| Dependency reproducibility and audit | Pinned pnpm frozen-lockfile install passed; production and full audits report zero known vulnerabilities on 2026-11-14. |
+| Print and export | Actual one-page A4 output, including the six-metric fixture; 1200 × 1600 SVG and PNG downloaded through real controls. The SVG contains the CV content and embedded Anton, Space Grotesk, and JetBrains Mono fonts. |
+| Promotional captures | Current 4K cover, 3840 × 2432 dual-palette preview, 3840 × 2880 feature board, and 780 × 1688 mobile view use actual production captures. |
+
+The current review exercises keyboard loader skipping, failed-script and slow-font
+release, initial fragments, late geometry refresh, menu shortcut reopening,
+case focus, native touch scrolling, gallery controls, filters, blocked storage,
+clipboard fallback, dynamic reduced motion, print, and theme transitions that
+leave navigation clickable. The built-in browser verified the current page,
+real downloads, and focus return without application warning or error logs.
+
+Visual inspection checks desktop and mobile type, navigation gaps, annotation
+contrast, project media, chapter continuity, export legibility, and print
+footers. The Chinese fixture additionally checks adjacent glyphs for overlap.
+The image-capture script verifies the requested palettes and rejects blank
+pages, framework overlays, failed resources, and application errors before
+replacing the promotional set. There is no accepted AI concept image; the
+design is original code/vector composition with real browser evidence.
+
+Current checks run on Node.js 24.22.1, pinned pnpm 12.16.1, Astro 7.4.12,
+Playwright 1.64.1, and Chromium with desktop and Pixel 7 emulation. Firefox
+and WebKit are not included. Linux/public-deployment results below remain
+dated evidence for 1.0.0; they were not re-run or published for this local
+refresh.
+
+## Published 1.0.0 - 2026-11-01
 
 This report records local, Linux CI, and public-deployment verification of
 Constructa 1.0.0 on **2026-11-01**, at
 [commit 65658c4](https://github.com/MiraHikari/astro-constructivist/commit/65658c432bb710deed22d12da0e054ef88a9b894).
 Theme-directory submission has not been performed.
 
-**Current checkpoint:** both final local production builds cover the floating
+**Published checkpoint:** both final local production builds cover the floating
 navigation dock, body-level cursor, and touch-globe refinements. Root and
 repository-subpath runs each passed with 93 cases, 11 expected platform skips,
 and no failures. Screenshots were refreshed. The Linux root/subpath CI jobs and
@@ -77,8 +119,10 @@ The exercised flows include:
 - Floating-dock indicator updates, cursor paint order, and underlying pointer targets.
 - Real touch gestures: horizontal globe rotation and preserved native vertical panning.
 
-`docs/images/desktop.png` (1440 x 900), `docs/images/mobile.png` (390 x 844), and
-`docs/images/navigation.png` (1440 x 1080) were refreshed from the final validated
+[Desktop](https://github.com/MiraHikari/astro-constructivist/releases/download/v1.0.0/desktop.png)
+(1440 x 900), [mobile](https://github.com/MiraHikari/astro-constructivist/releases/download/v1.0.0/mobile.png)
+(390 x 844), and [navigation](https://github.com/MiraHikari/astro-constructivist/releases/download/v1.0.0/navigation.png)
+(1440 x 1080) were refreshed from the final validated
 floating-dock build and visually inspected. The globe was paused with its real
 control, all four fonts had loaded, and no page or asset errors were recorded.
 The mobile image includes the call to action, metrics, profiles, and scroll

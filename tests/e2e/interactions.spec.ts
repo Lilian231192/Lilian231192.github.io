@@ -18,6 +18,29 @@ test.describe('section interactions', () => {
     await expect(page.locator('#projects-title')).toBeInViewport()
   })
 
+  test('menu motion closes cleanly when interrupted by Escape and reduced motion', async ({ page }) => {
+    await page.goto('./')
+    await waitForScrollReady(page)
+    const trigger = page.locator('[data-index-open]')
+    const dialog = page.locator('#indexDialog')
+    await trigger.click()
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true')
+    await page.keyboard.press('Escape')
+    await page.keyboard.press('Escape')
+    await expect(dialog).toBeHidden()
+    await expect(dialog).toHaveAttribute('data-menu-state', 'closed')
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false')
+    await expect(trigger).toBeFocused()
+
+    await page.keyboard.press('ControlOrMeta+k')
+    await expect(dialog).toBeVisible()
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await expect(dialog).toHaveAttribute('data-menu-state', 'open')
+    await page.keyboard.press('Escape')
+    await expect(dialog).toBeHidden()
+    await expect(page.locator('html')).not.toHaveClass(/\bindex-open\b/)
+  })
+
   test('skills filtering updates its announcement and subsequent section geometry', async ({ page }) => {
     const categories = [
       ...new Set(cv.skills.map(skill => skill.category ?? 'Core')),

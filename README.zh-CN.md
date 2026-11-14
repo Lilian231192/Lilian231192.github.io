@@ -6,9 +6,9 @@
 
 [演示站](https://mirahikari.github.io/astro-constructivist/) · [快速开始](#快速开始) · [配置指南](docs/CONFIGURATION.md) · [English](README.md)
 
-![Constructa: Constructivist Astro Theme](docs/images/cover.svg)
+![Constructa：原创几何标记与交叠色面](docs/images/project-cover.webp)
 
-Constructa 是面向开发者、设计师和独立创作者的静态作品集主题。巨幅字体、斜向色面、开放式编辑版面与像素地球构成鲜明的视觉语言；页面仍然是真实的文档，可以阅读、链接、打印，也能在关闭动效后正常使用。
+Constructa 是面向开发者、设计师和独立创作者的静态作品集主题。巨幅交错字体、斜向色面与原创几何标记构成鲜明的视觉语言；多色板 Loader、分体浮动导航和章节专属动效把这个身份贯穿全站。页面仍然是真实的文档，可以阅读、链接、打印，也能在关闭动效后正常使用。
 
 **日常定制只需要修改 `cv.json`。** 个人资料、项目、文案、导航、SEO、配色和功能选项集中在一个有 schema 约束的文件中。手动编辑或交给 Agent，都不需要为了改内容去重写组件。
 
@@ -18,6 +18,7 @@ Constructa 是面向开发者、设计师和独立创作者的静态作品集主
 | --- | --- |
 | 构成主义构图，而非通用圆角卡片堆叠 | Astro 静态页面、语义化章节与真实锚点 |
 | 带种子的随机交错字体与原创像素地球 | 稳定的正文内容，不引入 React island |
+| 多色板装配过场与全站共享几何标记 | 有时间上限，可跳过，尊重减少动效和无 JS 回退 |
 | 每个 section 独立驱动的 GSAP 动效与横向作品展 | 触屏原生滚动，小屏改为纵向阅读 |
 | 六套配色，均支持深色模式 | 保存偏好，存储受限时仍可切换 |
 | 摄影接触印样式画板与完整项目案例 | 原生 dialog、键盘操作与焦点恢复 |
@@ -25,14 +26,14 @@ Constructa 是面向开发者、设计师和独立创作者的静态作品集主
 
 ### 动效不是阅读门槛
 
-首页、关于、经历、作品、教育、技能、画廊和联系章节各自拥有视觉节奏。桌面端的纵向滚动驱动局部横向作品展，而不是把整个页面锁进单屏切换器。
+首页、关于、经历、作品、教育、技能、画廊和联系章节各自拥有视觉节奏。七段短章节开场将同一个几何标记转译为展开、轨迹、画框、轨道、矩阵、接触印样散开和结尾聚合。桌面端的纵向滚动驱动局部横向作品展，而不是把整个页面锁进单屏切换器。
 
 主题尊重系统的“减少动态效果”设置，也响应页面打开后的偏好变化。手机、低高度窗口和无 JavaScript 环境保留自然文档结构；内容不会因为没有播放动画而消失。
 
 ### 功能不是装饰
 
 - `Cmd/Ctrl + K` 或 `/` 打开可搜索的章节、项目和技能索引。
-- 响应式浮动导航跟随当前章节，提供移动指示器与分层文字转场。
+- 分体浮动导航跟随当前章节；全色面编辑式菜单把巨幅章节链接与内容搜索放在同一个任务空间。
 - 案例详情、画廊画板 / 胶片条切换、图片浏览和技能筛选使用真实内容。
 - `G` 打开桌面设计检查器；`Esc` 关闭对话框。
 - 剪贴板权限被拒绝时，复制邮箱会选择实际邮箱文本，方便手动复制。
@@ -40,18 +41,26 @@ Constructa 是面向开发者、设计师和独立创作者的静态作品集主
 
 ### 小到按钮文字，也在同一份配置里
 
-`cv.json` 不只是项目数组。首页内容、章节文案、导航标签、SEO、默认配色、功能开关和 `cv.ui` 中的界面文字都由它控制。[`cv.schema.json`](cv.schema.json) 提供编辑器补全，构建时由 Zod 校验。
+`cv.json` 不只是项目数组。首页内容、章节文案、导航标签、SEO、默认配色、功能开关和 `cv.ui` 中的界面文字都由它控制。`site.loader` 配置入场；`site.features.sectionTransitions` 控制章节开场；`ui` 中的 `story.about`、`story.projects` 等章节键编辑对应短句。[`cv.schema.json`](cv.schema.json) 提供编辑器补全，构建时由 Zod 校验。
 
 演示内容使用中性示例与原创代码生成 SVG，不依赖第三方照片集合。图片可以替换为 `public/` 内的文件，也可以使用远程 URL；请确认你拥有所用图片的授权。
 
 ## 预览
 
-![Constructa 桌面预览](docs/images/desktop.png)
+Signal 浅色与 Cobalt 深色同时展示。3840 × 2432 的介绍图使用真实浏览器截图，不是虚构的 UI 概念图。
+
+![Constructa 双主题预览：Signal 浅色与 Cobalt 深色](docs/images/preview-dual.webp)
+
+完整展示多色板 Loader、整幅作品版面、接触印样画廊、编辑式菜单、海报工作台与章节连续性。功能图版分辨率为 3840 × 2880。
+
+![Constructa 全功能图版：加载、作品、画廊、菜单、打印与章节过场](docs/images/preview-features.webp)
+
+[高分辨率介绍图 PNG](docs/images/preview-dual.png) · [功能图版 PNG](docs/images/preview-features.png) · [可编辑 SVG 封面](docs/images/project-cover.svg)
 
 <details>
 <summary>移动端预览</summary>
 
-![Constructa 移动端预览](docs/images/mobile.png)
+![Constructa 移动端预览：分体导航与共享几何标记](docs/images/preview-mobile.webp)
 
 </details>
 
@@ -123,7 +132,7 @@ Vercel、Netlify、Cloudflare Pages 及其他静态主机也可以托管同一�
 
 Astro · TypeScript · Tailwind CSS 4 · GSAP ScrollTrigger · Lenis · Zod · Fontsource · Iconify · Vitest · Playwright
 
-[架构说明](docs/architecture.md) · [视觉与动效约定](docs/SCROLL-DIRECTION.md) · [参与贡献](CONTRIBUTING.md) · [安全报告](SECURITY.md)
+[架构说明](docs/architecture.md) · [视觉与动效约定](docs/SCROLL-DIRECTION.md) · [本轮设计分析与宣传素材](docs/design-refresh.md) · [参与贡献](CONTRIBUTING.md) · [安全报告](SECURITY.md)
 
 无障碍是实现约束，不等于对所有浏览器、辅助设备或自定义内容作认证承诺。发布前请测试自己的数据、文字长度和目标设备。
 

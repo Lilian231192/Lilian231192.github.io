@@ -160,7 +160,7 @@ function apply(index: CommandIndex, query: string): void {
 }
 
 function openDialog(index: CommandIndex): void {
-  if (!index.dialog.open) {
+  if (!index.dialog.open || index.dialog.dataset.menuState === 'closing') {
     const trigger = document.querySelector<HTMLElement>('[data-index-open]')
 
     if (trigger) {

@@ -1,4 +1,6 @@
 /** @env browser */
+import { gsap } from 'gsap'
+
 export function initFloatingNav(): void {
   const dock = document.querySelector<HTMLElement>('[data-dock]')
   const nav = dock?.querySelector<HTMLElement>('[data-dock-nav]')
@@ -11,6 +13,9 @@ export function initFloatingNav(): void {
   let hovered: HTMLAnchorElement | undefined
   let focused: HTMLAnchorElement | undefined
   let frame = 0
+  let entrance: gsap.core.Tween | undefined
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
+  const tiles = dock.querySelectorAll('.topbar__brand, [data-dock-link], .topbar__appearance, .topbar__index-tile')
 
   const paint = () => {
     frame = 0
@@ -64,5 +69,27 @@ export function initFloatingNav(): void {
   })
   window.addEventListener('scroll', schedule, { passive: true })
   void document.fonts.ready.then(schedule)
+  const enter = () => {
+    if (reduced.matches)
+      return
+    entrance = gsap.fromTo(tiles, { y: -22, rotation: -2 }, {
+      y: 0,
+      rotation: 0,
+      duration: 0.65,
+      stagger: 0.055,
+      ease: 'power3.out',
+      clearProps: 'transform',
+    })
+  }
+  reduced.addEventListener('change', (event) => {
+    if (!event.matches)
+      return
+    entrance?.kill()
+    gsap.set(tiles, { clearProps: 'transform' })
+  })
+  if (document.documentElement.classList.contains('loader-active'))
+    document.addEventListener('portfolio:enter', enter, { once: true })
+  else
+    enter()
   paint()
 }

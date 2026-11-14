@@ -41,6 +41,45 @@ test.describe('theme controls', () => {
     expect(await page.evaluate(() => localStorage.getItem('data-theme'))).toBe('blue')
   })
 
+  test('palette transitions keep the mode control clickable', async ({ page }) => {
+    await page.goto('./')
+    await waitForScrollReady(page)
+    test.skip(!await page.evaluate(() => typeof document.startViewTransition === 'function'), 'The browser does not provide View Transitions')
+    const control = page.locator('#themeSwitch')
+    const bounds = await control.boundingBox()
+    expect(bounds).not.toBeNull()
+
+    await page.selectOption('#themeSelect', 'blue')
+    await page.waitForFunction(() => document.getAnimations().some(animation =>
+      (animation.effect as KeyframeEffect | null)?.pseudoElement?.startsWith('::view-transition'),
+    ))
+    await page.mouse.click(bounds!.x + bounds!.width / 2, bounds!.y + bounds!.height / 2)
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'blue')
+    await expect(page.locator('html')).toHaveClass(/\bdark\b/)
+    await expect(control).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  test('reducing motion ends an in-progress theme transition', async ({ page }) => {
+    await page.goto('./')
+    await waitForScrollReady(page)
+    test.skip(!await page.evaluate(() => typeof document.startViewTransition === 'function'), 'The browser does not provide View Transitions')
+    await page.locator('#themeSwitch').click()
+    await page.waitForFunction(() => document.getAnimations().some(animation =>
+      (animation.effect as KeyframeEffect | null)?.pseudoElement?.startsWith('::view-transition'),
+    ))
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+
+    await expect(page.locator('html')).toHaveClass(/\bdark\b/)
+    await expect.poll(() => page.evaluate(() => document.getAnimations().some(animation =>
+      (animation.effect as KeyframeEffect | null)?.pseudoElement?.startsWith('::view-transition'),
+    )), {
+      timeout: 250,
+      intervals: [0, 25, 50],
+    }).toBe(false)
+    await expect(page.locator('#themeSwitch')).toHaveAttribute('aria-pressed', 'true')
+  })
+
   test('blocked storage does not break theme controls or accessible state', async ({ page }) => {
     const errors: string[] = []
     page.on('pageerror', error => errors.push(error.message))

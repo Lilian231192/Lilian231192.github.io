@@ -1,5 +1,28 @@
 # Release checklist
 
+## Current review - 2026-11-14
+
+- [x] Layered color-plate Loader, independent navigation, and seven chapter bridges are implemented.
+- [x] CSS is organized into foundations, components, sections, and document-experience layers; project/gallery/index markup is reusable.
+- [x] Schema freshness, configuration, lint, types, Knip, and 83 unit tests pass.
+- [x] Root and repository-subpath production builds pass.
+- [x] Three configuration variants cover disabled/reordered sections, empty lists, wide headings, six metrics, and Chinese glyphs.
+- [x] Remote SVG and PNG sources build and render using the appropriate output format.
+- [x] Real one-page A4 output and SVG/PNG exports are inspected; SVG fonts are embedded.
+- [x] Current dual-palette preview, feature board, mobile preview, and 4K cover are prepared from production output.
+- [x] Configuration, architecture, design direction, and listing copy describe the refresh.
+- [x] Final Astro 7.4.12 production matrices are recorded: 122 passed and 14 expected skips per root/subpath build, with zero failures or flaky cases.
+- [x] Frozen installation and production/full audits pass; old local release images are cleaned. Temporary fixture sources and the old dependency backup remain outside the repository because automatic policy rejected their removal.
+- [x] The maintainer accepted this version and authorized commit, push, deployment, and Astro submission on 2026-11-14.
+- [ ] The accepted version is committed, pushed, and deployed, with its own Linux CI and public-site verification.
+- [ ] Astro portal submission is completed through the built-in browser after acceptance.
+
+The public source and directory status remain separate from this local review.
+Prepared copy and screenshots do not mean that the refreshed version is deployed
+or accepted by the theme directory.
+
+## Published 1.0.0 checklist
+
 Status checkpoint: **2026-11-01, Constructa 1.0.0 deployed source**.
 Checked items have evidence in [QUALITY.md](QUALITY.md). Final local root/subpath
 aggregates and updated captures cover the dock/cursor/touch refinements. Linux
@@ -53,8 +76,8 @@ Theme-directory submission has not been performed.
 - [x] Private vulnerability reporting is enabled.
 - [x] License and release source are present on the public default branch.
 - [x] README and Chinese README local links resolve; their public repository and demo destinations are live.
-- [x] `docs/images/cover.svg`, `desktop.png`, `mobile.png`, and `social-card.png`
-  exist for the reviewed theme.
+- [x] The original cover, desktop/mobile/navigation captures, and social card
+  are preserved in the [1.0.0 release](https://github.com/MiraHikari/astro-constructivist/releases/tag/v1.0.0).
 - [x] Desktop, mobile, and full Index screenshots are refreshed for the final navigation design.
 - [x] Contribution, security, issue, and pull-request guidance is prepared.
 - [x] Original license notices and third-party terms are preserved locally.

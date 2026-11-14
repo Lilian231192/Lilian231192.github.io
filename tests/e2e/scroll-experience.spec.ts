@@ -50,6 +50,36 @@ test.describe('section-driven experience', () => {
     await expect(page.locator('#project-title-3')).toBeInViewport()
   })
 
+  test('slow fonts do not block deep links or replay them after navigation', async ({ page }) => {
+    let releaseFonts!: () => void
+    const pendingFonts = new Promise<void>((resolve) => {
+      releaseFonts = resolve
+    })
+    await page.route(/\.(?:woff2?|ttf)(?:\?|$)/, async (route) => {
+      await pendingFonts
+      await route.continue()
+    })
+    try {
+      await page.goto('./#project-3', { waitUntil: 'domcontentloaded' })
+      if (cv.site.loader.enabled)
+        await page.locator('[data-loader-skip]').click()
+      await waitForScrollReady(page)
+      await expect(page).toHaveURL(/#project-3$/)
+      await expect(page.locator('#project-title-3')).toBeInViewport()
+
+      await goToSection(page, 'contact')
+      releaseFonts()
+      await page.waitForLoadState('load')
+      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await expect(page).toHaveURL(/#contact$/)
+      await expect(page.locator('#contact-title')).toBeInViewport()
+      await expect(page.locator('html')).toHaveAttribute('data-active-section', 'contact')
+    }
+    finally {
+      releaseFonts()
+    }
+  })
+
   test('keyboard focus brings the next horizontal case into view', async ({ page, isMobile }) => {
     test.skip(isMobile, 'The horizontal keyboard bridge is desktop-only')
     await page.goto('./')

@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { initProjectScroll } from './project-scroll'
+import { initHeroTimeline, initReveals, initSectionTimelines } from './section-motion'
 
 interface SectionGeometry {
   element: HTMLElement
@@ -361,259 +362,6 @@ function initSmoothing(context: ScrollContext): () => void {
   }
 }
 
-function initReveals(main: HTMLElement): void {
-  for (const element of main.querySelectorAll<HTMLElement>('[data-scroll], [data-reveal]')) {
-    if (element.closest('[data-project-scroll="true"]'))
-      continue
-    const media = element.dataset.scroll === 'media'
-    gsap.fromTo(element, {
-      opacity: 1,
-      y: media ? 0 : 36,
-      clipPath: media ? 'inset(9% 4% 9% 4%)' : 'inset(0% 0% 0% 0%)',
-    }, {
-      opacity: 1,
-      y: 0,
-      clipPath: 'inset(0% 0% 0% 0%)',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 94%',
-        end: 'top 68%',
-        scrub: 0.5,
-      },
-    })
-  }
-
-  for (const title of main.querySelectorAll<HTMLElement>('[data-title]')) {
-    gsap.fromTo(title.querySelectorAll('.char'), { yPercent: 108, rotation: 3 }, {
-      yPercent: 0,
-      rotation: 0,
-      stagger: 0.035,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: title,
-        start: 'top 94%',
-        end: 'top 68%',
-        scrub: 0.65,
-      },
-    })
-  }
-
-  for (const section of main.querySelectorAll<HTMLElement>('[data-scroll-section]')) {
-    const watermark = section.querySelector('[data-section-watermark]')
-    if (watermark) {
-      gsap.fromTo(watermark, { y: 70 }, {
-        y: -100,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        },
-      })
-    }
-  }
-}
-
-function initHeroTimeline(desktop: boolean): void {
-  const hero = document.querySelector<HTMLElement>('.hero')
-  if (!hero)
-    return
-  const visual = hero.querySelector<HTMLElement>('[data-hero-visual], .hero__portrait')
-  if (window.scrollY < 20 && !window.location.hash) {
-    gsap.fromTo(hero.querySelectorAll('[data-hero-letter]'), { yPercent: 48, opacity: 0, rotation: 4 }, {
-      yPercent: 0,
-      opacity: 1,
-      rotation: 0,
-      duration: 1.05,
-      stagger: 0.035,
-      ease: 'power4.out',
-    })
-    gsap.fromTo(hero.querySelectorAll('[data-hero-note], .hero__bottom, .hero__foot'), { opacity: 0, y: 15 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 0.4,
-      stagger: 0.06,
-      clearProps: 'opacity,transform',
-    })
-  }
-
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: hero,
-      start: () => `top top+=${headerHeight()}`,
-      end: desktop ? 'bottom bottom' : 'bottom top',
-      scrub: 1,
-      invalidateOnRefresh: true,
-    },
-  })
-  timeline
-    .to(hero.querySelector('[data-hero-word="first"]'), {
-      xPercent: desktop
-        ? -7
-        : -2,
-      y: desktop
-        ? -18
-        : 0,
-      ease: 'none',
-    }, 0)
-    .to(hero.querySelector('[data-hero-word="last"]'), {
-      xPercent: desktop ? 5 : 2,
-      ease: 'none',
-    }, 0)
-    .to(hero.querySelector('[data-hero-plane]'), {
-      xPercent: desktop
-        ? -10
-        : -3,
-      scaleX: 1.12,
-      ease: 'none',
-    }, 0)
-    .to(hero.querySelector('[data-hero-disc]'), { yPercent: 16, scale: 1.12, ease: 'none' }, 0)
-    .to(hero.querySelector('.hero__coordinates'), { y: -10, ease: 'none' }, 0)
-  if (visual) {
-    timeline.to(visual, {
-      y: desktop
-        ? -42
-        : -12,
-      rotation: desktop
-        ? -5
-        : 6,
-      ease: 'none',
-    }, 0)
-  }
-}
-
-function initSectionTimelines(main: HTMLElement): void {
-  const ink = main.querySelector<HTMLElement>('[data-ink-text]')
-  if (ink) {
-    gsap.fromTo(ink.querySelectorAll('[data-ink-word]'), { '--word-ink': 0 }, {
-      '--word-ink': 1,
-      'stagger': 0.25,
-      'ease': 'none',
-      'scrollTrigger': {
-        trigger: ink,
-        start: 'top 80%',
-        end: 'bottom 50%',
-        scrub: 0.65,
-      },
-    })
-  }
-
-  const work = main.querySelector<HTMLElement>('.work-list')
-  if (work) {
-    gsap.fromTo(work, { '--work-progress': 0 }, {
-      '--work-progress': 1,
-      'ease': 'none',
-      'scrollTrigger': {
-        trigger: work,
-        start: 'top 75%',
-        end: 'bottom 65%',
-        scrub: 0.4,
-      },
-    })
-  }
-
-  for (const year of main.querySelectorAll('.work__year, .school__year')) {
-    gsap.fromTo(year, { y: 24 }, {
-      y: -24,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: year.parentElement,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.7,
-      },
-    })
-  }
-
-  for (const project of main.querySelectorAll<HTMLElement>('[data-project]')) {
-    if (project.closest('[data-project-scroll="true"]'))
-      continue
-    const title = project.querySelector('[data-project-title]')
-    const images = project.querySelectorAll('.project__image')
-    if (title) {
-      gsap.fromTo(title, { y: 28 }, {
-        y: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: project,
-          start: 'top 85%',
-          end: 'top 55%',
-          scrub: 0.6,
-        },
-      })
-    }
-    if (images.length) {
-      gsap.fromTo(images, { scale: 1.05 }, {
-        scale: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: project,
-          start: 'top bottom',
-          end: 'bottom 25%',
-          scrub: 0.8,
-        },
-      })
-    }
-  }
-
-  for (const seal of main.querySelectorAll('.cert__seal, [data-contact-seal]')) {
-    gsap.fromTo(seal, { rotation: -28 }, {
-      rotation: 16,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: seal,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.8,
-      },
-    })
-  }
-
-  for (const group of main.querySelectorAll('[data-skill-group]')) {
-    // Keep filtered-in skills readable even when their one-shot reveal ran hidden.
-    gsap.fromTo(group.querySelectorAll('[data-skill-item]'), { y: 20 }, {
-      y: 0,
-      duration: 0.55,
-      stagger: 0.025,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: group, start: 'top 87%', once: true },
-    })
-  }
-
-  const board = main.querySelector<HTMLElement>('[data-board]')
-  if (board) {
-    gsap.fromTo(board.querySelectorAll('[data-board-print]'), {
-      '--entry-y': '65px',
-      '--entry-rotate': '-5deg',
-    }, {
-      '--entry-y': '0px',
-      '--entry-rotate': '0deg',
-      'duration': 1.1,
-      'stagger': 0.12,
-      'ease': 'power3.out',
-      'scrollTrigger': { trigger: board, start: 'top 80%', once: true },
-    })
-  }
-
-  const contact = main.querySelector('#contact')
-  if (contact) {
-    gsap.fromTo(contact.querySelectorAll('[data-contact-line]'), { yPercent: 35 }, {
-      yPercent: 0,
-      stagger: 0.12,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '.contact__statement',
-        start: 'top 90%',
-        end: 'top 40%',
-        scrub: 0.7,
-      },
-    })
-  }
-}
-
 export function initScrollExperience(): void {
   const main = document.querySelector<HTMLElement>('#main')
   if (!main || initialized)
@@ -678,7 +426,7 @@ export function initScrollExperience(): void {
       : undefined
     context.projects = projects
     initReveals(main)
-    initHeroTimeline(Boolean(spacious))
+    initHeroTimeline(Boolean(spacious), headerHeight)
     initSectionTimelines(main)
     refresh(context, true)
     return () => {
@@ -702,8 +450,15 @@ export function initScrollExperience(): void {
     ? Promise.resolve()
     : new Promise<void>(resolve => window.addEventListener('load', () => resolve(), { once: true }))
 
-  // Cached fonts can settle before the browser performs its native fragment jump.
-  void loaded.then(() => document.fonts.ready).then(() => {
+  let ready = false
+  let readyTimer = 0
+  const finish = () => {
+    if (ready) {
+      refresh(context, true)
+      return
+    }
+    ready = true
+    window.clearTimeout(readyTimer)
     ScrollTrigger.refresh()
     measure(context)
     if (context.navigationId === 0) {
@@ -714,5 +469,9 @@ export function initScrollExperience(): void {
     }
     schedule(context)
     context.root.dataset.scrollReady = 'true'
-  })
+  }
+  // Wait for the native fragment jump when possible, but keep slow resources
+  // from blocking navigation. Refresh again when their final geometry arrives.
+  readyTimer = window.setTimeout(finish, 1500)
+  void Promise.allSettled([loaded, document.fonts.ready]).then(finish)
 }

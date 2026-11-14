@@ -14,7 +14,7 @@ are not changing.
 
 | Group | What it controls |
 | --- | --- |
-| `site` | Deployment address, language, timezone, SEO, feature choices, and footer settings. |
+| `site` | Deployment address, language, timezone, SEO, entrance loader, feature choices, and footer settings. |
 | `hero` | Opening name lines, role, description, location, call to action, metrics, typography, and globe. |
 | `sections` | Chapter order, visibility, navigation inclusion, labels, headings, and tones. |
 | `ui` | Flat string overrides for interface and component copy. |
@@ -165,12 +165,45 @@ navigation while keeping the chapter. Tone values are `paper`, `paper-2`,
 `ink`, and `accent`. Check links such as `hero.cta.href` when hiding a target
 section. Reordering data is not permission to duplicate section IDs.
 
+## Entrance loader
+
+`site.loader` controls the color plates that assemble before the first view.
+These are partial settings to merge into the existing `cv.json`:
+
+```json
+{
+  "site": {
+    "loader": {
+      "enabled": true,
+      "minimumDuration": 1800,
+      "maxWait": 6000,
+      "label": "Constructa",
+      "colors": ["#f03a17", "#1d4ed8", "#d6e600", "#f2eadb", "#121110"]
+    }
+  }
+}
+```
+
+| Setting | Accepted value | Behavior |
+| --- | --- | --- |
+| `enabled` | Boolean; default `true` | Set to `false` to omit the entrance entirely. |
+| `minimumDuration` | Integer milliseconds, 0–3000; default 1800 | A visual duration floor; setting zero still retains the assembly and reveal animations. |
+| `maxWait` | Integer milliseconds, 1000–10000; default 6000 | Bounds font readiness. The independent watchdog includes a short transition allowance and takes precedence over the visual floor. |
+| `label` | 1–40 characters | The loader wordmark. |
+| `colors` | 3–6 hexadecimal colors, `#RGB` or `#RRGGBB` | Plate colors in sequence. The first color becomes the final full-screen field. |
+
+The entrance has a keyboard-accessible skip button. Reduced-motion visitors
+and no-JavaScript visitors reach the document directly. A failed font or script
+load cannot leave the page locked indefinitely. Loader status and skip wording
+can be changed through `ui` keys `loader.loading`, `loader.fonts`,
+`loader.ready`, and `loader.enter`.
+
 ## Feature choices
 
 `site.features` contains boolean switches for:
 
 ```text
-smoothScroll  scrollMotion  projectExhibition  cursor  blueprint
+smoothScroll  scrollMotion  sectionTransitions  projectExhibition  cursor  blueprint
 commandPalette  posterStudio  print  themeSwitch  marquee
 ```
 
@@ -178,6 +211,13 @@ Disable enhancements you do not need instead of deleting their code. Desktop
 horizontal work also depends on viewport size and motion preferences; setting
 `projectExhibition: true` does not force it onto a phone or a reduced-motion
 visitor. Disabling `smoothScroll` keeps native page scrolling.
+
+`sectionTransitions` adds a short visual bridge before each chapter after the
+first. Disable it to keep only the sections. Its thought lines use `ui` keys
+`story.top`, `story.about`, `story.experience`, `story.projects`,
+`story.education`, `story.skills`, `story.gallery`, and `story.contact`.
+The destination and numbering follow the configured chapter order. Disabling
+`scrollMotion` keeps the bridges static while preserving their text.
 
 `site.footer.copyrightStart` sets the first year of the footer date range.
 `site.footer.showAttribution` controls the optional visible theme credit; it
@@ -246,6 +286,12 @@ Use meaningful gallery alternative text and captions. Project `image.dark` can
 provide a separate dark-theme preview. `position: "container"` preserves a
 framed screenshot; `"background"` uses a cover-style treatment. The demo graphics
 are original SVG examples, not proof of real client work.
+
+Image output follows Astro's source-format inference. Local and remote SVGs
+remain SVGs; supported raster sources use the default WebP output. The theme
+does not force SVG rasterization. Wide Latin heading lines and Chinese
+full-width glyphs have separate width estimates, but translated text still
+needs visual inspection at the intended desktop and mobile sizes.
 
 ## Validate before publishing
 

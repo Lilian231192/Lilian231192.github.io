@@ -46,6 +46,51 @@
           "type": "string",
           "minLength": 1
         },
+        "loader": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "default": true,
+              "type": "boolean"
+            },
+            "minimumDuration": {
+              "default": 1800,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3000
+            },
+            "maxWait": {
+              "default": 6000,
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 10000
+            },
+            "label": {
+              "default": "Constructa",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "colors": {
+              "default": [
+                "#f03a17",
+                "#1d4ed8",
+                "#d6e600",
+                "#f2eadb",
+                "#121110"
+              ],
+              "minItems": 3,
+              "maxItems": 6,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#(?:[\\da-f]{3}|[\\da-f]{6})$"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
         "seo": {
           "default": {},
           "type": "object",
@@ -94,6 +139,10 @@
               "type": "boolean"
             },
             "scrollMotion": {
+              "default": true,
+              "type": "boolean"
+            },
+            "sectionTransitions": {
               "default": true,
               "type": "boolean"
             },
@@ -1872,6 +1921,34 @@
             "Projects"
           ]
         },
+        "loader.enter": {
+          "type": "string",
+          "description": "Interface copy: loader.enter. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Enter site"
+          ]
+        },
+        "loader.fonts": {
+          "type": "string",
+          "description": "Interface copy: loader.fonts. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Setting the type"
+          ]
+        },
+        "loader.loading": {
+          "type": "string",
+          "description": "Interface copy: loader.loading. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Assembling the page"
+          ]
+        },
+        "loader.ready": {
+          "type": "string",
+          "description": "Interface copy: loader.ready. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Composition ready"
+          ]
+        },
         "poster.alt": {
           "type": "string",
           "description": "Interface copy: poster.alt. Keep any {placeholder} tokens intact.",
@@ -2332,6 +2409,62 @@
           "description": "Interface copy: skills.status. Keep any {placeholder} tokens intact.",
           "examples": [
             "{count} {category} shown"
+          ]
+        },
+        "story.about": {
+          "type": "string",
+          "description": "Interface copy: story.about. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "A point of view becomes a way of working."
+          ]
+        },
+        "story.contact": {
+          "type": "string",
+          "description": "Interface copy: story.contact. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "A good conversation changes the shape of things."
+          ]
+        },
+        "story.education": {
+          "type": "string",
+          "description": "Interface copy: story.education. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Every finished form starts another question."
+          ]
+        },
+        "story.experience": {
+          "type": "string",
+          "description": "Interface copy: story.experience. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Ideas become practice."
+          ]
+        },
+        "story.gallery": {
+          "type": "string",
+          "description": "Interface copy: story.gallery. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "A different way of looking."
+          ]
+        },
+        "story.projects": {
+          "type": "string",
+          "description": "Interface copy: story.projects. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Practice takes its final form."
+          ]
+        },
+        "story.skills": {
+          "type": "string",
+          "description": "Interface copy: story.skills. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "The materials behind the work."
+          ]
+        },
+        "story.top": {
+          "type": "string",
+          "description": "Interface copy: story.top. Keep any {placeholder} tokens intact.",
+          "examples": [
+            "Everything starts with a point of view."
           ]
         },
         "theme.blue": {

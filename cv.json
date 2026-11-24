@@ -2,7 +2,7 @@
   "$schema": "./cv.schema.json",
   "site": {
     "url": "https://lilian231192.github.io",
-    "base": "/astro-constructivist/",
+    "base": "base": "/",
     "lang": "en",
     "locale": "en_US",
     "timeZone": "Europe/London",

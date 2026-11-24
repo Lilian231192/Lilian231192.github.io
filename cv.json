@@ -1,7 +1,7 @@
 {
   "$schema": "./cv.schema.json",
   "site": {
-    "url": "https://mirahikari.github.io",
+    "url": "https://lilian231192.github.io",
     "base": "/astro-constructivist/",
     "lang": "en",
     "locale": "en_US",

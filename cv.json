@@ -3,24 +3,23 @@
   "site": {
     "url": "https://Lilian231192.github.io",
     "base": "/",
-    "lang": "en",
-    "locale": "en_US",
-    "timeZone": "Europe/London",
+    "lang": "es",
+    "locale": "es_MX",
+    "timeZone": "America/Mexico_City",
     "favicon": "/favicon.svg",
     "appleTouchIcon": "/apple-touch-icon.png",
     "seo": {
-      "title": "Constructa | A Constructivist Astro Portfolio Theme",
-      "description": "An expressive, agent-friendly Astro portfolio theme. Configure content, navigation, typography, motion, palettes and SEO in one cv.json. Explore the live demo.",
+      "title": "Liliana Hernández Cruz | Portafolio",
+      "description": "Portafolio profesional de Liliana Hernández Cruz, estudiante de Ingeniería en Desarrollo y Gestión de Software.",
       "keywords": [
-        "Astro theme",
-        "constructivist design",
-        "portfolio template",
-        "agent-friendly",
-        "single-file configuration",
-        "scroll-driven animation"
+        "Liliana Hernández Cruz",
+        "Ingeniería en Desarrollo y Gestión de Software",
+        "Portafolio",
+        "Desarrollo Web",
+        "Software"
       ],
       "image": "/og.png",
-      "imageAlt": "Constructa: a bold constructivist Astro theme with interleaved typography and a pixel globe.",
+      "imageAlt": "Portafolio de Liliana Hernández Cruz - Ingeniería en Desarrollo y Gestión de Software",
       "twitterHandle": "",
       "noIndex": false
     },
@@ -39,13 +38,13 @@
     },
     "footer": {
       "copyrightStart": 2026,
-      "showAttribution": true
+      "showAttribution": false
     },
     "loader": {
       "enabled": true,
       "minimumDuration": 1800,
       "maxWait": 6000,
-      "label": "Constructa",
+      "label": "Liliana HC",
       "colors": [
         "#f03a17",
         "#1d4ed8",
@@ -56,100 +55,94 @@
     }
   },
   "basics": {
-    "name": "Alex Morgan",
-    "label": "Designer & Developer",
+    "name": "Liliana Hernández Cruz",
+    "label": "Estudiante de Ingeniería en Desarrollo y Gestión de Software",
     "image": "/demo/avatar.svg",
-    "email": "hello@example.com",
-    "url": "https://mirahikari.github.io/astro-constructivist/",
-    "summary": "An independent designer and developer exploring the space between clear systems and expressive interfaces. This fictional profile demonstrates the Constructa theme; every word, image, link and section is configurable in one JSON file.",
+    "email": "23302132@utfv.edu.mx",
+    "url": "https://Lilian231192.github.io",
+    "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software apasionada por crear soluciones tecnológicas funcionales, estructuradas y centradas en el usuario. En constante aprendizaje y desarrollo de proyectos web y de gestión.",
     "theme": "red",
     "location": {
-      "address": "London",
-      "city": "London",
-      "countryCode": "GB",
-      "region": "United Kingdom"
+      "address": "Atizapán de Zaragoza",
+      "city": "Atizapán de Zaragoza",
+      "countryCode": "MX",
+      "region": "Estado de México, México"
     },
     "profiles": [
       {
         "network": "GitHub",
         "icon": "mdi:github",
-        "username": "MiraHikari",
-        "url": "https://github.com/MiraHikari/astro-constructivist"
+        "username": "Lilian231192",
+        "url": "https://github.com/Lilian231192"
       },
       {
-        "network": "Astro",
-        "icon": "simple-icons:astro",
-        "username": "Astro",
-        "url": "https://astro.build"
-      },
-      {
-        "network": "Source",
-        "icon": "mdi:code-tags",
-        "username": "Constructa",
-        "url": "https://github.com/MiraHikari/astro-constructivist#readme"
+        "network": "Email",
+        "icon": "mdi:email-outline",
+        "username": "23302132@utfv.edu.mx",
+        "url": "mailto:23302132@utfv.edu.mx"
       }
     ],
     "about": {
       "personalInfo": [
         {
-          "label": "Focus",
-          "value": "Design & development"
+          "label": "Carrera",
+          "value": "Ing. en Desarrollo y Gestión de Software"
         },
         {
-          "label": "Location",
-          "value": "London, UK"
+          "label": "Ubicación",
+          "value": "Atizapán de Zaragoza, Edo. Méx."
         },
         {
-          "label": "Practice",
-          "value": "Independent"
+          "label": "Institución",
+          "value": "Universidad Tecnológica Fidel Velázquez"
         },
         {
-          "label": "Approach",
-          "value": "Clarity with character"
+          "label": "Enfoque",
+          "value": "Desarrollo Web y Gestión de Software"
         }
       ],
       "traits": [
         {
-          "text": "Turn complex ideas into clear interfaces"
+          "text": "Transformar requerimientos en aplicaciones funcionales y claras"
         },
         {
-          "text": "Treat typography as part of the system"
+          "text": "Aplicar buenas prácticas de desarrollo y gestión de proyectos"
         },
         {
-          "text": "Prototype early and iterate thoughtfully"
+          "text": "Aprendizaje continuo de nuevas tecnologías y herramientas"
         },
         {
-          "text": "Build for keyboard, touch and motion preferences"
+          "text": "Compromiso con la calidad, estructura y experiencia de usuario"
         }
       ],
       "highlights": [
         {
-          "text": "Four fictional case studies to demonstrate the layout"
+          "text": "Formación universitaria en Desarrollo y Gestión de Software (UTFV)"
         },
         {
-          "text": "One JSON file controls this entire portfolio"
+          "text": "Desarrollo de aplicaciones web modernas y bases de datos"
         },
         {
-          "text": "Open-source theme, ready to make your own"
+          "text": "Capacidad de análisis, diseño de sistemas y trabajo colaborativo"
         },
         {
-          "text": "Original vector demo artwork included"
+          "text": "Portafolio desplegado con integración continua en GitHub Pages"
         }
       ],
       "quote": {
-        "text": "Make the useful beautiful, and the beautiful useful.",
+        "text": "El buen software nace de comprender el problema antes de escribir la primera línea de código.",
         "values": [
           {
-            "label": "Observe"
+            "label": "Analizar"
           },
           {
-            "label": "Question"
+            "label": "Diseñar"
           },
           {
-            "label": "Make"
+            "label": "Desarrollar"
           },
           {
-            "label": "Refine"
+            "label": "Mejorar"
           }
         ]
       }
@@ -157,37 +150,37 @@
   },
   "hero": {
     "nameLines": [
-      "Alex",
-      "Morgan"
+      "Liliana",
+      "Hernández"
     ],
-    "role": "Independent designer & developer",
-    "description": "Thoughtful interfaces. Useful systems. A little unexpected.",
-    "location": "London, United Kingdom",
-    "availability": "Available for select collaborations",
+    "role": "Estudiante de Ingeniería en Desarrollo y Gestión de Software",
+    "description": "Desarrollo web, arquitectura de software y soluciones digitales con propósito.",
+    "location": "Atizapán de Zaragoza, Estado de México",
+    "availability": "Disponible para proyectos y colaboraciones",
     "cta": {
-      "label": "Explore the work",
+      "label": "Explorar proyectos",
       "href": "#projects"
     },
     "metrics": [
       {
-        "value": "04",
-        "label": "Selected projects"
+        "value": "IDGS",
+        "label": "Ingeniería de Software"
       },
       {
-        "value": "03",
-        "label": "Disciplines"
+        "value": "UTFV",
+        "label": "Formación académica"
       },
       {
-        "value": "01",
-        "label": "Independent practice"
+        "value": "03+",
+        "label": "Proyectos académicos"
       },
       {
-        "value": "∞",
-        "label": "Ideas to explore"
+        "value": "100%",
+        "label": "Compromiso y aprendizaje"
       }
     ],
-    "note": "Design with intent. Build for people.",
-    "scrollLabel": "Scroll to unfold",
+    "note": "Desarrollando software con estructura y claridad.",
+    "scrollLabel": "Desliza para explorar",
     "typography": {
       "mixed": true,
       "shuffle": true,
@@ -198,236 +191,161 @@
       "autoRotate": true,
       "speed": 0.12,
       "dotSize": 2.2,
-      "latitude": 51.5,
-      "longitude": -0.12,
-      "label": "Based in London. Building everywhere."
+      "latitude": 19.55,
+      "longitude": -99.26,
+      "label": "Desde Atizapán de Zaragoza, Estado de México."
     },
     "marquee": [
-      "Design & development",
-      "Open source",
-      "Thoughtful systems",
-      "Type & motion",
-      "Independent practice"
+      "Desarrollo de Software",
+      "Gestión de Proyectos",
+      "Aplicaciones Web",
+      "Bases de Datos",
+      "Ingeniería IDGS"
     ]
   },
   "sections": [
     {
       "id": "top",
-      "label": "Portfolio",
-      "title": "Portfolio",
+      "label": "Inicio",
+      "title": "Portafolio",
       "kicker": "",
-      "tagline": "Introduction",
+      "tagline": "Introducción",
       "tone": "paper",
       "nav": false,
       "enabled": true
     },
     {
       "id": "about",
-      "label": "About",
-      "title": "About",
-      "kicker": "The person behind the work",
-      "tagline": "Manifesto",
+      "label": "Sobre mí",
+      "title": "Sobre mí",
+      "kicker": "Perfil profesional",
+      "tagline": "Manifiesto",
       "tone": "paper",
       "nav": true,
       "enabled": true
     },
     {
       "id": "experience",
-      "label": "Experience",
-      "title": "Experience",
-      "kicker": "Practice, in progress",
-      "tagline": "Service record",
+      "label": "Experiencia",
+      "title": "Experiencia",
+      "kicker": "Trayectoria y práctica",
+      "tagline": "Historial",
       "tone": "ink",
-      "nav": true,
-      "enabled": true
+      "nav": false,
+      "enabled": false
     },
     {
       "id": "projects",
-      "label": "Projects",
-      "title": "Selected work",
-      "kicker": "A selection of things made",
-      "tagline": "Case files",
+      "label": "Proyectos",
+      "title": "Proyectos destacados",
+      "kicker": "Trabajos y desarrollos",
+      "tagline": "Portafolio",
       "tone": "paper",
       "nav": true,
       "enabled": true
     },
     {
       "id": "education",
-      "label": "Education",
-      "title": "Education",
-      "kicker": "Always a student",
-      "tagline": "Learning",
+      "label": "Educación",
+      "title": "Educación",
+      "kicker": "Formación académica",
+      "tagline": "Aprendizaje",
       "tone": "paper",
-      "nav": false,
+      "nav": true,
       "enabled": true
     },
     {
       "id": "skills",
-      "label": "Skills",
-      "title": "Working materials",
-      "kicker": "Tools for the work",
-      "tagline": "Materials",
+      "label": "Habilidades",
+      "title": "Tecnologías y herramientas",
+      "kicker": "Stack técnico",
+      "tagline": "Herramientas",
       "tone": "ink",
-      "nav": false,
+      "nav": true,
       "enabled": true
     },
     {
       "id": "gallery",
-      "label": "Gallery",
-      "title": "Field notes",
-      "kicker": "Looking outside the screen",
-      "tagline": "Contact sheet",
+      "label": "Galería",
+      "title": "Notas visuales",
+      "kicker": "Exploración creativa",
+      "tagline": "Archivo",
       "tone": "paper",
       "nav": false,
-      "enabled": true
+      "enabled": false
     },
     {
       "id": "contact",
-      "label": "Contact",
-      "title": "Contact",
-      "kicker": "Start a conversation",
-      "tagline": "Transmission",
+      "label": "Contacto",
+      "title": "Contacto",
+      "kicker": "Iniciemos una conversación",
+      "tagline": "Conexión",
       "tone": "accent",
       "nav": true,
       "enabled": true
     }
   ],
-  "work": [
-    {
-      "name": "Independent Practice",
-      "position": "Designer & Developer",
-      "location": "London",
-      "location_type": "Remote",
-      "url": "https://example.com",
-      "startDate": "2023-01",
-      "summary": "Example role: bring visual identity, interaction and implementation together. Replace this entry with your own work history.",
-      "responsibilities": [
-        "Translate briefs into accessible design systems",
-        "Build and maintain fast static experiences",
-        "Document design decisions for future collaborators"
-      ],
-      "achievements": [
-        "A coherent handoff from exploration to production",
-        "Reduced visual complexity without losing character"
-      ],
-      "skills": {
-        "TypeScript": "simple-icons:typescript",
-        "Astro": "simple-icons:astro",
-        "CSS": "simple-icons:css",
-        "Figma": "simple-icons:figma"
-      }
-    },
-    {
-      "name": "Form & Function Studio",
-      "position": "Creative Developer",
-      "location": "London",
-      "location_type": "Hybrid",
-      "startDate": "2021-06",
-      "endDate": "2022-12",
-      "summary": "Example role: prototype expressive digital experiences with a multidisciplinary team. This is fictional demo content, not a real employment claim.",
-      "responsibilities": [
-        "Prototype scroll-driven interactions",
-        "Connect reusable components to structured content"
-      ],
-      "achievements": [
-        "Delivered documented and reusable interface patterns"
-      ],
-      "skills": {
-        "JavaScript": "simple-icons:javascript",
-        "Vue": "simple-icons:vuedotjs",
-        "Git": "simple-icons:git"
-      }
-    }
-  ],
+  "work": [],
   "volunteer": [],
   "projects": [
     {
-      "name": "Forma Studio",
-      "description": "A fictional architecture journal exploring how space, type and structure can work together.",
+      "name": "Portafolio Web Personal",
+      "description": "Sitio web personal desarrollado con Astro y desplegado mediante integración continua en GitHub Pages para presentar mi perfil académico y proyectos.",
       "isActive": true,
       "highlights": [
-        "Editorial grids that adapt to every viewport",
-        "A restrained palette with architectural rhythm",
-        "Keyboard-friendly navigation throughout",
-        "Original vector mockup included with the theme"
+        "Diseño responsivo adaptado a escritorio y dispositivos móviles",
+        "Despliegue automatizado con GitHub Actions",
+        "Configuración estructurada mediante JSON"
       ],
-      "url": "https://example.com",
-      "github": "https://github.com/MiraHikari/astro-constructivist",
+      "url": "https://Lilian231192.github.io",
+      "github": "https://github.com/Lilian231192/Lilian231192.github.io",
       "image": {
         "url": "/demo/project-forma.svg",
         "position": "container"
       }
     },
     {
-      "name": "Common Ground",
-      "description": "A concept platform for people who make useful things together. Less interface, more intention.",
+      "name": "Sistema de Gestión Académica (Proyecto Ejemplo)",
+      "description": "Aplicación web enfocada en la organización de registros, usuarios y procesos administrativos con base de datos relacional.",
       "isActive": true,
       "highlights": [
-        "A clear, flexible identity system",
-        "Human-readable content and open layouts",
-        "Progressive enhancement over client-side complexity"
+        "Modelado de base de datos y operaciones CRUD",
+        "Interfaz intuitiva y validación de formularios",
+        "Arquitectura modular escalable"
       ],
-      "url": "https://example.com",
-      "github": "https://github.com/MiraHikari/astro-constructivist",
+      "url": "https://github.com/Lilian231192",
+      "github": "https://github.com/Lilian231192",
       "image": {
         "url": "/demo/project-common.svg",
         "position": "container"
       }
     },
     {
-      "name": "Open Index",
-      "description": "An imagined research library. A place for references, connections and ideas worth keeping.",
+      "name": "Aplicación Web Interactiva (Proyecto Ejemplo)",
+      "description": "Desarrollo frontend enfocado en usabilidad, diseño limpio y consumo de datos dinámicos.",
       "isActive": true,
       "highlights": [
-        "Structured information with room to breathe",
-        "Fast search and carefully considered hierarchy",
-        "A complete example case, not a claimed client project"
+        "Componentes reutilizables y código limpio",
+        "Optimización de tiempos de carga",
+        "Control de versiones con Git y GitHub"
       ],
-      "url": "https://example.com",
-      "github": "https://github.com/MiraHikari/astro-constructivist",
+      "url": "https://github.com/Lilian231192",
+      "github": "https://github.com/Lilian231192",
       "image": {
         "url": "/demo/project-index.svg",
-        "position": "container"
-      }
-    },
-    {
-      "name": "Fieldwork",
-      "description": "A self-initiated concept archive of color, shape and quiet observations.",
-      "isActive": false,
-      "highlights": [
-        "Art direction without decorative noise",
-        "Responsive image and type compositions",
-        "Original SVG artwork with no remote image dependency"
-      ],
-      "url": "https://example.com",
-      "image": {
-        "url": "/demo/project-fieldwork.svg",
         "position": "container"
       }
     }
   ],
   "education": [
     {
-      "institution": "Independent Learning",
-      "area": "Design systems & creative development",
-      "studyType": "Ongoing practice",
-      "startDate": "2023-01"
-    },
-    {
-      "institution": "Example School of Design",
-      "area": "Communication & digital design",
-      "studyType": "Fictional demo qualification",
-      "startDate": "2018-09",
-      "endDate": "2021-06"
+      "institution": "Universidad Tecnológica Fidel Velázquez (UTFV)",
+      "area": "Ingeniería en Desarrollo y Gestión de Software",
+      "studyType": "Ingeniería",
+      "startDate": "2023-09"
     }
   ],
-  "certificates": [
-    {
-      "name": "Accessible Interface Design",
-      "date": "2025-06",
-      "issuer": "Example learning record"
-    }
-  ],
+  "certificates": [],
   "awards": [],
   "publications": [],
   "skills": [
@@ -437,7 +355,7 @@
       "level": "Intermediate",
       "category": "Frontend",
       "keywords": [
-        "Web Development",
+        "Desarrollo Web",
         "Frontend"
       ]
     },
@@ -447,57 +365,20 @@
       "level": "Intermediate",
       "category": "Frontend",
       "keywords": [
-        "Web Development",
+        "Desarrollo Web",
         "Frontend",
-        "Responsive Design"
+        "Diseño Responsivo"
       ]
     },
     {
       "name": "JavaScript",
       "icon": "simple-icons:javascript",
-      "level": "Expert",
+      "level": "Intermediate",
       "category": "Core",
       "keywords": [
-        "Web Development",
+        "Desarrollo Web",
         "Frontend",
-        "Backend",
-        "Full-Stack"
-      ]
-    },
-    {
-      "name": "Tailwind",
-      "icon": "mdi:tailwind",
-      "level": "Intermediate",
-      "category": "Frontend",
-      "keywords": [
-        "Web Development",
-        "Frontend",
-        "CSS Framework",
-        "Responsive Design"
-      ]
-    },
-    {
-      "name": "TypeScript",
-      "icon": "simple-icons:typescript",
-      "level": "Expert",
-      "category": "Core",
-      "keywords": [
-        "Web Development",
-        "Frontend",
-        "Backend",
-        "JavaScript Superset"
-      ]
-    },
-    {
-      "name": "Node",
-      "icon": "ri:nodejs-line",
-      "level": "Intermediate",
-      "category": "Backend",
-      "keywords": [
-        "Web Development",
-        "Backend",
-        "JavaScript",
-        "Server"
+        "Backend"
       ]
     },
     {
@@ -506,21 +387,8 @@
       "level": "Intermediate",
       "category": "Backend",
       "keywords": [
-        "Database",
+        "Bases de Datos",
         "SQL",
-        "Data Storage",
-        "Backend"
-      ]
-    },
-    {
-      "name": "MongoDB",
-      "icon": "simple-icons:mongodb",
-      "level": "Intermediate",
-      "category": "Backend",
-      "keywords": [
-        "Database",
-        "Files",
-        "Data Storage",
         "Backend"
       ]
     },
@@ -530,588 +398,331 @@
       "level": "Intermediate",
       "category": "Tooling",
       "keywords": [
-        "Version Control",
-        "Collaboration",
-        "Source Code"
+        "Control de Versiones",
+        "Código Fuente"
       ]
     },
     {
       "name": "GitHub",
       "icon": "mdi:github",
-      "level": "Expert",
+      "level": "Intermediate",
       "category": "Tooling",
       "keywords": [
-        "Version Control",
-        "Collaboration",
-        "Source Code",
+        "Control de Versiones",
+        "Colaboración",
         "Git"
-      ]
-    },
-    {
-      "name": "Next.js",
-      "icon": "ri:nextjs-line",
-      "level": "Intermediate",
-      "category": "Frontend",
-      "keywords": [
-        "Web Development",
-        "Frontend",
-        "React Framework",
-        "SSR",
-        "Static Generation"
-      ]
-    },
-    {
-      "name": "React",
-      "icon": "mdi:react",
-      "level": "Expert",
-      "category": "Frontend",
-      "keywords": [
-        "Web Development",
-        "Frontend",
-        "JavaScript Library",
-        "UI"
-      ]
-    },
-    {
-      "name": "Vue",
-      "icon": "mdi:vuejs",
-      "level": "Intermediate",
-      "category": "Frontend",
-      "keywords": [
-        "Web Development",
-        "Frontend",
-        "JavaScript Library",
-        "UI"
-      ]
-    },
-    {
-      "name": "Docker",
-      "icon": "mdi:docker",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "Virtual Environments",
-        "Backend"
-      ]
-    },
-    {
-      "name": "NestJS",
-      "icon": "simple-icons:nestjs",
-      "level": "Intermediate",
-      "category": "Backend",
-      "keywords": [
-        "Web Development",
-        "Backend",
-        "IOC"
-      ]
-    },
-    {
-      "name": "Vite",
-      "icon": "simple-icons:vite",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "Web Development",
-        "Frontend",
-        "Build Tool"
-      ]
-    },
-    {
-      "name": "WordPress",
-      "icon": "ri:wordpress-fill",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "PHP",
-        "Full-Stack",
-        "Frontend"
-      ]
-    },
-    {
-      "name": "Golang",
-      "icon": "simple-icons:go",
-      "level": "Beginner",
-      "category": "Core",
-      "keywords": [
-        "Backend",
-        "Cloud Services"
       ]
     },
     {
       "name": "Astro",
       "icon": "simple-icons:astro",
-      "level": "Expert",
+      "level": "Beginner",
       "category": "Frontend",
       "keywords": [
-        "Web Development",
+        "Desarrollo Web",
         "Frontend",
-        "SSR",
-        "Static Generation",
-        "Multiple Themes"
-      ]
-    },
-    {
-      "name": "PHP",
-      "icon": "simple-icons:php",
-      "level": "Intermediate",
-      "category": "Core",
-      "keywords": [
-        "Web Development",
-        "Backend",
-        "Full-Stack"
-      ]
-    },
-    {
-      "name": "Nginx",
-      "icon": "simple-icons:nginx",
-      "level": "Intermediate",
-      "category": "Backend",
-      "keywords": [
-        "Web Development",
-        "Backend",
-        "Web Server"
-      ]
-    },
-    {
-      "name": "Tauri",
-      "icon": "simple-icons:tauri",
-      "level": "Intermediate",
-      "category": "Other",
-      "keywords": [
-        "Desktop Apps",
-        "Rust",
-        "WebView",
-        "Cross-Platform"
-      ]
-    },
-    {
-      "name": "Rust",
-      "icon": "simple-icons:rust",
-      "level": "Intermediate",
-      "category": "Core",
-      "keywords": [
-        "Desktop Apps",
-        "WebView",
-        "Systems Programming",
-        "High Performance"
-      ]
-    },
-    {
-      "name": "Socket.IO",
-      "icon": "simple-icons:socketdotio",
-      "level": "Beginner",
-      "category": "Backend",
-      "keywords": [
-        "Real-Time Communication",
-        "Websocket"
-      ]
-    },
-    {
-      "name": "Electron",
-      "icon": "simple-icons:electron",
-      "level": "Beginner",
-      "category": "Other",
-      "keywords": [
-        "Desktop Apps",
-        "WebView"
-      ]
-    },
-    {
-      "name": "Shell",
-      "icon": "simple-icons:shell",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "Scripting",
-        "Automation"
-      ]
-    },
-    {
-      "name": "Linux",
-      "icon": "simple-icons:linux",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "OS",
-        "Scripting",
-        "Automation"
-      ]
-    },
-    {
-      "name": "Vercel",
-      "icon": "simple-icons:vercel",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "Serverless",
-        "Static Site Hosting"
-      ]
-    },
-    {
-      "name": "Netlify",
-      "icon": "simple-icons:netlify",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "Serverless",
-        "Static Site Hosting"
-      ]
-    },
-    {
-      "name": "Tencent Cloud",
-      "icon": "mdi:cloud-outline",
-      "level": "Intermediate",
-      "category": "Tooling",
-      "keywords": [
-        "Cloud Services"
-      ]
-    },
-    {
-      "name": "Cloudflare Edge Functions",
-      "icon": "simple-icons:cloudflare",
-      "level": "Expert",
-      "category": "Tooling",
-      "keywords": [
-        "Serverless",
-        "Edge Computing"
+        "Sitios Estáticos"
       ]
     }
   ],
   "languages": [
     {
-      "language": "English",
-      "fluency": "Native"
+      "language": "Español",
+      "fluency": "Nativo"
     },
     {
-      "language": "French",
-      "fluency": "Conversational"
+      "language": "Inglés",
+      "fluency": "Básico / Intermedio"
     }
   ],
   "interests": [
     {
-      "name": "Visual culture",
+      "name": "Tecnología y Software",
       "keywords": [
-        "Typography",
-        "Architecture",
-        "Photography"
+        "Desarrollo Web",
+        "Gestión de Proyectos",
+        "Bases de Datos"
       ]
     }
   ],
   "references": [],
   "images": {
-    "intro": "A fictional field notebook of color, geometry and form. Original vector compositions, included with the theme.",
+    "intro": "Notas visuales y composiciones geométricas.",
     "list": [
       {
         "image": "/demo/study-01.svg",
-        "alt": "Abstract vermilion circle above a dark horizon",
-        "desc": "Study 01 / Horizon"
-      },
-      {
-        "image": "/demo/study-02.svg",
-        "alt": "Overlapping architectural arches in cream and blue",
-        "desc": "Study 02 / Aperture"
-      },
-      {
-        "image": "/demo/study-03.svg",
-        "alt": "A typographic grid in warm gray and acid yellow",
-        "desc": "Study 03 / Rhythm"
-      },
-      {
-        "image": "/demo/study-04.svg",
-        "alt": "Geometric stair forms on terracotta paper",
-        "desc": "Study 04 / Ascent"
+        "alt": "Composición geométrica 01",
+        "desc": "Estudio 01 / Horizonte"
       }
     ]
   },
   "ui": {
-    "site.tagline": "Considered type. Honest structure. Made for the web.",
-    "site.skip": "Skip to content",
-    "site.index": "Index",
-    "site.openIndex": "Open the section index",
-    "site.navigation": "Section navigation",
-    "site.sectionIndex": "Section index",
-    "site.backToTop": "Back to top",
-    "site.profiles": "Profiles",
-    "site.themeCredit": "Built with Constructa",
-    "site.themeDescription": "A constructivist Astro theme. One file. Entirely yours.",
-    "site.print": "Print / PDF",
-    "site.attribution": "Constructa theme demo. Alex Morgan and the projects shown are fictional.",
-    "footer.contact": "Contact",
-    "footer.elsewhere": "Elsewhere",
-    "footer.colophon": "Colophon",
-    "footer.index": "Index",
-    "footer.type": "Type: Anton, Space Grotesk, Instrument Serif, JetBrains Mono.",
-    "footer.build": "Build: Astro, GSAP, Lenis, TypeScript.",
-    "footer.grid": "Grid: twelve columns, considered type, one signal.",
-    "footer.rights": "Demo content for the Constructa theme",
-    "hero.reroll": "Remix the type",
-    "hero.pause": "Pause globe rotation",
-    "hero.play": "Resume globe rotation",
-    "hero.globe": "Pixel globe: a rotating view of the world",
-    "hero.globeHint": "Drag to rotate",
-    "common.close": "Close",
-    "common.current": "Current",
-    "common.completed": "Completed",
-    "common.present": "Present",
-    "common.now": "Now",
-    "common.previous": "Previous",
-    "common.next": "Next",
-    "common.source": "Source",
-    "common.noPreview": "No preview",
-    "common.highlights": "Highlights",
-    "common.directLine": "Direct line",
-    "common.location": "Location",
-    "common.localTime": "Local time",
-    "common.copy": "Copy",
-    "common.backToTop": "Back to top",
-    "common.email": "Email",
-    "common.phone": "Phone",
-    "common.website": "Website",
-    "common.live": "Live",
-    "common.archived": "Archived",
-    "common.archive": "Archive",
-    "common.case": "Case",
-    "common.caseFile": "Case file",
-    "common.visitProject": "Visit project",
-    "common.openImage": "Open image",
-    "common.imageLabel": "Open image: {name}",
-    "common.sourceLabel": "Source: {name}",
-    "common.caseLabel": "Open case file: {name}",
-    "common.previewLabel": "{name} project preview",
-    "common.viewImage": "view image",
-    "common.select": "select",
-    "common.open": "open",
-    "common.exit": "exit",
-    "common.toggle": "toggle",
-    "common.unavailable": "n/a",
-    "cursor.view": "View",
-    "cursor.open": "Open",
-    "cursor.drag": "Drag",
-    "cursor.visit": "Visit",
-    "cursor.mail": "Mail",
-    "section.continue": "Continue the story",
-    "about.facts": "Facts",
-    "about.traits": "Traits",
-    "about.intro": "A mind in motion",
-    "about.manifestoFirst": "Curiosity in.",
-    "about.manifestoMiddle": "Useful things",
-    "about.manifestoLast": "out.",
-    "about.note": "A fictional profile. A fully working theme.",
-    "about.principle": "Operating principle",
-    "about.values": "Values",
-    "about.method": "Working method",
-    "about.record": "Record",
-    "about.signals": "Selected signals",
-    "about.languages": "Languages",
-    "about.interests": "Interests",
-    "about.references": "References",
-    "about.publications": "Publications",
-    "about.requestReference": "Request a reference",
-    "experience.roles": "Roles",
-    "experience.intro": "From ideas to working systems",
-    "experience.statement": "Ship the whole system, not just the surface.",
-    "experience.openRecord": "Open full record",
-    "experience.closeRecord": "Close full record",
-    "experience.responsibilities": "Responsibilities",
-    "experience.achievements": "Achievements",
-    "experience.stackLabel": "{name} tech stack",
-    "education.schools": "Schools",
-    "education.score": "Score",
-    "education.courses": "Courses",
-    "education.certificates": "Certificates",
-    "education.intro": "Formal record",
-    "education.statementFirst": "Learn deliberately.",
-    "education.statementLast": "Build continuously.",
-    "education.note": "A record of learning, not a finish line.",
-    "education.certification": "Certification",
-    "education.certified": "Certified",
-    "education.records": "Records",
-    "education.certificate": "Certificate",
-    "education.issuer": "Issuer",
-    "education.issued": "Issued",
-    "education.verify": "Verify credential",
-    "education.asideTitle": "Plate note",
-    "education.aside": "Education supplies the frame; practice supplies the proof.",
-    "projects.cases": "Cases",
-    "projects.index": "Index of works",
-    "projects.select": "Select a case",
-    "projects.selected": "Selected work",
-    "projects.explore": "Scroll to explore",
-    "projects.navigation": "Choose a project",
-    "case.closeLabel": "Close case file",
-    "case.hint": "Esc to close · ← → to browse",
+    "site.tagline": "Ingeniería en Desarrollo y Gestión de Software.",
+    "site.skip": "Saltar al contenido",
+    "site.index": "Índice",
+    "site.openIndex": "Abrir índice de secciones",
+    "site.navigation": "Navegación de secciones",
+    "site.sectionIndex": "Índice de secciones",
+    "site.backToTop": "Volver arriba",
+    "site.profiles": "Perfiles",
+    "site.themeCredit": "Creado con Constructa",
+    "site.themeDescription": "Portafolio web de Liliana Hernández Cruz.",
+    "site.print": "Imprimir / PDF",
+    "site.attribution": "Portafolio personal de Liliana Hernández Cruz.",
+    "footer.contact": "Contacto",
+    "footer.elsewhere": "Enlaces",
+    "footer.colophon": "Colofón",
+    "footer.index": "Índice",
+    "footer.type": "Tipografía: Anton, Space Grotesk, Instrument Serif, JetBrains Mono.",
+    "footer.build": "Tecnología: Astro, GSAP, Lenis, TypeScript.",
+    "footer.grid": "Retícula: doce columnas.",
+    "footer.rights": "Liliana Hernández Cruz · Todos los derechos reservados",
+    "hero.reroll": "Mezclar tipografía",
+    "hero.pause": "Pausar rotación del globo",
+    "hero.play": "Reanudar rotación del globo",
+    "hero.globe": "Globo terráqueo interactivo",
+    "hero.globeHint": "Arrastra para girar",
+    "common.close": "Cerrar",
+    "common.current": "Actual",
+    "common.completed": "Completado",
+    "common.present": "Presente",
+    "common.now": "Ahora",
+    "common.previous": "Anterior",
+    "common.next": "Siguiente",
+    "common.source": "Código",
+    "common.noPreview": "Sin vista previa",
+    "common.highlights": "Aspectos destacados",
+    "common.directLine": "Línea directa",
+    "common.location": "Ubicación",
+    "common.localTime": "Hora local",
+    "common.copy": "Copiar",
+    "common.backToTop": "Volver arriba",
+    "common.email": "Correo",
+    "common.phone": "Teléfono",
+    "common.website": "Sitio web",
+    "common.live": "En vivo",
+    "common.archived": "Archivado",
+    "common.archive": "Archivo",
+    "common.case": "Proyecto",
+    "common.caseFile": "Ficha de proyecto",
+    "common.visitProject": "Visitar proyecto",
+    "common.openImage": "Abrir imagen",
+    "common.imageLabel": "Abrir imagen: {name}",
+    "common.sourceLabel": "Código: {name}",
+    "common.caseLabel": "Abrir proyecto: {name}",
+    "common.previewLabel": "Vista previa de {name}",
+    "common.viewImage": "ver imagen",
+    "common.select": "seleccionar",
+    "common.open": "abrir",
+    "common.exit": "salir",
+    "common.toggle": "alternar",
+    "common.unavailable": "n/d",
+    "cursor.view": "Ver",
+    "cursor.open": "Abrir",
+    "cursor.drag": "Arrastrar",
+    "cursor.visit": "Visitar",
+    "cursor.mail": "Correo",
+    "section.continue": "Continuar",
+    "about.facts": "Datos",
+    "about.traits": "Cualidades",
+    "about.intro": "Enfoque profesional",
+    "about.manifestoFirst": "Análisis claro.",
+    "about.manifestoMiddle": "Software útil",
+    "about.manifestoLast": "y escalable.",
+    "about.note": "Estudiante de Ingeniería en Desarrollo y Gestión de Software.",
+    "about.principle": "Principio de trabajo",
+    "about.values": "Valores",
+    "about.method": "Método de trabajo",
+    "about.record": "Perfil",
+    "about.signals": "Puntos clave",
+    "about.languages": "Idiomas",
+    "about.interests": "Intereses",
+    "about.references": "Referencias",
+    "about.publications": "Publicaciones",
+    "about.requestReference": "Solicitar referencia",
+    "experience.roles": "Puestos",
+    "experience.intro": "De las ideas a sistemas funcionales",
+    "experience.statement": "Construir soluciones completas y bien estructuradas.",
+    "experience.openRecord": "Ver detalle completo",
+    "experience.closeRecord": "Cerrar detalle",
+    "experience.responsibilities": "Responsabilidades",
+    "experience.achievements": "Logros",
+    "experience.stackLabel": "Tecnologías de {name}",
+    "education.schools": "Instituciones",
+    "education.score": "Promedio",
+    "education.courses": "Cursos",
+    "education.certificates": "Certificados",
+    "education.intro": "Historial académico",
+    "education.statementFirst": "Aprender con propósito.",
+    "education.statementLast": "Construir constantemente.",
+    "education.note": "Formación continua en ingeniería de software.",
+    "education.certification": "Certificación",
+    "education.certified": "Certificado",
+    "education.records": "Registros",
+    "education.certificate": "Certificado",
+    "education.issuer": "Emisor",
+    "education.issued": "Fecha",
+    "education.verify": "Verificar credencial",
+    "education.asideTitle": "Nota académica",
+    "education.aside": "La formación brinda las bases; la práctica consolida el conocimiento.",
+    "projects.cases": "Proyectos",
+    "projects.index": "Índice de proyectos",
+    "projects.select": "Selecciona un proyecto",
+    "projects.selected": "Proyectos seleccionados",
+    "projects.explore": "Desliza para explorar",
+    "projects.navigation": "Elige un proyecto",
+    "case.closeLabel": "Cerrar ficha de proyecto",
+    "case.hint": "Esc para cerrar · ← → para navegar",
     "case.figure": "Fig.",
-    "case.previous": "Prev case",
-    "case.next": "Next case",
-    "case.previousLabel": "Previous case: {name}",
-    "case.nextLabel": "Next case: {name}",
-    "skills.skills": "Skills",
-    "skills.groups": "Groups",
-    "skills.intro": "Working materials",
-    "skills.statement": "The stack is a set of tools, not a personality.",
-    "skills.note": "Levels describe working fluency. Filter the board to inspect a discipline.",
-    "skills.filterLabel": "Filter skills by category",
-    "skills.all": "All",
-    "skills.other": "Other",
-    "skills.allCategories": "all categories",
-    "skills.categoryStatus": "{category} skills",
-    "skills.status": "{count} {category} shown",
-    "skills.expert": "Expert",
-    "skills.intermediate": "Intermediate",
-    "skills.beginner": "Beginner",
-    "skills.entries": "entries",
-    "skills.categories": "categories",
-    "skills.inventory": "Machine-readable inventory",
-    "skills.footnote": "The board is the raw material. The case files are the evidence.",
-    "gallery.frames": "Frames",
-    "gallery.empty": "No images in this collection.",
-    "gallery.intro": "Field notes",
-    "gallery.statementFirst": "Life,",
-    "gallery.statementLast": "not pixels.",
-    "gallery.viewLabel": "Gallery view",
-    "gallery.board": "Board",
-    "gallery.strip": "Strip",
-    "gallery.previous": "Previous images",
-    "gallery.next": "Next images",
-    "gallery.boardLabel": "Contact sheet board",
-    "gallery.boardFirst": "Outside",
-    "gallery.boardLast": "the grid.",
-    "gallery.boardHint": "Drag prints · Click to enlarge",
-    "gallery.reset": "Reset layout",
-    "gallery.stripLabel": "Contact sheet, scroll horizontally",
-    "gallery.enlarge": "Enlarge",
-    "gallery.stripHint": "Drag · Arrow keys · Click to enlarge",
-    "gallery.resetStatus": "Prints returned to their starting positions.",
-    "gallery.boardStatus": "Board view. Drag prints or use arrow keys to move a focused print.",
-    "gallery.stripStatus": "Strip view. Scroll horizontally to browse every image.",
-    "gallery.printLabel": "Move print {number}: {caption}",
-    "gallery.printMoved": "Print {number} moved.",
-    "contact.profiles": "Profiles",
-    "contact.direct": "Direct",
-    "contact.intro": "Good things start with a conversation",
-    "contact.statementFirst": "Let's make",
-    "contact.statementMiddle": "something",
-    "contact.statementLast": "matter.",
-    "contact.copyLabel": "Copy {email} to clipboard",
-    "contact.copied": "Copied",
-    "contact.selected": "Selected",
-    "contact.copyManually": "Copy manually",
-    "contact.copyFailed": "Copy failed",
-    "contact.note": "This is the Constructa theme demo. Replace this address and every line of copy in cv.json.",
-    "contact.details": "Contact details",
-    "contact.seal": "Open to conversation",
-    "contact.statusLabel": "Status",
-    "contact.status": "Open to collaboration",
-    "contact.statusNote": "A fictional designer profile showing what your portfolio can become.",
-    "contact.elsewhere": "Elsewhere / Profiles",
-    "contact.channels": "channels",
-    "contact.end": "End of dossier",
-    "contact.poster": "Make your own poster",
-    "index.closeLabel": "Close the section index",
-    "index.find": "Find",
-    "index.placeholder": "Search sections, cases, skills, links…",
-    "index.shortcutHint": "opens anywhere",
-    "index.navigation": "Navigation",
-    "index.title": "Index",
-    "index.note": "One continuous document. Jump to a record or write directly.",
-    "index.sectionsLabel": "All sections",
-    "index.sections": "Sections",
-    "index.cases": "Case files",
-    "index.skills": "Skills",
-    "index.links": "Links",
-    "index.skill": "Skill",
-    "index.empty": "No section, case, skill, or link matches that query.",
-    "index.elsewhere": "Elsewhere",
-    "index.print": "Print room",
-    "index.compactPrint": "Compact CV",
-    "index.posterPrint": "Poster A4",
-    "index.colophon": "Colophon",
-    "index.noResults": "No results",
-    "index.result": "result",
-    "index.results": "results",
-    "print.issue": "Portfolio / Print edition",
-    "print.tagline": "Design with intent. Build for people.",
-    "print.colophon": "Set in Anton · Space Grotesk · JetBrains Mono",
-    "poster.eyebrow": "Studio / Print edition",
-    "poster.title": "Poster studio",
-    "poster.meta": "1200 × 1600 · Seeded geometry",
-    "poster.closeLabel": "Close the poster studio",
-    "poster.pending": "Composing poster…",
-    "poster.seedHint": "Reprint composes a new seed",
-    "poster.formatHint": "1200 × 1600 · SVG / PNG · Esc to close",
-    "poster.reprint": "Reprint",
-    "poster.downloadSvg": "Download SVG",
-    "poster.downloadPng": "Download PNG",
-    "poster.sheetTitle": "Constructivist dossier · 1200 × 1600",
-    "poster.print": "Print",
-    "poster.seed": "Seed",
-    "poster.portfolio": "Portfolio",
-    "poster.description": "Seeded poster in the current palette. {label}. {email}.",
-    "poster.edition": "Open edition",
-    "poster.alt": "{name} · constructivist poster, seed {seed}",
-    "poster.ready": "Poster ready. Reprint to compose another edition.",
-    "poster.reprinted": "Reprinted · seed {seed}",
-    "poster.pngPending": "Preparing PNG…",
-    "poster.pngReady": "PNG saved · seed {seed}",
-    "poster.pngFailed": "PNG export failed. Download the SVG instead.",
-    "poster.svgReady": "SVG saved · seed {seed}",
-    "poster.svgPending": "Preparing SVG…",
-    "poster.svgFailed": "SVG export failed. Try reprinting the poster.",
-    "poster.unavailable": "Poster generation is unavailable.",
-    "lightbox.label": "Image archive viewer",
-    "lightbox.archive": "Archive",
-    "lightbox.gallery": "Gallery",
-    "lightbox.projects": "Projects",
-    "lightbox.closeLabel": "Close image viewer",
-    "lightbox.hint": "Esc to close · ← → to browse",
-    "lightbox.previousLabel": "Previous image",
-    "lightbox.nextLabel": "Next image",
-    "lightbox.previous": "Prev",
-    "theme.paletteLabel": "Color palette",
-    "theme.darkLabel": "Switch to dark mode",
-    "theme.lightLabel": "Switch to light mode",
-    "theme.red": "Signal",
-    "theme.pink": "Rose",
-    "theme.orange": "Ember",
-    "theme.cyber": "Acid",
-    "theme.green": "Field",
-    "theme.blue": "Cobalt",
-    "blueprint.title": "Spec",
-    "blueprint.hint": "Design inspection. Press G to toggle.",
-    "blueprint.heading": "Design inspection",
-    "blueprint.closeLabel": "Exit design inspection",
-    "blueprint.viewport": "Viewport",
-    "blueprint.scroll": "Scroll",
-    "blueprint.section": "Section",
-    "blueprint.grid": "Grid",
-    "blueprint.palette": "Palette",
-    "blueprint.mode": "Mode",
-    "blueprint.type": "Type",
-    "blueprint.breakpoint": "Breakpoint",
-    "blueprint.shell": "Shell / 12 col",
-    "blueprint.light": "Light",
-    "blueprint.dark": "Dark",
-    "blueprint.small": "Small",
-    "blueprint.medium": "Medium",
-    "blueprint.large": "Large",
-    "blueprint.extraLarge": "Extra large",
-    "blueprint.breakpointWide": "80 rem + / wide",
-    "blueprint.breakpointDesktop": "64-80 rem / desktop",
-    "blueprint.breakpointTablet": "48-64 rem / tablet",
-    "blueprint.breakpointMobile": "< 48 rem / mobile",
-    "blueprint.offPage": "Off page",
-    "blueprint.gridReadout": "{columns} col / {gutter} px gutter",
-    "loader.loading": "Assembling the page",
-    "loader.fonts": "Setting the type",
-    "loader.ready": "Composition ready",
-    "loader.enter": "Enter site",
-    "story.top": "Everything starts with a point of view.",
-    "story.about": "A point of view becomes a way of working.",
-    "story.experience": "Ideas become practice.",
-    "story.projects": "Practice takes its final form.",
-    "story.education": "Every finished form starts another question.",
-    "story.skills": "The materials behind the work.",
-    "story.gallery": "A different way of looking.",
-    "story.contact": "A good conversation changes the shape of things."
+    "case.previous": "Anterior",
+    "case.next": "Siguiente",
+    "case.previousLabel": "Proyecto anterior: {name}",
+    "case.nextLabel": "Siguiente proyecto: {name}",
+    "skills.skills": "Habilidades",
+    "skills.groups": "Categorías",
+    "skills.intro": "Herramientas de trabajo",
+    "skills.statement": "Tecnologías aplicadas al desarrollo y gestión de software.",
+    "skills.note": "Filtra por categoría para explorar las herramientas.",
+    "skills.filterLabel": "Filtrar habilidades por categoría",
+    "skills.all": "Todas",
+    "skills.other": "Otras",
+    "skills.allCategories": "todas las categorías",
+    "skills.categoryStatus": "Habilidades de {category}",
+    "skills.status": "{count} {category} mostradas",
+    "skills.expert": "Avanzado",
+    "skills.intermediate": "Intermedio",
+    "skills.beginner": "Básico",
+    "skills.entries": "registros",
+    "skills.categories": "categorías",
+    "skills.inventory": "Inventario técnico",
+    "skills.footnote": "Herramientas aplicadas en proyectos académicos y personales.",
+    "gallery.frames": "Imágenes",
+    "gallery.empty": "No hay imágenes en esta colección.",
+    "gallery.intro": "Notas visuales",
+    "gallery.statementFirst": "Ideas,",
+    "gallery.statementLast": "en forma.",
+    "gallery.viewLabel": "Vista de galería",
+    "gallery.board": "Tablero",
+    "gallery.strip": "Tira",
+    "gallery.previous": "Imágenes anteriores",
+    "gallery.next": "Siguientes imágenes",
+    "gallery.boardLabel": "Tablero de imágenes",
+    "gallery.boardFirst": "Fuera",
+    "gallery.boardLast": "de la retícula.",
+    "gallery.boardHint": "Arrastra · Clic para ampliar",
+    "gallery.reset": "Restablecer vista",
+    "gallery.stripLabel": "Tira de imágenes",
+    "gallery.enlarge": "Ampliar",
+    "gallery.stripHint": "Arrastra · Flechas · Clic para ampliar",
+    "gallery.resetStatus": "Imágenes devueltas a su posición inicial.",
+    "gallery.boardStatus": "Vista de tablero.",
+    "gallery.stripStatus": "Vista de tira.",
+    "gallery.printLabel": "Mover imagen {number}: {caption}",
+    "gallery.printMoved": "Imagen {number} movida.",
+    "contact.profiles": "Perfiles",
+    "contact.direct": "Directo",
+    "contact.intro": "Los buenos proyectos comienzan con una conversación",
+    "contact.statementFirst": "Construyamos",
+    "contact.statementMiddle": "algo",
+    "contact.statementLast": "significativo.",
+    "contact.copyLabel": "Copiar {email} al portapapeles",
+    "contact.copied": "Copiado",
+    "contact.selected": "Seleccionado",
+    "contact.copyManually": "Copiar manualmente",
+    "contact.copyFailed": "Error al copiar",
+    "contact.note": "Puedes escribirme directamente a mi correo institucional o conectar a través de GitHub.",
+    "contact.details": "Datos de contacto",
+    "contact.seal": "Abierta a colaborar",
+    "contact.statusLabel": "Estado",
+    "contact.status": "Disponible para proyectos y prácticas",
+    "contact.statusNote": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en Atizapán de Zaragoza, Estado de México.",
+    "contact.elsewhere": "Perfiles / Enlaces",
+    "contact.channels": "canales",
+    "contact.end": "Fin del portafolio",
+    "contact.poster": "Crear póster",
+    "index.closeLabel": "Cerrar índice",
+    "index.find": "Buscar",
+    "index.placeholder": "Buscar secciones, proyectos, habilidades…",
+    "index.shortcutHint": "abre en cualquier lugar",
+    "index.navigation": "Navegación",
+    "index.title": "Índice",
+    "index.note": "Salta directamente a cualquier sección del portafolio.",
+    "index.sectionsLabel": "Todas las secciones",
+    "index.sections": "Secciones",
+    "index.cases": "Proyectos",
+    "index.skills": "Habilidades",
+    "index.links": "Enlaces",
+    "index.skill": "Habilidad",
+    "index.empty": "No se encontraron resultados.",
+    "index.elsewhere": "Enlaces",
+    "index.print": "Impresión",
+    "index.compactPrint": "CV Compacto",
+    "index.posterPrint": "Póster A4",
+    "index.colophon": "Colofón",
+    "index.noResults": "Sin resultados",
+    "index.result": "resultado",
+    "index.results": "resultados",
+    "print.issue": "Portafolio / Edición impresa",
+    "print.tagline": "Liliana Hernández Cruz · Ingeniería en Desarrollo y Gestión de Software.",
+    "print.colophon": "Anton · Space Grotesk · JetBrains Mono",
+    "poster.eyebrow": "Estudio / Edición impresa",
+    "poster.title": "Estudio de póster",
+    "poster.meta": "1200 × 1600 · Geometría generativa",
+    "poster.closeLabel": "Cerrar estudio de póster",
+    "poster.pending": "Generando póster…",
+    "poster.seedHint": "Regenerar crea una nueva variante",
+    "poster.formatHint": "1200 × 1600 · SVG / PNG · Esc para cerrar",
+    "poster.reprint": "Regenerar",
+    "poster.downloadSvg": "Descargar SVG",
+    "poster.downloadPng": "Descargar PNG",
+    "poster.sheetTitle": "Portafolio · 1200 × 1600",
+    "poster.print": "Imprimir",
+    "poster.seed": "Variante",
+    "poster.portfolio": "Portafolio",
+    "poster.description": "Póster generado con la paleta actual. {label}. {email}.",
+    "poster.edition": "Edición abierta",
+    "poster.alt": "{name} · póster constructivista, variante {seed}",
+    "poster.ready": "Póster listo.",
+    "poster.reprinted": "Regenerado · variante {seed}",
+    "poster.pngPending": "Preparando PNG…",
+    "poster.pngReady": "PNG guardado · variante {seed}",
+    "poster.pngFailed": "Error al exportar PNG. Descarga el SVG.",
+    "poster.svgReady": "SVG guardado · variante {seed}",
+    "poster.svgPending": "Preparando SVG…",
+    "poster.svgFailed": "Error al exportar SVG.",
+    "poster.unavailable": "Generación de póster no disponible.",
+    "lightbox.label": "Visor de imágenes",
+    "lightbox.archive": "Archivo",
+    "lightbox.gallery": "Galería",
+    "lightbox.projects": "Proyectos",
+    "lightbox.closeLabel": "Cerrar visor",
+    "lightbox.hint": "Esc para cerrar · ← → para navegar",
+    "lightbox.previousLabel": "Imagen anterior",
+    "lightbox.nextLabel": "Siguiente imagen",
+    "lightbox.previous": "Anterior",
+    "theme.paletteLabel": "Paleta de color",
+    "theme.darkLabel": "Cambiar a modo oscuro",
+    "theme.lightLabel": "Cambiar a modo claro",
+    "theme.red": "Rojo",
+    "theme.pink": "Rosa",
+    "theme.orange": "Naranja",
+    "theme.cyber": "Ácido",
+    "theme.green": "Verde",
+    "theme.blue": "Azul",
+    "blueprint.title": "Retícula",
+    "blueprint.hint": "Inspección de diseño. Presiona G para alternar.",
+    "blueprint.heading": "Inspección de diseño",
+    "blueprint.closeLabel": "Salir de inspección",
+    "blueprint.viewport": "Pantalla",
+    "blueprint.scroll": "Desplazamiento",
+    "blueprint.section": "Sección",
+    "blueprint.grid": "Retícula",
+    "blueprint.palette": "Paleta",
+    "blueprint.mode": "Modo",
+    "blueprint.type": "Tipografía",
+    "blueprint.breakpoint": "Punto de quiebre",
+    "blueprint.shell": "Contenedor / 12 col",
+    "blueprint.light": "Claro",
+    "blueprint.dark": "Oscuro"
   }
 }

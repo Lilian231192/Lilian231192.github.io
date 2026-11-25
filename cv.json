@@ -22,7 +22,7 @@
     "image": "/foto-lilian.jpg",
     "email": "23302132@utfv.edu.mx",
     "phone": "",
-    "url": "https://Lilian231192.github.io",
+    "url": "https://lilian231192.github.io",
     "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en la Universidad Tecnológica Fidel Velázquez (UTFV). Me caracterizo por ser una persona altamente responsable, comprometida y orientada a resultados, con facilidad para el trabajo en equipo, la comunicación asertiva y la resolución analítica de problemas. Cuento con experiencia práctica en el desarrollo de aplicaciones web progresivas (PWA), aseguramiento de calidad (QA) con pruebas automatizadas, contenerización con Docker/Jenkins y gestión ágil bajo Scrum, manteniendo siempre una actitud proactiva y de aprendizaje continuo.",
     "theme": "blue",
     "location": {
@@ -44,15 +44,15 @@
   "work": [
     {
       "name": "Proyectos Académicos y Desarrollo de Software",
-      "position": "Desarrolladora Full-Stack & Analista QA",
+      "position": "Desarrolladora Full-Stack",
       "url": "https://github.com/Lilian231192",
       "startDate": "2023-09-01",
       "endDate": null,
       "summary": "Participación activa y colaborativa en el ciclo de vida completo de desarrollo de software: levantamiento de requerimientos, arquitectura, programación, pruebas automatizadas y despliegue continuo.",
       "highlights": [
         "Análisis de requerimientos y aseguramiento de calidad (QA) en aplicaciones web progresivas (PWA) con soporte offline.",
-        "Implementación de pruebas automatizadas de integración y pipelines CI/CD con Jest, Docker y Jenkins.",
-        "Planificación y gestión de proyectos de software aplicando ceremonias y artefactos del marco ágil Scrum."
+        "Implementación de pruebas automatizadas de integración y pipelines con Docker y Jenkins.",
+        "Planificación y gestión de proyectos de software"
       ]
     }
   ],
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "name": "MongoDB & Redis",
+      "name": "MongoDB",
       "icon": "simple-icons:redis",
       "level": "Intermediate",
       "category": "Bases de Datos",
@@ -191,18 +191,6 @@
       ]
     },
     {
-      "name": "Jest & Pruebas QA",
-      "icon": "simple-icons:jest",
-      "level": "Intermediate",
-      "category": "DevOps y QA",
-      "keywords": [
-        "Testing",
-        "Supertest",
-        "Lighthouse",
-        "DevTools"
-      ]
-    },
-    {
       "name": "Git & GitHub",
       "icon": "mdi:git",
       "level": "Intermediate",
@@ -221,7 +209,7 @@
     },
     {
       "language": "Inglés",
-      "fluency": "Básico — En formación (Lectura técnica)"
+      "fluency": "Básico — En formación"
     }
   ],
   "interests": [
@@ -263,7 +251,7 @@
         "Modo offline con Angular Service Worker, IndexedDB y Background Sync API",
         "Notificaciones Push con llaves VAPID, backend en Node.js/Express, MySQL y JWT"
       ],
-      "url": "https://Lilian231192.github.io",
+      "url": "https://lilian231192.github.io",
       "github": "https://github.com/Lilian231192",
       "image": {
         "url": "/demo/project-atelier.svg",
@@ -292,10 +280,9 @@
       "isActive": false,
       "highlights": [
         "Definición de Product Backlog, historias de usuario y metas de Sprint (2 semanas)",
-        "Priorización de módulos: autenticación, carrito, pasarela de pagos y rastreo",
-        "Diseño de ceremonias ágiles: Daily Standups, Sprint Review y Sprint Retrospective"
+        "Priorización de módulos: autenticación, carrito, pasarela de pagos y rastreo"
       ],
-      "url": "https://Lilian231192.github.io",
+      "url": "https://lilian231192.github.io",
       "github": "https://github.com/Lilian231192",
       "image": {
         "url": "/demo/project-forma.svg",
@@ -311,7 +298,7 @@
         "Despliegue automatizado con GitHub Actions",
         "Arquitectura de datos desacoplada mediante esquema JSON"
       ],
-      "url": "https://Lilian231192.github.io",
+      "url": "https://lilian231192.github.io",
       "github": "https://github.com/Lilian231192/Lilian231192.github.io",
       "image": {
         "url": "/demo/project-forma.svg",

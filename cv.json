@@ -346,17 +346,18 @@
     {
       "name": "HTML",
       "icon": "simple-icons:html5",
-      "level": "Intermediate",
+      "level": "Beginner",
       "category": "Frontend",
       "keywords": [
         "Desarrollo Web",
-        "Frontend"
+        "Frontend",
+        "Estructura Web"
       ]
     },
     {
       "name": "CSS",
       "icon": "ri:css3-fill",
-      "level": "Intermediate",
+      "level": "Beginner",
       "category": "Frontend",
       "keywords": [
         "Desarrollo Web",
@@ -367,30 +368,74 @@
     {
       "name": "JavaScript",
       "icon": "simple-icons:javascript",
-      "level": "Intermediate",
-      "category": "Core",
+      "level": "Beginner",
+      "category": "Frontend",
       "keywords": [
         "Desarrollo Web",
         "Frontend",
-        "Backend"
+        "Interactividad"
+      ]
+    },
+    {
+      "name": "React",
+      "icon": "mdi:react",
+      "level": "Beginner",
+      "category": "Frontend",
+      "keywords": [
+        "Desarrollo Web",
+        "Frontend",
+        "Componentes UI"
+      ]
+    },
+    {
+      "name": "Python",
+      "icon": "simple-icons:python",
+      "level": "Beginner",
+      "category": "Backend",
+      "keywords": [
+        "Programación",
+        "Backend",
+        "Lógica"
+      ]
+    },
+    {
+      "name": "Java",
+      "icon": "mdi:language-java",
+      "level": "Beginner",
+      "category": "Backend",
+      "keywords": [
+        "Programación Orientada a Objetos",
+        "Backend",
+        "Software"
       ]
     },
     {
       "name": "SQL",
       "icon": "simple-icons:mysql",
-      "level": "Intermediate",
-      "category": "Backend",
+      "level": "Beginner",
+      "category": "Bases de Datos",
       "keywords": [
         "Bases de Datos",
-        "SQL",
-        "Backend"
+        "Consultas",
+        "Datos Relacionales"
+      ]
+    },
+    {
+      "name": "MongoDB",
+      "icon": "simple-icons:mongodb",
+      "level": "Beginner",
+      "category": "Bases de Datos",
+      "keywords": [
+        "Bases de Datos",
+        "NoSQL",
+        "Documentos"
       ]
     },
     {
       "name": "Git",
       "icon": "mdi:git",
-      "level": "Intermediate",
-      "category": "Tooling",
+      "level": "Beginner",
+      "category": "Herramientas",
       "keywords": [
         "Control de Versiones",
         "Código Fuente"
@@ -399,12 +444,12 @@
     {
       "name": "GitHub",
       "icon": "mdi:github",
-      "level": "Intermediate",
-      "category": "Tooling",
+      "level": "Beginner",
+      "category": "Herramientas",
       "keywords": [
         "Control de Versiones",
         "Colaboración",
-        "Git"
+        "Repositorios"
       ]
     },
     {
@@ -414,7 +459,6 @@
       "category": "Frontend",
       "keywords": [
         "Desarrollo Web",
-        "Frontend",
         "Sitios Estáticos"
       ]
     }

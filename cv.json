@@ -22,11 +22,11 @@
   "basics": {
     "name": "Lilian Guadalupe Ortega Chávez",
     "label": "Estudiante de Ingeniería en Desarrollo y Gestión de Software",
-    "image": "/demo/avatar.svg",
+    "image": "/foto-lilian.jpg",
     "email": "23302032@utfv.edu.mx",
     "phone": "",
     "url": "https://Lilian231192.github.io",
-    "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en la Universidad Tecnológica Fidel Velázquez (UTFV). Cuento con experiencia práctica en el desarrollo de aplicaciones web progresivas (PWA), diseño de APIs REST, aseguramiento de calidad (QA) con pruebas automatizadas, contenerización con Docker/Jenkins y gestión de proyectos bajo el marco ágil Scrum.",
+    "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en la Universidad Tecnológica Fidel Velázquez (UTFV). Me caracterizo por ser una persona altamente responsable, comprometida y orientada a resultados, con facilidad para el trabajo en equipo, la comunicación asertiva y la resolución analítica de problemas. Cuento con experiencia práctica en el desarrollo de aplicaciones web progresivas (PWA), aseguramiento de calidad (QA) con pruebas automatizadas, contenerización con Docker/Jenkins y gestión ágil bajo Scrum, manteniendo siempre una actitud proactiva y de aprendizaje continuo.",
     "theme": "blue",
     "location": {
       "address": "",
@@ -50,7 +50,7 @@
       "url": "https://github.com/Lilian231192",
       "startDate": "2023-09-01",
       "endDate": null,
-      "summary": "Participación activa en el ciclo de vida completo de desarrollo de software: levantamiento de requerimientos, arquitectura, programación, pruebas automatizadas y despliegue continuo.",
+      "summary": "Participación activa y colaborativa en el ciclo de vida completo de desarrollo de software: levantamiento de requerimientos, arquitectura, programación, pruebas automatizadas y despliegue continuo.",
       "highlights": [
         "Análisis de requerimientos y aseguramiento de calidad (QA) en aplicaciones web progresivas (PWA) con soporte offline.",
         "Implementación de pruebas automatizadas de integración y pipelines CI/CD con Jest, Docker y Jenkins.",
@@ -246,11 +246,11 @@
       ]
     },
     {
-      "name": "Gestión Ágil",
+      "name": "Gestión Ágil & Colaboración",
       "keywords": [
         "Scrum",
-        "Análisis de Requerimientos",
-        "Documentación Técnica"
+        "Trabajo en Equipo",
+        "Análisis de Requerimientos"
       ]
     }
   ],

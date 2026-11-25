@@ -1,390 +1,150 @@
 {
-  "$schema": "./cv.schema.json",
-  "site": {
-    "url": "https://Lilian231192.github.io",
-    "base": "/",
-    "lang": "es",
-    "locale": "es_MX",
-    "timeZone": "America/Mexico_City",
-    "favicon": "/favicon.svg",
-    "appleTouchIcon": "/apple-touch-icon.png",
-    "seo": {
-      "title": "Liliana Hernández Cruz | Portafolio",
-      "description": "Portafolio profesional de Liliana Hernández Cruz, estudiante de Ingeniería en Desarrollo y Gestión de Software.",
-      "keywords": [
-        "Liliana Hernández Cruz",
-        "Ingeniería en Desarrollo y Gestión de Software",
-        "Portafolio",
-        "Desarrollo Web",
-        "Software"
-      ],
-      "image": "/og.png",
-      "imageAlt": "Portafolio de Liliana Hernández Cruz - Ingeniería en Desarrollo y Gestión de Software",
-      "twitterHandle": "",
-      "noIndex": false
-    },
-    "features": {
-      "smoothScroll": true,
-      "scrollMotion": true,
-      "projectExhibition": true,
-      "cursor": true,
-      "blueprint": true,
-      "commandPalette": true,
-      "posterStudio": true,
-      "print": true,
-      "themeSwitch": true,
-      "marquee": true,
-      "sectionTransitions": true
-    },
-    "footer": {
-      "copyrightStart": 2026,
-      "showAttribution": false
-    },
-    "loader": {
-      "enabled": true,
-      "minimumDuration": 1800,
-      "maxWait": 6000,
-      "label": "Liliana HC",
-      "colors": [
-        "#f03a17",
-        "#1d4ed8",
-        "#d6e600",
-        "#f2eadb",
-        "#121110"
-      ]
-    }
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "hero": {
+    "kicker": "PORTAFOLIO · DESARROLLO DE SOFTWARE · QA & DEVOPS",
+    "headline": "Ingeniería de software con foco en calidad, escalabilidad y eficiencia.",
+    "subheadline": "Construyo aplicaciones web modernas, arquitecturas resilientes y flujos automatizados de prueba y despliegue.",
+    "metrics": [
+      {
+        "value": "2023—2027",
+        "label": "Ing. en Desarrollo y Gestión de Software"
+      },
+      {
+        "value": "04+",
+        "label": "Proyectos desarrollados"
+      },
+      {
+        "value": "Full-Stack",
+        "label": "Web, QA y Metodologías Ágiles"
+      }
+    ]
   },
   "basics": {
-    "name": "Liliana Hernández Cruz",
+    "name": "Lilian Guadalupe Ortega Chávez",
     "label": "Estudiante de Ingeniería en Desarrollo y Gestión de Software",
     "image": "/demo/avatar.svg",
-    "email": "23302132@utfv.edu.mx",
+    "email": "23302032@utfv.edu.mx",
+    "phone": "",
     "url": "https://Lilian231192.github.io",
-    "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software apasionada por crear soluciones tecnológicas funcionales, estructuradas y centradas en el usuario. En constante aprendizaje y desarrollo de proyectos web y de gestión.",
-    "theme": "red",
+    "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en la Universidad Tecnológica Fidel Velázquez (UTFV). Cuento con experiencia práctica en el desarrollo de aplicaciones web progresivas (PWA), diseño de APIs REST, aseguramiento de calidad (QA) con pruebas automatizadas, contenerización con Docker/Jenkins y gestión de proyectos bajo el marco ágil Scrum.",
+    "theme": "blue",
     "location": {
-      "address": "Atizapán de Zaragoza",
-      "city": "Atizapán de Zaragoza",
+      "address": "",
+      "postalCode": "",
+      "city": "Nicolás Romero",
       "countryCode": "MX",
-      "region": "Estado de México, México"
+      "region": "Estado de México"
     },
     "profiles": [
       {
         "network": "GitHub",
-        "icon": "mdi:github",
         "username": "Lilian231192",
         "url": "https://github.com/Lilian231192"
       }
-    ],
-    "about": {
-      "personalInfo": [
-        {
-          "label": "Carrera",
-          "value": "Ing. en Desarrollo y Gestión de Software"
-        },
-        {
-          "label": "Ubicación",
-          "value": "Atizapán de Zaragoza, Edo. Méx."
-        },
-        {
-          "label": "Institución",
-          "value": "Universidad Tecnológica Fidel Velázquez"
-        },
-        {
-          "label": "Enfoque",
-          "value": "Desarrollo Web y Gestión de Software"
-        }
-      ],
-      "traits": [
-        {
-          "text": "Transformar requerimientos en aplicaciones funcionales y claras"
-        },
-        {
-          "text": "Aplicar buenas prácticas de desarrollo y gestión de proyectos"
-        },
-        {
-          "text": "Aprendizaje continuo de nuevas tecnologías y herramientas"
-        },
-        {
-          "text": "Compromiso con la calidad, estructura y experiencia de usuario"
-        }
-      ],
-      "highlights": [
-        {
-          "text": "Formación universitaria en Desarrollo y Gestión de Software (UTFV)"
-        },
-        {
-          "text": "Desarrollo de aplicaciones web modernas y bases de datos"
-        },
-        {
-          "text": "Capacidad de análisis, diseño de sistemas y trabajo colaborativo"
-        },
-        {
-          "text": "Portafolio desplegado con integración continua en GitHub Pages"
-        }
-      ],
-      "quote": {
-        "text": "El buen software nace de comprender el problema antes de escribir la primera línea de código.",
-        "values": [
-          {
-            "label": "Analizar"
-          },
-          {
-            "label": "Diseñar"
-          },
-          {
-            "label": "Desarrollar"
-          },
-          {
-            "label": "Mejorar"
-          }
-        ]
-      }
-    }
-  },
-  "hero": {
-    "nameLines": [
-      "Liliana",
-      "Hernández"
-    ],
-    "role": "Estudiante de Ingeniería en Desarrollo y Gestión de Software",
-    "description": "Desarrollo web, arquitectura de software y soluciones digitales con propósito.",
-    "location": "Atizapán de Zaragoza, Estado de México",
-    "availability": "Disponible para proyectos y colaboraciones",
-    "cta": {
-      "label": "Explorar proyectos",
-      "href": "#projects"
-    },
-    "metrics": [
-      {
-        "value": "IDGS",
-        "label": "Ingeniería de Software"
-      },
-      {
-        "value": "UTFV",
-        "label": "Formación académica"
-      },
-      {
-        "value": "03+",
-        "label": "Proyectos académicos"
-      },
-      {
-        "value": "100%",
-        "label": "Compromiso y aprendizaje"
-      }
-    ],
-    "note": "Desarrollando software con estructura y claridad.",
-    "scrollLabel": "Desliza para explorar",
-    "typography": {
-      "mixed": true,
-      "shuffle": true,
-      "seed": 2026
-    },
-    "globe": {
-      "enabled": true,
-      "autoRotate": true,
-      "speed": 0.12,
-      "dotSize": 2.2,
-      "latitude": 19.55,
-      "longitude": -99.26,
-      "label": "Desde Atizapán de Zaragoza, Estado de México."
-    },
-    "marquee": [
-      "Desarrollo de Software",
-      "Gestión de Proyectos",
-      "Aplicaciones Web",
-      "Bases de Datos",
-      "Ingeniería IDGS"
     ]
   },
-  "sections": [
+  "work": [
     {
-      "id": "top",
-      "label": "Inicio",
-      "title": "Portafolio",
-      "kicker": "",
-      "tagline": "Introducción",
-      "tone": "paper",
-      "nav": false,
-      "enabled": true
-    },
-    {
-      "id": "about",
-      "label": "Sobre mí",
-      "title": "Sobre mí",
-      "kicker": "Perfil profesional",
-      "tagline": "Manifiesto",
-      "tone": "paper",
-      "nav": true,
-      "enabled": true
-    },
-    {
-      "id": "experience",
-      "label": "Experiencia",
-      "title": "Experiencia",
-      "kicker": "Trayectoria y práctica",
-      "tagline": "Historial",
-      "tone": "ink",
-      "nav": false,
-      "enabled": false
-    },
-    {
-      "id": "projects",
-      "label": "Proyectos",
-      "title": "Proyectos destacados",
-      "kicker": "Trabajos y desarrollos",
-      "tagline": "Portafolio",
-      "tone": "paper",
-      "nav": true,
-      "enabled": true
-    },
-    {
-      "id": "education",
-      "label": "Educación",
-      "title": "Educación",
-      "kicker": "Formación académica",
-      "tagline": "Aprendizaje",
-      "tone": "paper",
-      "nav": true,
-      "enabled": true
-    },
-    {
-      "id": "skills",
-      "label": "Habilidades",
-      "title": "Tecnologías y herramientas",
-      "kicker": "Stack técnico",
-      "tagline": "Herramientas",
-      "tone": "ink",
-      "nav": true,
-      "enabled": true
-    },
-    {
-      "id": "gallery",
-      "label": "Galería",
-      "title": "Notas visuales",
-      "kicker": "Exploración creativa",
-      "tagline": "Archivo",
-      "tone": "paper",
-      "nav": false,
-      "enabled": false
-    },
-    {
-      "id": "contact",
-      "label": "Contacto",
-      "title": "Contacto",
-      "kicker": "Iniciemos una conversación",
-      "tagline": "Conexión",
-      "tone": "accent",
-      "nav": true,
-      "enabled": true
+      "name": "Proyectos Académicos y Desarrollo de Software",
+      "position": "Desarrolladora Full-Stack & Analista QA",
+      "url": "https://github.com/Lilian231192",
+      "startDate": "2023-09-01",
+      "endDate": null,
+      "summary": "Participación activa en el ciclo de vida completo de desarrollo de software: levantamiento de requerimientos, arquitectura, programación, pruebas automatizadas y despliegue continuo.",
+      "highlights": [
+        "Análisis de requerimientos y aseguramiento de calidad (QA) en aplicaciones web progresivas (PWA) con soporte offline.",
+        "Implementación de pruebas automatizadas de integración y pipelines CI/CD con Jest, Docker y Jenkins.",
+        "Planificación y gestión de proyectos de software aplicando ceremonias y artefactos del marco ágil Scrum."
+      ]
     }
   ],
-  "work": [],
   "volunteer": [],
-  "projects": [
-    {
-      "name": "Portafolio Web Personal",
-      "description": "Sitio web personal desarrollado con Astro y desplegado mediante integración continua en GitHub Pages para presentar mi perfil académico y proyectos.",
-      "isActive": true,
-      "highlights": [
-        "Diseño responsivo adaptado a escritorio y dispositivos móviles",
-        "Despliegue automatizado con GitHub Actions",
-        "Configuración estructurada mediante JSON"
-      ],
-      "url": "https://Lilian231192.github.io",
-      "github": "https://github.com/Lilian231192/Lilian231192.github.io",
-      "image": {
-        "url": "/demo/project-forma.svg",
-        "position": "container"
-      }
-    },
-    {
-      "name": "Sistema de Gestión Académica (Proyecto Ejemplo)",
-      "description": "Aplicación web enfocada en la organización de registros, usuarios y procesos administrativos con base de datos relacional.",
-      "isActive": true,
-      "highlights": [
-        "Modelado de base de datos y operaciones CRUD",
-        "Interfaz intuitiva y validación de formularios",
-        "Arquitectura modular escalable"
-      ],
-      "url": "https://github.com/Lilian231192",
-      "github": "https://github.com/Lilian231192",
-      "image": {
-        "url": "/demo/project-common.svg",
-        "position": "container"
-      }
-    },
-    {
-      "name": "Aplicación Web Interactiva (Proyecto Ejemplo)",
-      "description": "Desarrollo frontend enfocado en usabilidad, diseño limpio y consumo de datos dinámicos.",
-      "isActive": true,
-      "highlights": [
-        "Componentes reutilizables y código limpio",
-        "Optimización de tiempos de carga",
-        "Control de versiones con Git y GitHub"
-      ],
-      "url": "https://github.com/Lilian231192",
-      "github": "https://github.com/Lilian231192",
-      "image": {
-        "url": "/demo/project-index.svg",
-        "position": "container"
-      }
-    }
-  ],
   "education": [
     {
-      "institution": "Universidad Tecnológica Fidel Velázquez (UTFV)",
+      "institution": "Universidad Tecnológica Fidel Velázquez",
+      "url": "https://utfv.edomex.gob.mx/",
       "area": "Ingeniería en Desarrollo y Gestión de Software",
       "studyType": "Ingeniería",
-      "startDate": "2023-09"
+      "startDate": "2023-09-01",
+      "endDate": "2027-04-30",
+      "score": "",
+      "courses": [
+        "Desarrollo Web Integral y Aplicaciones Móviles",
+        "Aseguramiento de la Calidad del Software (QA) y DevOps",
+        "Bases de Datos Relacionales y NoSQL",
+        "Gestión de Proyectos de Software (Scrum)"
+      ]
     }
   ],
-  "certificates": [],
   "awards": [],
+  "certificates": [],
   "publications": [],
   "skills": [
     {
-      "name": "HTML",
+      "name": "Angular",
+      "icon": "simple-icons:angular",
+      "level": "Intermediate",
+      "category": "Frontend",
+      "keywords": [
+        "PWA",
+        "SSR",
+        "Service Workers",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "JavaScript / TypeScript",
+      "icon": "simple-icons:typescript",
+      "level": "Intermediate",
+      "category": "Frontend",
+      "keywords": [
+        "ES6+",
+        "Frontend",
+        "Backend"
+      ]
+    },
+    {
+      "name": "HTML & CSS",
       "icon": "simple-icons:html5",
-      "level": "Beginner",
+      "level": "Intermediate",
       "category": "Frontend",
       "keywords": [
-        "Desarrollo Web",
-        "Frontend",
-        "Estructura Web"
+        "Bootstrap",
+        "Diseño Responsivo",
+        "UI"
       ]
     },
     {
-      "name": "CSS",
-      "icon": "ri:css3-fill",
+      "name": "React & Astro",
+      "icon": "simple-icons:astro",
       "level": "Beginner",
       "category": "Frontend",
       "keywords": [
-        "Desarrollo Web",
-        "Frontend",
-        "Diseño Responsivo"
+        "Componentes UI",
+        "Sitios Estáticos"
       ]
     },
     {
-      "name": "JavaScript",
-      "icon": "simple-icons:javascript",
-      "level": "Beginner",
-      "category": "Frontend",
+      "name": "Node.js & Express",
+      "icon": "simple-icons:nodedotjs",
+      "level": "Intermediate",
+      "category": "Backend",
       "keywords": [
-        "Desarrollo Web",
-        "Frontend",
-        "Interactividad"
+        "API REST",
+        "Microservicios",
+        "JWT"
       ]
     },
     {
-      "name": "React",
-      "icon": "mdi:react",
-      "level": "Beginner",
-      "category": "Frontend",
+      "name": "Java & Android",
+      "icon": "mdi:language-java",
+      "level": "Intermediate",
+      "category": "Backend",
       "keywords": [
-        "Desarrollo Web",
-        "Frontend",
-        "Componentes UI"
+        "POO",
+        "Android SDK",
+        "OkHttp",
+        "ML Kit"
       ]
     },
     {
@@ -394,72 +154,65 @@
       "category": "Backend",
       "keywords": [
         "Programación",
-        "Backend",
         "Lógica"
       ]
     },
     {
-      "name": "Java",
-      "icon": "mdi:language-java",
-      "level": "Beginner",
-      "category": "Backend",
-      "keywords": [
-        "Programación Orientada a Objetos",
-        "Backend",
-        "Software"
-      ]
-    },
-    {
-      "name": "SQL",
+      "name": "MySQL",
       "icon": "simple-icons:mysql",
-      "level": "Beginner",
+      "level": "Intermediate",
       "category": "Bases de Datos",
       "keywords": [
-        "Bases de Datos",
-        "Consultas",
-        "Datos Relacionales"
+        "SQL",
+        "Modelado Relacional",
+        "Consultas"
       ]
     },
     {
-      "name": "MongoDB",
-      "icon": "simple-icons:mongodb",
-      "level": "Beginner",
+      "name": "MongoDB & Redis",
+      "icon": "simple-icons:redis",
+      "level": "Intermediate",
       "category": "Bases de Datos",
       "keywords": [
-        "Bases de Datos",
         "NoSQL",
-        "Documentos"
+        "Caché",
+        "Persistencia AOF",
+        "IndexedDB"
       ]
     },
     {
-      "name": "Git",
+      "name": "Docker & Jenkins",
+      "icon": "simple-icons:docker",
+      "level": "Intermediate",
+      "category": "DevOps y QA",
+      "keywords": [
+        "Contenedores",
+        "CI/CD",
+        "Pipelines",
+        "Docker Compose"
+      ]
+    },
+    {
+      "name": "Jest & Pruebas QA",
+      "icon": "simple-icons:jest",
+      "level": "Intermediate",
+      "category": "DevOps y QA",
+      "keywords": [
+        "Testing",
+        "Supertest",
+        "Lighthouse",
+        "DevTools"
+      ]
+    },
+    {
+      "name": "Git & GitHub",
       "icon": "mdi:git",
-      "level": "Beginner",
+      "level": "Intermediate",
       "category": "Herramientas",
       "keywords": [
         "Control de Versiones",
-        "Código Fuente"
-      ]
-    },
-    {
-      "name": "GitHub",
-      "icon": "mdi:github",
-      "level": "Beginner",
-      "category": "Herramientas",
-      "keywords": [
-        "Control de Versiones",
-        "Colaboración",
-        "Repositorios"
-      ]
-    },
-    {
-      "name": "Astro",
-      "icon": "simple-icons:astro",
-      "level": "Beginner",
-      "category": "Frontend",
-      "keywords": [
-        "Desarrollo Web",
-        "Sitios Estáticos"
+        "GitHub Actions",
+        "Colaboración"
       ]
     }
   ],
@@ -470,297 +223,102 @@
     },
     {
       "language": "Inglés",
-      "fluency": "Básico / Intermedio"
+      "fluency": "Básico — En formación (Lectura técnica)"
     }
   ],
   "interests": [
     {
-      "name": "Tecnología y Software",
+      "name": "Desarrollo Web & PWA",
       "keywords": [
-        "Desarrollo Web",
-        "Gestión de Proyectos",
-        "Bases de Datos"
+        "Frontend",
+        "Backend",
+        "APIs REST",
+        "Arquitectura Offline-First"
+      ]
+    },
+    {
+      "name": "Calidad de Software & DevOps",
+      "keywords": [
+        "Testing Automatizado",
+        "CI/CD",
+        "Contenedores",
+        "Buenas Prácticas"
+      ]
+    },
+    {
+      "name": "Gestión Ágil",
+      "keywords": [
+        "Scrum",
+        "Análisis de Requerimientos",
+        "Documentación Técnica"
       ]
     }
   ],
   "references": [],
-  "images": {
-    "intro": "Notas visuales y composiciones geométricas.",
-    "list": [
-      {
-        "image": "/demo/study-01.svg",
-        "alt": "Composición geométrica 01",
-        "desc": "Estudio 01 / Horizonte"
+  "projects": [
+    {
+      "name": "SIGOA — Sistema Integral de Gestión de Obras y Arquitectura",
+      "description": "Progressive Web Application (PWA) con arquitectura híbrida (SSR/CSR) para despachos de arquitectura y constructoras. Centraliza clientes, obras, cotizaciones, contratos y pagos, permitiendo operación sin conexión y sincronización en segundo plano.",
+      "isActive": true,
+      "highlights": [
+        "Rol: Analista de requerimientos y encargada de pruebas de calidad (QA)",
+        "Modo offline con Angular Service Worker, IndexedDB y Background Sync API",
+        "Notificaciones Push con llaves VAPID, backend en Node.js/Express, MySQL y JWT"
+      ],
+      "url": "https://Lilian231192.github.io",
+      "github": "https://github.com/Lilian231192",
+      "image": {
+        "url": "/demo/project-atelier.svg",
+        "position": "container"
       }
-    ]
-  },
-  "ui": {
-    "site.tagline": "Ingeniería en Desarrollo y Gestión de Software.",
-    "site.skip": "Saltar al contenido",
-    "site.index": "Índice",
-    "site.openIndex": "Abrir índice de secciones",
-    "site.navigation": "Navegación de secciones",
-    "site.sectionIndex": "Índice de secciones",
-    "site.backToTop": "Volver arriba",
-    "site.profiles": "Perfiles",
-    "site.themeCredit": "Creado con Constructa",
-    "site.themeDescription": "Portafolio web de Liliana Hernández Cruz.",
-    "site.print": "Imprimir / PDF",
-    "site.attribution": "Portafolio personal de Liliana Hernández Cruz.",
-    "footer.contact": "Contacto",
-    "footer.elsewhere": "Enlaces",
-    "footer.colophon": "Colofón",
-    "footer.index": "Índice",
-    "footer.type": "Tipografía: Anton, Space Grotesk, Instrument Serif, JetBrains Mono.",
-    "footer.build": "Tecnología: Astro, GSAP, Lenis, TypeScript.",
-    "footer.grid": "Retícula: doce columnas.",
-    "footer.rights": "Liliana Hernández Cruz · Todos los derechos reservados",
-    "hero.reroll": "Mezclar tipografía",
-    "hero.pause": "Pausar rotación del globo",
-    "hero.play": "Reanudar rotación del globo",
-    "hero.globe": "Globo terráqueo interactivo",
-    "hero.globeHint": "Arrastra para girar",
-    "common.close": "Cerrar",
-    "common.current": "Actual",
-    "common.completed": "Completado",
-    "common.present": "Presente",
-    "common.now": "Ahora",
-    "common.previous": "Anterior",
-    "common.next": "Siguiente",
-    "common.source": "Código",
-    "common.noPreview": "Sin vista previa",
-    "common.highlights": "Aspectos destacados",
-    "common.directLine": "Línea directa",
-    "common.location": "Ubicación",
-    "common.localTime": "Hora local",
-    "common.copy": "Copiar",
-    "common.backToTop": "Volver arriba",
-    "common.email": "Correo",
-    "common.phone": "Teléfono",
-    "common.website": "Sitio web",
-    "common.live": "En vivo",
-    "common.archived": "Archivado",
-    "common.archive": "Archivo",
-    "common.case": "Proyecto",
-    "common.caseFile": "Ficha de proyecto",
-    "common.visitProject": "Visitar proyecto",
-    "common.openImage": "Abrir imagen",
-    "common.imageLabel": "Abrir imagen: {name}",
-    "common.sourceLabel": "Código: {name}",
-    "common.caseLabel": "Abrir proyecto: {name}",
-    "common.previewLabel": "Vista previa de {name}",
-    "common.viewImage": "ver imagen",
-    "common.select": "seleccionar",
-    "common.open": "abrir",
-    "common.exit": "salir",
-    "common.toggle": "alternar",
-    "common.unavailable": "n/d",
-    "cursor.view": "Ver",
-    "cursor.open": "Abrir",
-    "cursor.drag": "Arrastrar",
-    "cursor.visit": "Visitar",
-    "cursor.mail": "Correo",
-    "section.continue": "Continuar",
-    "about.facts": "Datos",
-    "about.traits": "Cualidades",
-    "about.intro": "Enfoque profesional",
-    "about.manifestoFirst": "Análisis claro.",
-    "about.manifestoMiddle": "Software útil",
-    "about.manifestoLast": "y escalable.",
-    "about.note": "Estudiante de Ingeniería en Desarrollo y Gestión de Software.",
-    "about.principle": "Principio de trabajo",
-    "about.values": "Valores",
-    "about.method": "Método de trabajo",
-    "about.record": "Perfil",
-    "about.signals": "Puntos clave",
-    "about.languages": "Idiomas",
-    "about.interests": "Intereses",
-    "about.references": "Referencias",
-    "about.publications": "Publicaciones",
-    "about.requestReference": "Solicitar referencia",
-    "experience.roles": "Puestos",
-    "experience.intro": "De las ideas a sistemas funcionales",
-    "experience.statement": "Construir soluciones completas y bien estructuradas.",
-    "experience.openRecord": "Ver detalle completo",
-    "experience.closeRecord": "Cerrar detalle",
-    "experience.responsibilities": "Responsabilidades",
-    "experience.achievements": "Logros",
-    "experience.stackLabel": "Tecnologías de {name}",
-    "education.schools": "Instituciones",
-    "education.score": "Promedio",
-    "education.courses": "Cursos",
-    "education.certificates": "Certificados",
-    "education.intro": "Historial académico",
-    "education.statementFirst": "Aprender con propósito.",
-    "education.statementLast": "Construir constantemente.",
-    "education.note": "Formación continua en ingeniería de software.",
-    "education.certification": "Certificación",
-    "education.certified": "Certificado",
-    "education.records": "Registros",
-    "education.certificate": "Certificado",
-    "education.issuer": "Emisor",
-    "education.issued": "Fecha",
-    "education.verify": "Verificar credencial",
-    "education.asideTitle": "Nota académica",
-    "education.aside": "La formación brinda las bases; la práctica consolida el conocimiento.",
-    "projects.cases": "Proyectos",
-    "projects.index": "Índice de proyectos",
-    "projects.select": "Selecciona un proyecto",
-    "projects.selected": "Proyectos seleccionados",
-    "projects.explore": "Desliza para explorar",
-    "projects.navigation": "Elige un proyecto",
-    "case.closeLabel": "Cerrar ficha de proyecto",
-    "case.hint": "Esc para cerrar · ← → para navegar",
-    "case.figure": "Fig.",
-    "case.previous": "Anterior",
-    "case.next": "Siguiente",
-    "case.previousLabel": "Proyecto anterior: {name}",
-    "case.nextLabel": "Siguiente proyecto: {name}",
-    "skills.skills": "Habilidades",
-    "skills.groups": "Categorías",
-    "skills.intro": "Herramientas de trabajo",
-    "skills.statement": "Tecnologías aplicadas al desarrollo y gestión de software.",
-    "skills.note": "Filtra por categoría para explorar las herramientas.",
-    "skills.filterLabel": "Filtrar habilidades por categoría",
-    "skills.all": "Todas",
-    "skills.other": "Otras",
-    "skills.allCategories": "todas las categorías",
-    "skills.categoryStatus": "Habilidades de {category}",
-    "skills.status": "{count} {category} mostradas",
-    "skills.expert": "Avanzado",
-    "skills.intermediate": "Intermedio",
-    "skills.beginner": "Básico",
-    "skills.entries": "registros",
-    "skills.categories": "categorías",
-    "skills.inventory": "Inventario técnico",
-    "skills.footnote": "Herramientas aplicadas en proyectos académicos y personales.",
-    "gallery.frames": "Imágenes",
-    "gallery.empty": "No hay imágenes en esta colección.",
-    "gallery.intro": "Notas visuales",
-    "gallery.statementFirst": "Ideas,",
-    "gallery.statementLast": "en forma.",
-    "gallery.viewLabel": "Vista de galería",
-    "gallery.board": "Tablero",
-    "gallery.strip": "Tira",
-    "gallery.previous": "Imágenes anteriores",
-    "gallery.next": "Siguientes imágenes",
-    "gallery.boardLabel": "Tablero de imágenes",
-    "gallery.boardFirst": "Fuera",
-    "gallery.boardLast": "de la retícula.",
-    "gallery.boardHint": "Arrastra · Clic para ampliar",
-    "gallery.reset": "Restablecer vista",
-    "gallery.stripLabel": "Tira de imágenes",
-    "gallery.enlarge": "Ampliar",
-    "gallery.stripHint": "Arrastra · Flechas · Clic para ampliar",
-    "gallery.resetStatus": "Imágenes devueltas a su posición inicial.",
-    "gallery.boardStatus": "Vista de tablero.",
-    "gallery.stripStatus": "Vista de tira.",
-    "gallery.printLabel": "Mover imagen {number}: {caption}",
-    "gallery.printMoved": "Imagen {number} movida.",
-    "contact.profiles": "Perfiles",
-    "contact.direct": "Directo",
-    "contact.intro": "Los buenos proyectos comienzan con una conversación",
-    "contact.statementFirst": "Construyamos",
-    "contact.statementMiddle": "algo",
-    "contact.statementLast": "significativo.",
-    "contact.copyLabel": "Copiar {email} al portapapeles",
-    "contact.copied": "Copiado",
-    "contact.selected": "Seleccionado",
-    "contact.copyManually": "Copiar manualmente",
-    "contact.copyFailed": "Error al copiar",
-    "contact.note": "Puedes escribirme directamente a mi correo institucional o conectar a través de GitHub.",
-    "contact.details": "Datos de contacto",
-    "contact.seal": "Abierta a colaborar",
-    "contact.statusLabel": "Estado",
-    "contact.status": "Disponible para proyectos y prácticas",
-    "contact.statusNote": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en Atizapán de Zaragoza, Estado de México.",
-    "contact.elsewhere": "Perfiles / Enlaces",
-    "contact.channels": "canales",
-    "contact.end": "Fin del portafolio",
-    "contact.poster": "Crear póster",
-    "index.closeLabel": "Cerrar índice",
-    "index.find": "Buscar",
-    "index.placeholder": "Buscar secciones, proyectos, habilidades…",
-    "index.shortcutHint": "abre en cualquier lugar",
-    "index.navigation": "Navegación",
-    "index.title": "Índice",
-    "index.note": "Salta directamente a cualquier sección del portafolio.",
-    "index.sectionsLabel": "Todas las secciones",
-    "index.sections": "Secciones",
-    "index.cases": "Proyectos",
-    "index.skills": "Habilidades",
-    "index.links": "Enlaces",
-    "index.skill": "Habilidad",
-    "index.empty": "No se encontraron resultados.",
-    "index.elsewhere": "Enlaces",
-    "index.print": "Impresión",
-    "index.compactPrint": "CV Compacto",
-    "index.posterPrint": "Póster A4",
-    "index.colophon": "Colofón",
-    "index.noResults": "Sin resultados",
-    "index.result": "resultado",
-    "index.results": "resultados",
-    "print.issue": "Portafolio / Edición impresa",
-    "print.tagline": "Liliana Hernández Cruz · Ingeniería en Desarrollo y Gestión de Software.",
-    "print.colophon": "Anton · Space Grotesk · JetBrains Mono",
-    "poster.eyebrow": "Estudio / Edición impresa",
-    "poster.title": "Estudio de póster",
-    "poster.meta": "1200 × 1600 · Geometría generativa",
-    "poster.closeLabel": "Cerrar estudio de póster",
-    "poster.pending": "Generando póster…",
-    "poster.seedHint": "Regenerar crea una nueva variante",
-    "poster.formatHint": "1200 × 1600 · SVG / PNG · Esc para cerrar",
-    "poster.reprint": "Regenerar",
-    "poster.downloadSvg": "Descargar SVG",
-    "poster.downloadPng": "Descargar PNG",
-    "poster.sheetTitle": "Portafolio · 1200 × 1600",
-    "poster.print": "Imprimir",
-    "poster.seed": "Variante",
-    "poster.portfolio": "Portafolio",
-    "poster.description": "Póster generado con la paleta actual. {label}. {email}.",
-    "poster.edition": "Edición abierta",
-    "poster.alt": "{name} · póster constructivista, variante {seed}",
-    "poster.ready": "Póster listo.",
-    "poster.reprinted": "Regenerado · variante {seed}",
-    "poster.pngPending": "Preparando PNG…",
-    "poster.pngReady": "PNG guardado · variante {seed}",
-    "poster.pngFailed": "Error al exportar PNG. Descarga el SVG.",
-    "poster.svgReady": "SVG guardado · variante {seed}",
-    "poster.svgPending": "Preparando SVG…",
-    "poster.svgFailed": "Error al exportar SVG.",
-    "poster.unavailable": "Generación de póster no disponible.",
-    "lightbox.label": "Visor de imágenes",
-    "lightbox.archive": "Archivo",
-    "lightbox.gallery": "Galería",
-    "lightbox.projects": "Proyectos",
-    "lightbox.closeLabel": "Cerrar visor",
-    "lightbox.hint": "Esc para cerrar · ← → para navegar",
-    "lightbox.previousLabel": "Imagen anterior",
-    "lightbox.nextLabel": "Siguiente imagen",
-    "lightbox.previous": "Anterior",
-    "theme.paletteLabel": "Paleta de color",
-    "theme.darkLabel": "Cambiar a modo oscuro",
-    "theme.lightLabel": "Cambiar a modo claro",
-    "theme.red": "Rojo",
-    "theme.pink": "Rosa",
-    "theme.orange": "Naranja",
-    "theme.cyber": "Ácido",
-    "theme.green": "Verde",
-    "theme.blue": "Azul",
-    "blueprint.title": "Retícula",
-    "blueprint.hint": "Inspección de diseño. Presiona G para alternar.",
-    "blueprint.heading": "Inspección de diseño",
-    "blueprint.closeLabel": "Salir de inspección",
-    "blueprint.viewport": "Pantalla",
-    "blueprint.scroll": "Desplazamiento",
-    "blueprint.section": "Sección",
-    "blueprint.grid": "Retícula",
-    "blueprint.palette": "Paleta",
-    "blueprint.mode": "Modo",
-    "blueprint.type": "Tipografía",
-    "blueprint.breakpoint": "Punto de quiebre",
-    "blueprint.shell": "Contenedor / 12 col",
-    "blueprint.light": "Claro",
-    "blueprint.dark": "Oscuro"
-  }
+    },
+    {
+      "name": "AsisteDragon — Control de Asistencias y Pipeline DevOps",
+      "description": "Sistema basado en microservicios para el control de asistencias mediante códigos QR y OCR para la UTFV, integrado con un flujo automatizado de Integración Continua (CI/CD).",
+      "isActive": true,
+      "highlights": [
+        "Pruebas automatizadas de API REST con Jest y Supertest dentro de contenedores efímeros",
+        "Arquitectura de microservicios en Node.js/Express con persistencia AOF en Redis",
+        "Contenerización con Docker/Docker Compose y orquestación de Pipeline CI en Jenkins"
+      ],
+      "url": "https://github.com/CarlosN225/AsisteDragon",
+      "github": "https://github.com/CarlosN225/AsisteDragon",
+      "image": {
+        "url": "/demo/project-kinetik.svg",
+        "position": "container"
+      }
+    },
+    {
+      "name": "Planificación Ágil (Scrum) — App de Delivery",
+      "description": "Gestión y estructuración completa de un proyecto de desarrollo de software bajo el marco de trabajo Scrum, abarcando desde el Product Backlog hasta la retrospectiva.",
+      "isActive": false,
+      "highlights": [
+        "Definición de Product Backlog, historias de usuario y metas de Sprint (2 semanas)",
+        "Priorización de módulos: autenticación, carrito, pasarela de pagos y rastreo",
+        "Diseño de ceremonias ágiles: Daily Standups, Sprint Review y Sprint Retrospective"
+      ],
+      "url": "https://Lilian231192.github.io",
+      "github": "https://github.com/Lilian231192",
+      "image": {
+        "url": "/demo/project-forma.svg",
+        "position": "container"
+      }
+    },
+    {
+      "name": "Portafolio Web Personal",
+      "description": "Sitio web personal desarrollado con Astro y TypeScript, desplegado mediante integración continua en GitHub Pages para presentar mi perfil académico y proyectos.",
+      "isActive": true,
+      "highlights": [
+        "Diseño responsivo adaptado a escritorio y dispositivos móviles",
+        "Despliegue automatizado con GitHub Actions",
+        "Arquitectura de datos desacoplada mediante esquema JSON"
+      ],
+      "url": "https://Lilian231192.github.io",
+      "github": "https://github.com/Lilian231192/Lilian231192.github.io",
+      "image": {
+        "url": "/demo/project-forma.svg",
+        "position": "container"
+      }
+    }
+  ]
 }

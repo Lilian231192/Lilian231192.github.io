@@ -1,9 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "hero": {
-    "kicker": "PORTAFOLIO · DESARROLLO DE SOFTWARE · QA & DEVOPS",
-    "headline": "Ingeniería de software con foco en calidad, escalabilidad y eficiencia.",
-    "subheadline": "Construyo aplicaciones web modernas, arquitecturas resilientes y flujos automatizados de prueba y despliegue.",
     "metrics": [
       {
         "value": "2023—2027",
@@ -39,7 +36,8 @@
       {
         "network": "GitHub",
         "username": "Lilian231192",
-        "url": "https://github.com/Lilian231192"
+        "url": "https://github.com/Lilian231192",
+        "icon": "mdi:github"
       }
     ]
   },

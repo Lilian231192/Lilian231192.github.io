@@ -17,10 +17,10 @@
     ]
   },
   "basics": {
-    "name": "Lilian Guadalupe Ortega Chávez",
+    "name": "Liliana Hernández Cruz",
     "label": "Estudiante de Ingeniería en Desarrollo y Gestión de Software",
     "image": "/foto-lilian.jpg",
-    "email": "23302032@utfv.edu.mx",
+    "email": "23302132@utfv.edu.mx",
     "phone": "",
     "url": "https://Lilian231192.github.io",
     "summary": "Estudiante de Ingeniería en Desarrollo y Gestión de Software en la Universidad Tecnológica Fidel Velázquez (UTFV). Me caracterizo por ser una persona altamente responsable, comprometida y orientada a resultados, con facilidad para el trabajo en equipo, la comunicación asertiva y la resolución analítica de problemas. Cuento con experiencia práctica en el desarrollo de aplicaciones web progresivas (PWA), aseguramiento de calidad (QA) con pruebas automatizadas, contenerización con Docker/Jenkins y gestión ágil bajo Scrum, manteniendo siempre una actitud proactiva y de aprendizaje continuo.",
@@ -28,7 +28,7 @@
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Nicolás Romero",
+      "city": "Atizapán de Zaragoza",
       "countryCode": "MX",
       "region": "Estado de México"
     },
